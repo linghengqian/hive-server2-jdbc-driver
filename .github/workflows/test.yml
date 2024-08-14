@@ -1,9 +1,11 @@
 name: Test
-
 on:
   pull_request:
-    branches: [ master ]
-
+    branches:
+      - master
+  push:
+    branches:
+      - master
 jobs:
   test-ci:
     if: github.repository == 'linghengqian/hive-server2-jdbc-driver'
@@ -18,10 +20,10 @@ jobs:
         with:
           repository: apache/hive
           path: apache-hive
-          ref:
+          ref: "b09d76e68bfba6be19733d864b3207f95265d11f"
       - uses: actions/setup-java@v4
         with:
-          distribution: 'zulu'
+          distribution: 'temurin'
           java-version: ${{ matrix.java }}
           cache: 'maven'
       - run: |
