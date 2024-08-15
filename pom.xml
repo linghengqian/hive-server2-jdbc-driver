@@ -44,11 +44,26 @@
         <zookeeper.version>3.8.4</zookeeper.version>
         <curator.version>5.2.0</curator.version>
 
+        <!--
+        TODO Fix class conflicts in master branch of apache/hive .
+         Refer to https://github.com/apache/hive/commit/b09d76e68bfba6be19733d864b3207f95265d11f .
+        -->
+        <commons-codec.version>1.15</commons-codec.version>
+        <guava.version>22.0</guava.version>
+        <commons-logging.version>1.1.3</commons-logging.version>
+        <commons-text.version>1.10.0</commons-text.version>
+        <slf4j.version>1.7.30</slf4j.version>
+
+        <!--
+        TODO Fix class conflicts in master branch of apache/hadoop .
+         Refer to https://github.com/apache/hadoop/blob/release-3.3.6-RC1/hadoop-project/pom.xml#L1244 .
+        -->
+        <stax2-api.version>4.2.1</stax2-api.version>
+
         <junit-bom.version>5.10.3</junit-bom.version>
         <testcontainers-bom.version>1.20.1</testcontainers-bom.version>
         <hikaricp.version>4.0.3</hikaricp.version>
         <awaitility.version>4.2.2</awaitility.version>
-        <slf4j-nop.version>1.7.30</slf4j-nop.version>
 
         <maven-source-plugin.version>3.3.1</maven-source-plugin.version>
         <maven-javadoc-plugin.version>3.8.0</maven-javadoc-plugin.version>
@@ -93,6 +108,16 @@
             <artifactId>junit-jupiter</artifactId>
             <scope>test</scope>
             <optional>true</optional>
+            <exclusions>
+                <!--
+               TODO Fix class conflicts in master branch of apache/hive .
+                Refer to https://github.com/apache/hive/commit/b09d76e68bfba6be19733d864b3207f95265d11f .
+               -->
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-api</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.awaitility</groupId>
@@ -104,7 +129,7 @@
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-nop</artifactId>
-            <version>${slf4j-nop.version}</version>
+            <version>${slf4j.version}</version>
             <scope>test</scope>
             <optional>true</optional>
         </dependency>
@@ -114,6 +139,16 @@
             <version>${hikaricp.version}</version>
             <scope>test</scope>
             <optional>true</optional>
+            <exclusions>
+                <!--
+               TODO Fix class conflicts in master branch of apache/hive .
+                Refer to https://github.com/apache/hive/commit/b09d76e68bfba6be19733d864b3207f95265d11f .
+               -->
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-api</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
     </dependencies>
 
@@ -185,9 +220,6 @@
                             <version>${native-maven-plugin.version}</version>
                             <extensions>true</extensions>
                             <configuration>
-<!--                                <buildArgs>-->
-<!--                                    <buildArg>-H:+AddAllCharsets</buildArg>-->
-<!--                                </buildArgs>-->
                                 <quickBuild>true</quickBuild>
                             </configuration>
                             <executions>

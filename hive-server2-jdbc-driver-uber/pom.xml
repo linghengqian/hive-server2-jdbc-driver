@@ -139,6 +139,46 @@
                     <groupId>org.slf4j</groupId>
                     <artifactId>slf4j-log4j12</artifactId>
                 </exclusion>
+                <!--
+                TODO This has been fixed at https://github.com/apache/hive/commit/b09d76e68bfba6be19733d864b3207f95265d11f .
+                 This exclusion can be removed once we update to `apache/hive:4.1.0`.
+                -->
+                <exclusion>
+                    <groupId>commons-codec</groupId>
+                    <artifactId>commons-codec</artifactId>
+                </exclusion>
+                <!--
+                TODO This has been fixed at https://github.com/apache/hive/commit/b09d76e68bfba6be19733d864b3207f95265d11f .
+                 This exclusion can be removed once we update to `apache/hive:4.1.0`.
+                -->
+                <exclusion>
+                    <groupId>commons-logging</groupId>
+                    <artifactId>commons-logging</artifactId>
+                </exclusion>
+                <!--
+                TODO This has been fixed at https://github.com/apache/hive/commit/b09d76e68bfba6be19733d864b3207f95265d11f .
+                 This exclusion can be removed once we update to `apache/hive:4.1.0`.
+                -->
+                <exclusion>
+                    <groupId>org.apache.commons</groupId>
+                    <artifactId>commons-text</artifactId>
+                </exclusion>
+                <!--
+                TODO This has been fixed at https://github.com/apache/hive/commit/b09d76e68bfba6be19733d864b3207f95265d11f .
+                 This exclusion can be removed once we update to `apache/hive:4.1.0`.
+                -->
+                <exclusion>
+                    <groupId>org.codehaus.woodstox</groupId>
+                    <artifactId>stax2-api</artifactId>
+                </exclusion>
+                <!--
+                TODO This has been fixed at https://github.com/apache/hive/commit/b09d76e68bfba6be19733d864b3207f95265d11f .
+                 This exclusion can be removed once we update to `apache/hive:4.1.0`.
+                -->
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-api</artifactId>
+                </exclusion>
             </exclusions>
         </dependency>
         <dependency>
@@ -170,7 +210,61 @@
                     <groupId>org.slf4j</groupId>
                     <artifactId>slf4j-reload4j</artifactId>
                 </exclusion>
+                <!--
+                TODO This has been fixed at https://github.com/apache/hive/commit/b09d76e68bfba6be19733d864b3207f95265d11f .
+                 This exclusion can be removed once we update to `apache/hive:4.1.0`.
+                -->
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-api</artifactId>
+                </exclusion>
             </exclusions>
+        </dependency>
+
+        <!--
+        TODO Fix class conflicts in master branch of apache/hive .
+         Refer to https://github.com/apache/hive/commit/b09d76e68bfba6be19733d864b3207f95265d11f .
+        -->
+        <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+            <version>${commons-codec.version}</version>
+        </dependency>
+        <!--
+              TODO Fix class conflicts in master branch of apache/hive .
+               Refer to https://github.com/apache/hive/commit/b09d76e68bfba6be19733d864b3207f95265d11f .
+              -->
+        <dependency>
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
+            <version>${commons-logging.version}</version>
+        </dependency>
+        <!--
+               TODO Fix class conflicts in master branch of apache/hive .
+                Refer to https://github.com/apache/hive/commit/b09d76e68bfba6be19733d864b3207f95265d11f .
+               -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-text</artifactId>
+            <version>${commons-text.version}</version>
+        </dependency>
+        <!--
+       TODO Fix class conflicts in master branch of apache/hadoop .
+        Refer to https://github.com/apache/hadoop/blob/release-3.3.6-RC1/hadoop-project/pom.xml#L1244 .
+       -->
+        <dependency>
+            <groupId>org.codehaus.woodstox</groupId>
+            <artifactId>stax2-api</artifactId>
+            <version>4.2.1</version>
+        </dependency>
+        <!--
+               TODO Fix class conflicts in master branch of apache/hive .
+                Refer to https://github.com/apache/hive/commit/b09d76e68bfba6be19733d864b3207f95265d11f .
+               -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
         </dependency>
     </dependencies>
 

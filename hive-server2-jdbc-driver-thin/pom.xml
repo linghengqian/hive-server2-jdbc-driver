@@ -107,12 +107,38 @@
                     <groupId>commons-cli</groupId>
                     <artifactId>*</artifactId>
                 </exclusion>
+                <!--
+              TODO Fix class conflicts in master branch of apache/hive .
+               Refer to https://github.com/apache/hive/commit/b09d76e68bfba6be19733d864b3207f95265d11f .
+              -->
+                <exclusion>
+                    <groupId>org.apache.thrift</groupId>
+                    <artifactId>libthrift</artifactId>
+                </exclusion>
             </exclusions>
         </dependency>
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpclient</artifactId>
             <version>${httpcomponents.client.version}</version>
+            <exclusions>
+                <!--
+                TODO Fix class conflicts in master branch of apache/hive .
+                 Refer to https://github.com/apache/hive/commit/b09d76e68bfba6be19733d864b3207f95265d11f .
+                -->
+                <exclusion>
+                    <groupId>commons-codec</groupId>
+                    <artifactId>commons-codec</artifactId>
+                </exclusion>
+                <!--
+               TODO Fix class conflicts in master branch of apache/hive .
+                Refer to https://github.com/apache/hive/commit/b09d76e68bfba6be19733d864b3207f95265d11f .
+               -->
+                <exclusion>
+                    <groupId>commons-logging</groupId>
+                    <artifactId>commons-logging</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
@@ -123,6 +149,24 @@
             <groupId>org.apache.thrift</groupId>
             <artifactId>libthrift</artifactId>
             <version>${libthrift.version}</version>
+            <exclusions>
+                <!--
+              TODO Fix class conflicts in master branch of apache/hive .
+               Refer to https://github.com/apache/hive/commit/b09d76e68bfba6be19733d864b3207f95265d11f .
+              -->
+                <exclusion>
+                    <groupId>org.apache.httpcomponents</groupId>
+                    <artifactId>httpcore</artifactId>
+                </exclusion>
+                <!--
+               TODO Fix class conflicts in master branch of apache/hive .
+                Refer to https://github.com/apache/hive/commit/b09d76e68bfba6be19733d864b3207f95265d11f .
+               -->
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-api</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.apache.zookeeper</groupId>
@@ -151,6 +195,32 @@
             <groupId>org.apache.curator</groupId>
             <artifactId>curator-framework</artifactId>
             <version>${curator.version}</version>
+            <exclusions>
+                <!--
+                TODO Fix class conflicts in master branch of apache/hive .
+                 Refer to https://github.com/apache/hive/commit/b09d76e68bfba6be19733d864b3207f95265d11f .
+                -->
+                <exclusion>
+                    <groupId>com.google.guava</groupId>
+                    <artifactId>guava</artifactId>
+                </exclusion>
+                <!--
+                TODO Fix class conflicts in master branch of apache/hive .
+                 Refer to https://github.com/apache/hive/commit/b09d76e68bfba6be19733d864b3207f95265d11f .
+                -->
+                <exclusion>
+                    <groupId>org.apache.zookeeper</groupId>
+                    <artifactId>zookeeper</artifactId>
+                </exclusion>
+                <!--
+               TODO Fix class conflicts in master branch of apache/hive .
+                Refer to https://github.com/apache/hive/commit/b09d76e68bfba6be19733d864b3207f95265d11f .
+               -->
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-api</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.apache.hive.shims</groupId>
@@ -160,6 +230,14 @@
                 <exclusion>
                     <groupId>com.google.code.findbugs</groupId>
                     <artifactId>*</artifactId>
+                </exclusion>
+                <!--
+                TODO Fix class conflicts in master branch of apache/hive .
+                 Refer to https://github.com/apache/hive/commit/b09d76e68bfba6be19733d864b3207f95265d11f .
+                -->
+                <exclusion>
+                    <groupId>org.apache.zookeeper</groupId>
+                    <artifactId>zookeeper</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>
@@ -384,6 +462,54 @@
                     <groupId>org.xerial.snappy</groupId>
                     <artifactId>*</artifactId>
                 </exclusion>
+                <!--
+                TODO Fix class conflicts in master branch of apache/hive .
+                 Refer to https://github.com/apache/hive/commit/b09d76e68bfba6be19733d864b3207f95265d11f .
+                -->
+                <exclusion>
+                    <groupId>com.google.guava</groupId>
+                    <artifactId>guava</artifactId>
+                </exclusion>
+                <!--
+               TODO Fix class conflicts in master branch of apache/hive .
+                Refer to https://github.com/apache/hive/commit/b09d76e68bfba6be19733d864b3207f95265d11f .
+               -->
+                <exclusion>
+                    <groupId>commons-logging</groupId>
+                    <artifactId>commons-logging</artifactId>
+                </exclusion>
+                <!--
+               TODO Fix class conflicts in master branch of apache/hive .
+                Refer to https://github.com/apache/hive/commit/b09d76e68bfba6be19733d864b3207f95265d11f .
+               -->
+                <exclusion>
+                    <groupId>org.apache.commons</groupId>
+                    <artifactId>commons-text</artifactId>
+                </exclusion>
+                <!--
+                TODO Fix class conflicts in master branch of apache/hive .
+                 Refer to https://github.com/apache/hive/commit/b09d76e68bfba6be19733d864b3207f95265d11f .
+                -->
+                <exclusion>
+                    <groupId>org.apache.zookeeper</groupId>
+                    <artifactId>zookeeper</artifactId>
+                </exclusion>
+                <!--
+        TODO Fix class conflicts in master branch of apache/hadoop .
+         Refer to https://github.com/apache/hadoop/blob/release-3.3.6-RC1/hadoop-project/pom.xml#L1244 .
+        -->
+                <exclusion>
+                    <groupId>org.codehaus.woodstox</groupId>
+                    <artifactId>stax2-api</artifactId>
+                </exclusion>
+                <!--
+               TODO Fix class conflicts in master branch of apache/hive .
+                Refer to https://github.com/apache/hive/commit/b09d76e68bfba6be19733d864b3207f95265d11f .
+               -->
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-api</artifactId>
+                </exclusion>
             </exclusions>
         </dependency>
         <dependency>
@@ -414,6 +540,22 @@
                 <exclusion>
                     <groupId>org.slf4j</groupId>
                     <artifactId>slf4j-reload4j</artifactId>
+                </exclusion>
+                <!--
+                TODO Fix class conflicts in master branch of apache/hive .
+                 Refer to https://github.com/apache/hive/commit/b09d76e68bfba6be19733d864b3207f95265d11f .
+                -->
+                <exclusion>
+                    <groupId>org.apache.zookeeper</groupId>
+                    <artifactId>zookeeper</artifactId>
+                </exclusion>
+                <!--
+               TODO Fix class conflicts in master branch of apache/hive .
+                Refer to https://github.com/apache/hive/commit/b09d76e68bfba6be19733d864b3207f95265d11f .
+               -->
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-api</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>
@@ -450,6 +592,22 @@
                     <groupId>org.apache.hadoop</groupId>
                     <artifactId>hadoop-annotations</artifactId>
                 </exclusion>
+                <!--
+                TODO Fix class conflicts in master branch of apache/hive .
+                 Refer to https://github.com/apache/hive/commit/b09d76e68bfba6be19733d864b3207f95265d11f .
+                -->
+                <exclusion>
+                    <groupId>org.apache.zookeeper</groupId>
+                    <artifactId>zookeeper</artifactId>
+                </exclusion>
+                <!--
+               TODO Fix class conflicts in master branch of apache/hive .
+                Refer to https://github.com/apache/hive/commit/b09d76e68bfba6be19733d864b3207f95265d11f .
+               -->
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-api</artifactId>
+                </exclusion>
             </exclusions>
         </dependency>
         <dependency>
@@ -478,6 +636,61 @@
                     <artifactId>hadoop-shaded-protobuf_3_7</artifactId>
                 </exclusion>
             </exclusions>
+        </dependency>
+
+        <!--
+        TODO Fix class conflicts in master branch of apache/hive .
+         Refer to https://github.com/apache/hive/commit/b09d76e68bfba6be19733d864b3207f95265d11f .
+        -->
+        <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+            <version>${commons-codec.version}</version>
+        </dependency>
+        <!--
+               TODO Fix class conflicts in master branch of apache/hive .
+                Refer to https://github.com/apache/hive/commit/b09d76e68bfba6be19733d864b3207f95265d11f .
+               -->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>${guava.version}</version>
+        </dependency>
+        <!--
+               TODO Fix class conflicts in master branch of apache/hive .
+                Refer to https://github.com/apache/hive/commit/b09d76e68bfba6be19733d864b3207f95265d11f .
+               -->
+        <dependency>
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
+            <version>${commons-logging.version}</version>
+        </dependency>
+        <!--
+               TODO Fix class conflicts in master branch of apache/hive .
+                Refer to https://github.com/apache/hive/commit/b09d76e68bfba6be19733d864b3207f95265d11f .
+               -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-text</artifactId>
+            <version>${commons-text.version}</version>
+        </dependency>
+        <!--
+        TODO Fix class conflicts in master branch of apache/hadoop .
+         Refer to https://github.com/apache/hadoop/blob/release-3.3.6-RC1/hadoop-project/pom.xml#L1244 .
+        -->
+        <dependency>
+            <groupId>org.codehaus.woodstox</groupId>
+            <artifactId>stax2-api</artifactId>
+            <version>4.2.1</version>
+        </dependency>
+        <!--
+               TODO Fix class conflicts in master branch of apache/hive .
+                Refer to https://github.com/apache/hive/commit/b09d76e68bfba6be19733d864b3207f95265d11f .
+               -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
         </dependency>
     </dependencies>
 
