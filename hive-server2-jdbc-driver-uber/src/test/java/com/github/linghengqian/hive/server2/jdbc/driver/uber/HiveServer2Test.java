@@ -1,4 +1,4 @@
-package com.github.linghengqian.hive.server2.jdbc.driver;
+package com.github.linghengqian.hive.server2.jdbc.driver.uber;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
@@ -9,7 +9,6 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 import org.testcontainers.utility.DockerImageName;
 
 import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.Duration;
@@ -17,15 +16,12 @@ import java.time.temporal.ChronoUnit;
 
 import static org.awaitility.Awaitility.await;
 
-@SuppressWarnings("SqlNoDataSourceInspection")
+@SuppressWarnings({"SqlNoDataSourceInspection", "resource"})
 @Testcontainers
 public class HiveServer2Test {
 
-    @SuppressWarnings("resource")
     @Container
-    public static final GenericContainer<?> CONTAINER = new GenericContainer<>(
-            DockerImageName.parse("apache/hive:4.1.0-SNAPSHOT")
-    )
+    public static final GenericContainer<?> CONTAINER = new GenericContainer<>(DockerImageName.parse("apache/hive:4.1.0-SNAPSHOT"))
             .withEnv("SERVICE_NAME", "hiveserver2")
             .withExposedPorts(10000, 10002);
 
@@ -45,26 +41,11 @@ public class HiveServer2Test {
              Connection connection = hikariDataSource.getConnection();
              Statement statement = connection.createStatement()) {
             statement.execute("CREATE DATABASE demo_ds_0");
-        }
-        HikariConfig hikariConfig = new HikariConfig();
-        hikariConfig.setJdbcUrl(jdbcUrlPrefix + "/demo_ds_0");
-        hikariConfig.setDriverClassName("org.apache.hive.jdbc.HiveDriver");
-        try (HikariDataSource hikariDataSource = new HikariDataSource(hikariConfig);
-             Connection connection = hikariDataSource.getConnection();
-             Statement statement = connection.createStatement()) {
-            String tableName = "testHiveDriverTable";
-            statement.execute("drop table if exists " + tableName);
-            statement.execute("create table " + tableName + " (key int, value string)");
-            String sql = "show tables '" + tableName + "'";
-            ResultSet resultSet = statement.executeQuery(sql);
-            if (resultSet.next()) {
-                System.out.println(resultSet.getString(1));
-            }
-            sql = "describe " + tableName;
-            resultSet = statement.executeQuery(sql);
-            while (resultSet.next()) {
-                System.out.printf("%s\t%s%n", resultSet.getString(1), resultSet.getString(2));
-            }
+            statement.executeQuery("show tables");
+            statement.execute("create table hive_example(a string, b int) partitioned by(c int)");
+            statement.execute("insert into hive_example partition(c=1) values('a', 1), ('a', 2),('b',3)");
+            statement.executeQuery("select count(distinct a) from hive_example");
+            statement.executeQuery("select sum(b) from hive_example");
         }
     }
 }

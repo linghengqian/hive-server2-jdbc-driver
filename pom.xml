@@ -4,10 +4,10 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>io.github.linghengqian</groupId>
-    <artifactId>hive-server2-jdbc-driver</artifactId>
-    <version>1.0.0</version>
+    <artifactId>hive-parent</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
 
-    <packaging>jar</packaging>
+    <packaging>pom</packaging>
     <name>${project.groupId}:${project.artifactId}</name>
     <description>Third-party builds of HiveServer2 JDBC Driver</description>
     <url>https://github.com/linghengqian/hive-server2-jdbc-driver</url>
@@ -24,6 +24,10 @@
             <organizationUrl>https://github.com/linghengqian</organizationUrl>
         </developer>
     </developers>
+    <modules>
+        <module>hive-server2-jdbc-driver-thin</module>
+        <module>hive-server2-jdbc-driver-uber</module>
+    </modules>
     <scm>
         <connection>scm:git:git://github.com/linghengqian/hive-server2-jdbc-driver.git</connection>
         <developerConnection>scm:git:ssh://github.com:linghengqian/hive-server2-jdbc-driver.git</developerConnection>
@@ -34,7 +38,16 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
         <apache-hive-jdbc.version>4.1.0-SNAPSHOT</apache-hive-jdbc.version>
+        <parquet.version>1.13.1</parquet.version>
+        <hadoop.version>3.3.6</hadoop.version>
+        <httpcomponents.client.version>4.5.13</httpcomponents.client.version>
+        <httpcomponents.core.version>4.4.13</httpcomponents.core.version>
+        <libthrift.version>0.16.0</libthrift.version>
+        <zookeeper.version>3.8.4</zookeeper.version>
+        <curator.version>5.2.0</curator.version>
+
         <junit-bom.version>5.10.3</junit-bom.version>
         <testcontainers-bom.version>1.20.1</testcontainers-bom.version>
         <hikaricp.version>4.0.3</hikaricp.version>
@@ -63,39 +76,23 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.apache.hive</groupId>
-            <artifactId>hive-jdbc</artifactId>
-            <version>${apache-hive-jdbc.version}</version>
-            <classifier>standalone</classifier>
-        </dependency>
-
-        <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
             <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.zaxxer</groupId>
-            <artifactId>HikariCP</artifactId>
-            <version>${hikaricp.version}</version>
-            <scope>test</scope>
+            <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>org.testcontainers</groupId>
             <artifactId>junit-jupiter</artifactId>
             <scope>test</scope>
+            <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>org.awaitility</groupId>
             <artifactId>awaitility</artifactId>
             <version>${awaitility.version}</version>
             <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-classic</artifactId>
-            <version>${logback-classic.version}</version>
-            <scope>test</scope>
+            <optional>true</optional>
         </dependency>
     </dependencies>
 
