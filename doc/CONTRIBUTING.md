@@ -4,6 +4,7 @@ It is assumed that `Git` is configured, and `SDKMAN!` and `Docker Engine` are in
 ```shell
 sdk install java 8.0.422-tem
 sdk install java 22.0.2-graalce
+sudo apt-get install build-essential zlib1g-dev -y
 ```
 
 ### How to test
@@ -11,11 +12,21 @@ sdk install java 22.0.2-graalce
 - Execute the following command.
 
 ```shell
-sdk use java 22.0.2-graalce
-
 git clone git@github.com:linghengqian/hive-server2-jdbc-driver.git
 cd ./hive-server2-jdbc-driver/
+sdk use java 22.0.2-graalce
 ./mvnw -T 1.5C clean test
+```
+
+### How to nativeTest under GraalVM Native Image
+
+- Execute the following command.
+
+```shell
+git clone git@github.com:linghengqian/hive-server2-jdbc-driver.git
+cd ./hive-server2-jdbc-driver/
+sdk use java 22.0.2-graalce
+./mvnw -T 1.5C -PnativeTestInCustom clean test
 ```
 
 ### How to publish via the central portal

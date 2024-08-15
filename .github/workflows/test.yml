@@ -12,7 +12,7 @@ jobs:
     if: github.repository == 'linghengqian/hive-server2-jdbc-driver'
     strategy:
       matrix:
-        java: [ '8', '22' ]
+        java: [ '8' ]
         os: [ 'ubuntu-latest' ]
     runs-on: ${{ matrix.os }}
     steps:
@@ -41,4 +41,4 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           cache: 'maven'
       - run: |
-          ./mvnw -T 1.5C clean test
+          ./mvnw -T 1.5C -PnativeTestInCustom clean test

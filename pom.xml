@@ -48,12 +48,13 @@
         <testcontainers-bom.version>1.20.1</testcontainers-bom.version>
         <hikaricp.version>4.0.3</hikaricp.version>
         <awaitility.version>4.2.2</awaitility.version>
-        <logback-classic.version>1.2.13</logback-classic.version>
+        <slf4j-nop.version>1.7.30</slf4j-nop.version>
 
         <maven-source-plugin.version>3.3.1</maven-source-plugin.version>
         <maven-javadoc-plugin.version>3.8.0</maven-javadoc-plugin.version>
         <maven-gpg-plugin.version>3.2.5</maven-gpg-plugin.version>
         <central-publishing-maven-plugin.version>0.5.0</central-publishing-maven-plugin.version>
+        <native-maven-plugin.version>0.10.2</native-maven-plugin.version>
     </properties>
 
     <modules>
@@ -101,9 +102,9 @@
             <optional>true</optional>
         </dependency>
         <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-classic</artifactId>
-            <version>${logback-classic.version}</version>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-nop</artifactId>
+            <version>${slf4j-nop.version}</version>
             <scope>test</scope>
             <optional>true</optional>
         </dependency>
@@ -171,6 +172,36 @@
                         </configuration>
                     </plugin>
                 </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>nativeTestInCustom</id>
+            <build>
+                <pluginManagement>
+                    <plugins>
+                        <plugin>
+                            <groupId>org.graalvm.buildtools</groupId>
+                            <artifactId>native-maven-plugin</artifactId>
+                            <version>${native-maven-plugin.version}</version>
+                            <extensions>true</extensions>
+                            <configuration>
+<!--                                <buildArgs>-->
+<!--                                    <buildArg>-H:+AddAllCharsets</buildArg>-->
+<!--                                </buildArgs>-->
+                                <quickBuild>true</quickBuild>
+                            </configuration>
+                            <executions>
+                                <execution>
+                                    <id>test-native</id>
+                                    <goals>
+                                        <goal>test</goal>
+                                    </goals>
+                                    <phase>test</phase>
+                                </execution>
+                            </executions>
+                        </plugin>
+                    </plugins>
+                </pluginManagement>
             </build>
         </profile>
     </profiles>
