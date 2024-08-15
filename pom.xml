@@ -138,6 +138,12 @@
                                 <goals>
                                     <goal>sign</goal>
                                 </goals>
+                                <configuration>
+                                    <!--suppress MavenModelInspection -->
+                                    <keyname>${gpg.keyname}</keyname>
+                                    <!--suppress MavenModelInspection -->
+                                    <passphraseServerId>${gpg.keyname}</passphraseServerId>
+                                </configuration>
                             </execution>
                         </executions>
                     </plugin>

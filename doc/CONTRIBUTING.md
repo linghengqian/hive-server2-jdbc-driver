@@ -43,14 +43,15 @@ gnome-text-editor ~/.m2/setting.xml
 ```
 
 ```xml
+
 <settings>
-  <servers>
-    <server>
-      <id>central</id>
-      <username><!-- your token username --></username>
-      <password><!-- your token password --></password>
-    </server>
-  </servers>
+    <servers>
+        <server>
+            <id>central</id>
+            <username><!-- Aloha, your token username --></username>
+            <password><!-- Aloha, your token password --></password>
+        </server>
+    </servers>
 </settings>
 ```
 
@@ -65,5 +66,5 @@ mvn clean install -DskipTests
 cd ../
 git clone git@github.com:linghengqian/hive-server2-jdbc-driver.git
 cd ./hive-server2-jdbc-driver/
-./mvnw -Ppublishing-via-the-central-portal -DskipTests clean deploy
+./mvnw -Ppublishing-via-the-central-portal -Dgpg.keyname=${Aloha, your keyname} -DskipTests clean deploy
 ```

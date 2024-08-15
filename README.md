@@ -46,6 +46,6 @@ More background at https://lists.apache.org/thread/63lr45kyh78s64spwsjxjy8zdyzpr
 
 The current project has not yet carried out any release work.
 
-## contribute
+## Contributing
 
 Refer to [CONTRIBUTING](./doc/CONTRIBUTING.md) .

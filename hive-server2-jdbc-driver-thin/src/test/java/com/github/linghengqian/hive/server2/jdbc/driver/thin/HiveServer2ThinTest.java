@@ -1,4 +1,4 @@
-package com.github.linghengqian.hive.server2.jdbc.driver.uber;
+package com.github.linghengqian.hive.server2.jdbc.driver.thin;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
@@ -9,16 +9,19 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 import org.testcontainers.utility.DockerImageName;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
 
 import static org.awaitility.Awaitility.await;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
 
 @SuppressWarnings({"SqlNoDataSourceInspection", "resource"})
 @Testcontainers
-public class HiveServer2Test {
+public class HiveServer2ThinTest {
 
     @Container
     public static final GenericContainer<?> CONTAINER = new GenericContainer<>(DockerImageName.parse("apache/hive:4.1.0-SNAPSHOT"))
@@ -41,11 +44,17 @@ public class HiveServer2Test {
              Connection connection = hikariDataSource.getConnection();
              Statement statement = connection.createStatement()) {
             statement.execute("CREATE DATABASE demo_ds_0");
-            statement.executeQuery("show tables");
+            ResultSet firstResultSet = statement.executeQuery("show tables");
+            assertThat(firstResultSet.next(), is(false));
             statement.execute("create table hive_example(a string, b int) partitioned by(c int)");
+            statement.execute("alter table hive_example add partition(c=1)");
             statement.execute("insert into hive_example partition(c=1) values('a', 1), ('a', 2),('b',3)");
-            statement.executeQuery("select count(distinct a) from hive_example");
-            statement.executeQuery("select sum(b) from hive_example");
+            ResultSet secondResultSet = statement.executeQuery("select count(distinct a) from hive_example");
+            assertThat(secondResultSet.next(), is(true));
+            assertThat(secondResultSet.getInt("_c0"), is(2));
+            ResultSet thirdResultSet = statement.executeQuery("select sum(b) from hive_example");
+            assertThat(thirdResultSet.next(), is(true));
+            assertThat(thirdResultSet.getInt("_c0"), is(6));
         }
     }
 }
