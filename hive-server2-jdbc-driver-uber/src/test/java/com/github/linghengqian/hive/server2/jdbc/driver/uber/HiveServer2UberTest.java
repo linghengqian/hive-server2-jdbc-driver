@@ -24,7 +24,7 @@ import static org.hamcrest.Matchers.is;
 public class HiveServer2UberTest {
 
     @Container
-    public static final GenericContainer<?> CONTAINER = new GenericContainer<>(DockerImageName.parse("apache/hive:4.1.0-SNAPSHOT"))
+    public static final GenericContainer<?> CONTAINER = new GenericContainer<>(DockerImageName.parse("apache/hive:4.0.0"))
             .withEnv("SERVICE_NAME", "hiveserver2")
             .withExposedPorts(10000, 10002);
 

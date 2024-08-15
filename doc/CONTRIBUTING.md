@@ -3,7 +3,7 @@ It is assumed that `Git` is configured, and `SDKMAN!` and `Docker Engine` are in
 
 ```shell
 sdk install java 8.0.422-tem
-sdk install maven 3.9.8
+sdk install java 22.0.2-graalce
 ```
 
 ### How to test
@@ -11,13 +11,8 @@ sdk install maven 3.9.8
 - Execute the following command.
 
 ```shell
-sdk use java 8.0.422-tem
-git clone git@github.com:apache/hive.git
-cd ./hive/
-git reset --hard b09d76e68bfba6be19733d864b3207f95265d11f
-mvn clean install -DskipTests
-mvn clean package -pl packaging -DskipTests -Pdocker
-cd ../
+sdk use java 22.0.2-graalce
+
 git clone git@github.com:linghengqian/hive-server2-jdbc-driver.git
 cd ./hive-server2-jdbc-driver/
 ./mvnw -T 1.5C clean test
@@ -59,11 +54,6 @@ Then execute the following command.
 
 ```shell
 sdk use java 8.0.422-tem
-git clone git@github.com:apache/hive.git
-cd ./hive/
-git reset --hard b09d76e68bfba6be19733d864b3207f95265d11f
-mvn clean install -DskipTests
-cd ../
 git clone git@github.com:linghengqian/hive-server2-jdbc-driver.git
 cd ./hive-server2-jdbc-driver/
 echo "test" | gpg --clearsign

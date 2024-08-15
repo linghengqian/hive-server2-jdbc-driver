@@ -8,27 +8,37 @@ on:
       - master
 jobs:
   test-ci:
+    name: Test - JDK ${{ matrix.java }} on ${{ matrix.os }}
     if: github.repository == 'linghengqian/hive-server2-jdbc-driver'
     strategy:
       matrix:
-        java: [ 8 ]
+        java: [ '8', '22' ]
         os: [ 'ubuntu-latest' ]
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/checkout@v4
-        with:
-          repository: apache/hive
-          path: apache-hive
-          ref: "b09d76e68bfba6be19733d864b3207f95265d11f"
       - uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
           java-version: ${{ matrix.java }}
           cache: 'maven'
       - run: |
-          cd apache-hive
-          mvn clean install -DskipTests -T1C
-          mvn clean package -pl packaging -DskipTests -Pdocker
-          cd ..
-          ./mvnw clean test -T1C
+          ./mvnw -T 1.5C clean test 
+  native-test-ci:
+    name: NativeTest - GraalVM CE for JDK ${{ matrix.java }} on ${{ matrix.os }}
+    if: github.repository == 'linghengqian/hive-server2-jdbc-driver'
+    strategy:
+      matrix:
+        java: [ '22.0.2' ]
+        os: [ 'ubuntu-latest' ]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: graalvm/setup-graalvm@v1
+        with:
+          java-version: ${{ matrix.java }}
+          distribution: 'graalvm-community'
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          cache: 'maven'
+      - run: |
+          ./mvnw -T 1.5C clean test

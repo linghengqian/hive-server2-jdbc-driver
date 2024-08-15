@@ -1,8 +1,9 @@
 # Third-party builds of the HiveServer2 JDBC Driver
 
-The purpose of this project is to release HiveServer2 JDBC Driver and HiveServer2 Docker Image faster outside of ASF.
+The purpose of the current project is to create a `Thin JAR` of HiveServer2 JDBC Driver.
+All release products have been verified and usable in the GraalVM Native Image compiled by GraalVM CE For JDK 22.0.2.
 
-Use directly in Maven.
+The steps to use directly in Maven are as follows.
 
 ```xml
 
@@ -15,7 +16,10 @@ Use directly in Maven.
 </dependencies>
 ```
 
-Or use the Uber JAR of the HiveServer2 JDBC Driver.
+The current project also provides a HiveServer2 JDBC Driver Uber JAR to simplify the steps of specifying the
+`classifier`. 
+The current JAR also contains fixes for missing classes from the master branch of `apache/hive`.
+The steps to use directly in Maven are as follows.
 
 ```xml
 
@@ -31,11 +35,19 @@ Or use the Uber JAR of the HiveServer2 JDBC Driver.
 ## Background
 
 The current project is actually a third-party build of HiveServer2 JDBC Driver.
-The release rhythm of apache/hive is conservative,
-and the latest changes of the master branch are rarely included in the latest version,
-but commits are filtered from the master branch.
-In order to conduct faster testing in downstream projects,
-this project was created by an individual developer.
+`apache/hive` only provides `Skinny JAR` and `Uber JAR` for HiveServer2 JDBC Driver, which leads to many unexpected situations
+in downstream projects.
+
+For `org.apache.hive:hive-jdbc:4.0.0` corresponding to `Skinny JAR`,
+this leads to PRs like https://github.com/apache/shardingsphere/pull/31680
+and https://github.com/apache/shardingsphere/pull/31774 .
+The related PRs make hundreds of lines of dependency adjustments to `apache/hive`.
+
+For `org.apache.hive:hive-jdbc:4.0.0:standalone` corresponding to the `Uber JAR`, 
+this leads to issues like https://issues.apache.org/jira/browse/HIVE-28315 and https://issues.apache.org/jira/browse/HIVE-28445. 
+It often takes months to wait for the fixes of the related issues to be released into the new version, 
+without any way to fix the class conflicts. 
+This is almost unacceptable to downstream projects.
 
 It is designed to be easily integrated into the nativeTest form of the GraalVM Native Image of `apache/shardingsphere`
 or other projects.

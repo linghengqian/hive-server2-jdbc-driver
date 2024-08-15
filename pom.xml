@@ -24,10 +24,6 @@
             <organizationUrl>https://github.com/linghengqian</organizationUrl>
         </developer>
     </developers>
-    <modules>
-        <module>hive-server2-jdbc-driver-thin</module>
-        <module>hive-server2-jdbc-driver-uber</module>
-    </modules>
     <scm>
         <connection>scm:git:git://github.com/linghengqian/hive-server2-jdbc-driver.git</connection>
         <developerConnection>scm:git:ssh://github.com:linghengqian/hive-server2-jdbc-driver.git</developerConnection>
@@ -39,7 +35,7 @@
         <maven.compiler.target>1.8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <apache-hive-jdbc.version>4.1.0-SNAPSHOT</apache-hive-jdbc.version>
+        <apache-hive-jdbc.version>4.0.0</apache-hive-jdbc.version>
         <parquet.version>1.13.1</parquet.version>
         <hadoop.version>3.3.6</hadoop.version>
         <httpcomponents.client.version>4.5.13</httpcomponents.client.version>
@@ -59,6 +55,11 @@
         <maven-gpg-plugin.version>3.2.5</maven-gpg-plugin.version>
         <central-publishing-maven-plugin.version>0.5.0</central-publishing-maven-plugin.version>
     </properties>
+
+    <modules>
+        <module>hive-server2-jdbc-driver-thin</module>
+        <module>hive-server2-jdbc-driver-uber</module>
+    </modules>
 
     <dependencyManagement>
         <dependencies>
