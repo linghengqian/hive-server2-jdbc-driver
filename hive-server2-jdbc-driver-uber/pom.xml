@@ -18,20 +18,5 @@
             <version>${apache-hive-jdbc.version}</version>
             <classifier>standalone</classifier>
         </dependency>
-
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-classic</artifactId>
-            <version>${logback-classic.version}</version>
-            <scope>test</scope>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>com.zaxxer</groupId>
-            <artifactId>HikariCP</artifactId>
-            <version>${hikaricp.version}</version>
-            <scope>test</scope>
-            <optional>true</optional>
-        </dependency>
     </dependencies>
 </project>
