@@ -26,7 +26,7 @@ sdk use java 22.0.2-graalce
 git clone git@github.com:linghengqian/hive-server2-jdbc-driver.git
 cd ./hive-server2-jdbc-driver/
 sdk use java 22.0.2-graalce
-./mvnw -T 1.5C -PnativeTestInCustom clean test
+./mvnw -PnativeTestInCustom clean test
 ```
 
 ### How to publish via the central portal
