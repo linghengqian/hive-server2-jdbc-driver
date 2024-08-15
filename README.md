@@ -56,7 +56,10 @@ More background at https://lists.apache.org/thread/63lr45kyh78s64spwsjxjy8zdyzpr
 
 ## Release Note
 
-The current project has not yet carried out any release work.
+### 1.0.0
+
+This is the first `Thin JAR` build for the HiveServer2 JDBC Driver on `apache/hive:4.0.0`.
+Fixed all class conflicts.
 
 ## Contributing
 
