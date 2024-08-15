@@ -6,7 +6,7 @@
     <parent>
         <groupId>io.github.linghengqian</groupId>
         <artifactId>hive-parent</artifactId>
-        <version>1.0.0</version>
+        <version>1.1.0-SNAPSHOT</version>
     </parent>
 
     <artifactId>hive-server2-jdbc-driver-thin</artifactId>
@@ -681,7 +681,7 @@
         <dependency>
             <groupId>org.codehaus.woodstox</groupId>
             <artifactId>stax2-api</artifactId>
-            <version>4.2.1</version>
+            <version>${stax2-api.version}</version>
         </dependency>
         <!--
                TODO Fix class conflicts in master branch of apache/hive .
