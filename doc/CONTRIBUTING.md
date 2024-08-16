@@ -61,6 +61,8 @@ gnome-text-editor ~/.m2/settings.xml
 </settings>
 ```
 
+Modify the `project.version` or `parent.version` of all `pom.xml` to the version we need to release.
+
 Then execute the following command.
 
 ```shell
