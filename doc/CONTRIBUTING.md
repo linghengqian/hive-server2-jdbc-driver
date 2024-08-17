@@ -4,6 +4,7 @@ It is assumed that `Git` is configured, and `SDKMAN!` and `Docker Engine` are in
 ```shell
 sdk install java 8.0.422-tem
 sdk install java 22.0.2-graalce
+sdk install maven 3.9.8
 sudo apt-get install build-essential zlib1g-dev -y
 ```
 
@@ -47,6 +48,8 @@ use the following command to change the content of `~/.m2/settings.xml`.
 sudo apt install gnome-text-editor gimp vlc nautilus x11-apps -y
 gnome-text-editor ~/.m2/settings.xml
 ```
+
+The contents of `~/.m2/settings.xml` might be as follows.
 
 ```xml
 
