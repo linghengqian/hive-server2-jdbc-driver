@@ -73,12 +73,10 @@ Suppose the release to be released is `1.1.0`, and the next version is `1.2.0-SN
 sdk use java 8.0.422-tem
 git clone git@github.com:linghengqian/hive-server2-jdbc-driver.git
 cd ./hive-server2-jdbc-driver/
-./mvnw versions:set -DnewVersion=1.1.0
-./mvnw versions:commit
+./mvnw versions:set -DgenerateBackupPoms=false -DnewVersion=1.1.0
 echo "test" | gpg --clearsign
 ./mvnw -T 1.5C -Ppublishing-via-the-central-portal -DskipTests clean deploy
-./mvnw versions:set -DnewVersion=1.2.0-SNAPSHOT
-./mvnw versions:commit
+./mvnw versions:set -DgenerateBackupPoms=false -DnewVersion=1.2.0-SNAPSHOT
 ```
 
 Log in to https://central.sonatype.com/ and manually approve the publication.
