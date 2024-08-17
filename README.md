@@ -61,28 +61,7 @@ More background at https://lists.apache.org/thread/63lr45kyh78s64spwsjxjy8zdyzpr
 
 ## Release Note
 
-### 1.1.0
-
-Provides built-in GraalVM Reachability Metadata.
-Build from `apache/hive:rel/release-4.0.0`.
-
-```
-io.github.linghengqian:hive-server2-jdbc-driver-thin:1.1.0
-
-io.github.linghengqian:hive-server2-jdbc-driver-uber:1.1.0
-```
-
-### 1.0.0
-
-This is the first `Thin JAR` build and an accompanying, intuitive `Uber JAR` build for the HiveServer2 JDBC driver from
-`apache/hive:rel/release-4.0.0`.
-Fixed all class conflicts.
-
-```
-io.github.linghengqian:hive-server2-jdbc-driver-thin:1.0.0
-
-io.github.linghengqian:hive-server2-jdbc-driver-uber:1.0.0
-```
+Refer to [CHANGELOG](./doc/CHANGELOG.md) .
 
 ## Contributing
 
