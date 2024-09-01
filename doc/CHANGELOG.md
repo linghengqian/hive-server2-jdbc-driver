@@ -1,5 +1,17 @@
 # Release Note
 
+## v1
+
+### 1.3.0
+
+Fixes incorrect package used in unit tests.
+Build from `apache/hive:rel/release-4.0.0`.
+
+```
+io.github.linghengqian:hive-server2-jdbc-driver-thin:1.3.0
+io.github.linghengqian:hive-server2-jdbc-driver-uber:1.3.0
+```
+
 ### 1.2.0
 
 Keep in sync with the Zookeeper Client version of `org.apache.hive.shims:hive-shims-common:4.0.0`.
