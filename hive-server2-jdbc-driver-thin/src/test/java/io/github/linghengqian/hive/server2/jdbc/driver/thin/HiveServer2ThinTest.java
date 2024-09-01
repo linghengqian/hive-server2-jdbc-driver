@@ -1,4 +1,4 @@
-package com.github.linghengqian.hive.server2.jdbc.driver.thin;
+package io.github.linghengqian.hive.server2.jdbc.driver.thin;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;

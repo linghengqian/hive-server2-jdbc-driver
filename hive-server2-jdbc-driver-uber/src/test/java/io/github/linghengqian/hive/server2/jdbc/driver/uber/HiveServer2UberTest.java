@@ -1,4 +1,4 @@
-package com.github.linghengqian.hive.server2.jdbc.driver.uber;
+package io.github.linghengqian.hive.server2.jdbc.driver.uber;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
