@@ -30,3 +30,25 @@ header:
 dependency:
   files:
     - pom.xml
+  licenses:
+    - name: org.apache.hadoop.thirdparty:hadoop-shaded-guava
+      version: 1.1.1
+      license: Apache-2.0
+    - name: org.apache.zookeeper:zookeeper
+      version: 3.6.3,3.8.3
+      license: Apache-2.0
+    - name: com.google.guava:failureaccess
+      version: "1.0"
+      license: Apache-2.0
+    - name: com.google.guava:listenablefuture
+      version: 9999.0-empty-to-avoid-conflict-with-guava
+      license: Apache-2.0
+    - name: org.apache.zookeeper:zookeeper-jute
+      version: 3.6.3,3.8.3
+      license: Apache-2.0
+    - name: org.slf4j:slf4j-api
+      version: 1.7.30
+      license: MIT
+    - name: org.codehaus.woodstox:stax2-api
+      version: 4.2.1
+      license: BSD-2-Clause

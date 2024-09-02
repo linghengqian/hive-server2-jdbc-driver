@@ -26,7 +26,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: apache/skywalking-eyes/header@v0.6.0
-      - uses: apache/skywalking-eyes/dependency@main
+      - uses: apache/skywalking-eyes/dependency@v0.6.0
   test-ci:
     name: Test - JDK ${{ matrix.java }} on ${{ matrix.os }}
     if: github.repository == 'linghengqian/hive-server2-jdbc-driver'
