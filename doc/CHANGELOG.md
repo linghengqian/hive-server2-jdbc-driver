@@ -2,6 +2,16 @@
 
 ## v1
 
+### 1.4.0
+
+Updates Apache-2.0 license header.
+Build from `apache/hive:rel/release-4.0.0`.
+
+```
+io.github.linghengqian:hive-server2-jdbc-driver-thin:1.4.0
+io.github.linghengqian:hive-server2-jdbc-driver-uber:1.4.0
+```
+
 ### 1.3.0
 
 Fixes incorrect package used in unit tests.
