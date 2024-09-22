@@ -43,7 +43,7 @@ jobs:
           java-version: ${{ matrix.java }}
           cache: 'maven'
       - run: |
-          ./mvnw -T 1.5C clean test 
+          mvn -T 1.5C clean test
   native-test-ci:
     name: NativeTest - GraalVM CE for JDK ${{ matrix.java }} on ${{ matrix.os }}
     if: github.repository == 'linghengqian/hive-server2-jdbc-driver'
