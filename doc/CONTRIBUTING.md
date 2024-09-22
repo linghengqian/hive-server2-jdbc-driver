@@ -6,7 +6,6 @@ It is assumed that `Git` is configured, and `SDKMAN!` and `Docker Engine` are in
 ```shell
 sdk install java 8.0.422-tem
 sdk install java 22.0.2-graalce
-sdk install maven 3.9.8
 sudo apt-get install build-essential zlib1g-dev -y
 ```
 
