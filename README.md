@@ -18,9 +18,7 @@ at https://central.sonatype.com/artifact/io.github.linghengqian/hive-server2-jdb
 </dependencies>
 ```
 
-The current project also provides a HiveServer2 JDBC Driver Uber JAR to simplify the steps of specifying the
-`classifier`.
-The current JAR also contains fixes for missing classes from the master branch of `apache/hive`.
+The current project also provides a HiveServer2 JDBC Driver Uber JAR to simplify the steps of specifying the `classifier`.
 The steps to use directly in Maven are as follows.
 The latest version is at https://central.sonatype.com/artifact/io.github.linghengqian/hive-server2-jdbc-driver-uber .
 
@@ -39,7 +37,7 @@ The latest version is at https://central.sonatype.com/artifact/io.github.linghen
 Start a HiveServer2 instance through Docker Engine.
 
 ```bash
-docker run -d -p 10000:10000 -p 10002:10002 --env SERVICE_NAME=hiveserver2 apache/hive:4.0.0
+docker run -d -p 10000:10000 -p 10002:10002 --env SERVICE_NAME=hiveserver2 apache/hive:4.0.1
 ```
 
 Use third-party builds of this project in any Maven project.
@@ -49,7 +47,7 @@ Use third-party builds of this project in any Maven project.
     <dependency>
         <groupId>io.github.linghengqian</groupId>
         <artifactId>hive-server2-jdbc-driver-thin</artifactId>
-        <version>1.4.0</version>
+        <version>1.5.0</version>
     </dependency>
     <dependency>
         <groupId>com.zaxxer</groupId>
