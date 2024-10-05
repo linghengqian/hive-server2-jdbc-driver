@@ -32,7 +32,7 @@ jobs:
     if: github.repository == 'linghengqian/hive-server2-jdbc-driver'
     strategy:
       matrix:
-        java: [ '8' ]
+        java: [ '8', '23' ]
         os: [ 'ubuntu-latest' ]
     runs-on: ${{ matrix.os }}
     steps:
@@ -43,13 +43,14 @@ jobs:
           java-version: ${{ matrix.java }}
           cache: 'maven'
       - run: |
-          mvn -T 1.5C clean test
+          mvn wrapper:wrapper -Dmaven=3.9.9
+          ./mvnw -T 1.5C clean test
   native-test-ci:
     name: NativeTest - GraalVM CE for JDK ${{ matrix.java }} on ${{ matrix.os }}
     if: github.repository == 'linghengqian/hive-server2-jdbc-driver'
     strategy:
       matrix:
-        java: [ '22.0.2' ]
+        java: [ '22.0.2', '23' ]
         os: [ 'ubuntu-latest' ]
     runs-on: ${{ matrix.os }}
     steps:

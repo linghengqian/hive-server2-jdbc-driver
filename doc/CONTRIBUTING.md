@@ -80,7 +80,7 @@ Then execute the following command.
 Suppose the release to be released is `1.1.0`, and the next version is `1.2.0-SNAPSHOT`.
 
 ```shell
-sdk use java 8.0.422-tem
+sdk use java 22.0.2-graalce
 git clone git@github.com:linghengqian/hive-server2-jdbc-driver.git
 cd ./hive-server2-jdbc-driver/
 ./mvnw versions:set -DgenerateBackupPoms=false -DnewVersion=1.1.0

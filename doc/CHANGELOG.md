@@ -2,6 +2,14 @@
 
 ## v1
 
+### 1.5.0
+
+1. Bump base HiveServer2 JDBC Driver version to `4.0.1`.
+2. Support for Thin JAR and Uber JAR of HiveServer2 JDBC Driver under OpenJDK 23.
+3. Supports using Thin JAR and Uber JAR of HiveServer2 JDBC Driver in GraalVM Native Image compiled by GraalVM CE For JDK23.
+
+Build from `apache/hive:rel/release-4.0.1`.
+
 ### 1.4.0
 
 Updates Apache-2.0 license header.
