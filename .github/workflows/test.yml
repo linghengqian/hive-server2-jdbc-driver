@@ -62,4 +62,4 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           cache: 'maven'
       - run: |
-          ./mvnw -PnativeTestInCustom clean test
+          ./mvnw -T 1.5C -PnativeTestInCustom clean test

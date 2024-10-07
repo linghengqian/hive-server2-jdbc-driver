@@ -28,7 +28,7 @@ sdk use java 22.0.2-graalce
 git clone git@github.com:linghengqian/hive-server2-jdbc-driver.git
 cd ./hive-server2-jdbc-driver/
 sdk use java 22.0.2-graalce
-./mvnw -PnativeTestInCustom clean test
+./mvnw -T 1.5C -PnativeTestInCustom clean test
 ```
 
 ### Fixes LICENSE issue
