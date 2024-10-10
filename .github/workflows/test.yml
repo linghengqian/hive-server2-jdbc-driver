@@ -43,7 +43,6 @@ jobs:
           java-version: ${{ matrix.java }}
           cache: 'maven'
       - run: |
-          mvn wrapper:wrapper -Dmaven=3.9.9
           ./mvnw -T 1.5C clean test
   native-test-ci:
     name: NativeTest - GraalVM CE for JDK ${{ matrix.java }} on ${{ matrix.os }}

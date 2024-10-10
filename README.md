@@ -25,7 +25,6 @@ The steps to use directly in Maven are as follows.
 The latest version is at https://central.sonatype.com/artifact/io.github.linghengqian/hive-server2-jdbc-driver-uber .
 
 ```xml
-
 <dependencies>
     <dependency>
         <groupId>io.github.linghengqian</groupId>
@@ -55,12 +54,12 @@ Use third-party builds of this project in any Maven project.
     <dependency>
         <groupId>com.zaxxer</groupId>
         <artifactId>HikariCP</artifactId>
-        <version>5.1.0</version>
+        <version>4.0.3</version>
     </dependency>
     <dependency>
         <groupId>org.junit.jupiter</groupId>
         <artifactId>junit-jupiter</artifactId>
-        <version>5.11.0</version>
+        <version>5.11.2</version>
         <scope>test</scope>
     </dependency>
 </dependencies>
