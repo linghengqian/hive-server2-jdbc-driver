@@ -56,8 +56,8 @@
         <httpcomponents.client.version>4.5.13</httpcomponents.client.version>
         <httpcomponents.core.version>4.4.13</httpcomponents.core.version>
         <libthrift.version>0.16.0</libthrift.version>
-        <zookeeper.version>3.8.3</zookeeper.version>
-        <curator.version>5.2.0</curator.version>
+        <zookeeper.version>3.9.2</zookeeper.version>
+        <curator.version>5.7.0</curator.version>
 
         <!--
         TODO Fix class conflicts in master branch of apache/hive .
