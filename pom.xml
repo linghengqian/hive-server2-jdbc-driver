@@ -266,6 +266,9 @@
                             <extensions>true</extensions>
                             <configuration>
                                 <quickBuild>true</quickBuild>
+                                <metadataRepository>
+                                    <version>0.3.14</version>
+                                </metadataRepository>
                             </configuration>
                             <executions>
                                 <execution>
