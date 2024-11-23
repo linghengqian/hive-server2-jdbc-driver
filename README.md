@@ -96,12 +96,16 @@ public class ExampleTest {
 
 ## Background
 
-Refer to [Background](./doc/Background.md) .
+Refer to [Background](./doc/Background.md).
 
 ## Release Note
 
-Refer to [CHANGELOG](./doc/CHANGELOG.md) .
+Refer to [CHANGELOG](./doc/CHANGELOG.md).
 
 ## Contributing
 
-Refer to [CONTRIBUTING](./doc/CONTRIBUTING.md) .
+Refer to [CONTRIBUTING](./doc/CONTRIBUTING.md).
+
+## LICENSE
+
+Refer to [LICENSE](./LICENSE) and [NOTICE](./NOTICE).
