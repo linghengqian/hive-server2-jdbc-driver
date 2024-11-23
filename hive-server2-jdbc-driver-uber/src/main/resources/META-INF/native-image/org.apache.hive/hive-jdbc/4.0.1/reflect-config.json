@@ -1,34 +1,88 @@
 [
-  {
-    "name": "org.apache.hive.org.apache.commons.logging.LogFactory",
-    "condition": {"typeReachable": "org.apache.hive.org.apache.commons.logging.LogFactory"}
-  },
-  {
-    "name": "org.apache.hive.org.apache.commons.logging.LogFactory",
-    "condition": {"typeReachable": "org.apache.hive.org.apache.commons.logging.impl.LogFactoryImpl"}
-  },
-  {
-    "name": "org.apache.hive.org.apache.commons.logging.impl.Jdk14Logger",
-    "condition": {"typeReachable": "org.apache.hive.org.apache.commons.logging.impl.LogFactoryImpl"},
-    "methods": [{"name": "<init>", "parameterTypes": ["java.lang.String"]}]
-  },
-  {
-    "name": "org.apache.hive.org.apache.commons.logging.impl.LogFactoryImpl",
-    "condition": {"typeReachable": "org.apache.hive.org.apache.commons.logging.LogFactory"},
-    "methods": [{"name": "<init>", "parameterTypes": []}]
-  },
-  {
-    "name": "org.apache.hive.org.apache.commons.logging.impl.LogFactoryImpl",
-    "condition": {"typeReachable": "org.apache.hive.org.apache.commons.logging.impl.LogFactoryImpl"}
-  },
-  {
-    "name": "org.apache.hive.org.apache.commons.logging.impl.SimpleLog",
-    "condition": {"typeReachable": "org.apache.hive.org.apache.commons.logging.impl.LogFactoryImpl"},
-    "methods": [{"name": "<init>", "parameterTypes": ["java.lang.String"]}]
-  },
-  {
-    "name": "org.apache.hive.org.apache.commons.logging.impl.WeakHashtable",
-    "condition": {"typeReachable": "org.apache.hive.org.apache.commons.logging.LogFactory"},
-    "methods": [{"name": "<init>", "parameterTypes": []}]
-  }
+{
+  "name": "org.apache.hive.org.apache.commons.logging.LogFactory",
+  "condition": {"typeReachable": "org.apache.hive.org.apache.commons.logging.LogFactory"}
+},
+{
+  "name": "org.apache.hive.org.apache.commons.logging.LogFactory",
+  "condition": {"typeReachable": "org.apache.hive.org.apache.commons.logging.impl.LogFactoryImpl"}
+},
+{
+  "name": "org.apache.hive.org.apache.commons.logging.impl.Jdk14Logger",
+  "condition": {"typeReachable": "org.apache.hive.org.apache.commons.logging.impl.LogFactoryImpl"},
+  "methods": [{"name": "<init>", "parameterTypes": ["java.lang.String"]}]
+},
+{
+  "name": "org.apache.hive.org.apache.commons.logging.impl.LogFactoryImpl",
+  "condition": {"typeReachable": "org.apache.hive.org.apache.commons.logging.LogFactory"},
+  "methods": [{"name": "<init>", "parameterTypes": []}]
+},
+{
+  "name": "org.apache.hive.org.apache.commons.logging.impl.LogFactoryImpl",
+  "condition": {"typeReachable": "org.apache.hive.org.apache.commons.logging.impl.LogFactoryImpl"}
+},
+{
+  "name": "org.apache.hive.org.apache.commons.logging.impl.SimpleLog",
+  "condition": {"typeReachable": "org.apache.hive.org.apache.commons.logging.impl.LogFactoryImpl"},
+  "methods": [{"name": "<init>", "parameterTypes": ["java.lang.String"]}]
+},
+{
+  "name": "org.apache.hive.org.apache.commons.logging.impl.WeakHashtable",
+  "condition": {"typeReachable": "org.apache.hive.org.apache.commons.logging.LogFactory"},
+  "methods": [{"name": "<init>", "parameterTypes": []}]
+},
+{
+  "condition":{"typeReachable":"org.apache.hive.org.apache.zookeeper.ZooKeeper"},
+  "name":"org.apache.hive.org.apache.zookeeper.ClientCnxnSocketNIO",
+  "methods":[{"name":"<init>","parameterTypes":["org.apache.hive.org.apache.zookeeper.client.ZKClientConfig"] }]
+},
+{
+  "condition":{"typeReachable":"org.apache.hive.org.apache.zookeeper.metrics.impl.MetricsProviderBootstrap"},
+  "name":"org.apache.hive.org.apache.zookeeper.metrics.impl.DefaultMetricsProvider",
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "condition":{"typeReachable":"org.apache.hive.org.apache.zookeeper.server.quorum.QuorumPeerConfig"},
+  "name":"org.apache.hive.org.apache.zookeeper.metrics.impl.DefaultMetricsProvider"
+},
+{
+  "condition":{"typeReachable":"org.apache.hive.org.apache.zookeeper.server.ServerCnxnFactory"},
+  "name":"org.apache.hive.org.apache.zookeeper.server.ConnectionBean",
+  "queryAllPublicConstructors":true
+},
+{
+  "condition":{"typeReachable":"org.apache.hive.org.apache.zookeeper.server.ServerCnxnFactory"},
+  "name":"org.apache.hive.org.apache.zookeeper.server.ConnectionMXBean",
+  "queryAllPublicMethods":true
+},
+{
+  "condition":{"typeReachable":"org.apache.hive.org.apache.zookeeper.server.ZooKeeperServer"},
+  "name":"org.apache.hive.org.apache.zookeeper.server.DataTreeBean",
+  "queryAllPublicConstructors":true
+},
+{
+  "condition":{"typeReachable":"org.apache.hive.org.apache.zookeeper.server.ZooKeeperServer"},
+  "name":"org.apache.hive.org.apache.zookeeper.server.DataTreeMXBean",
+  "queryAllPublicMethods":true
+},
+{
+  "condition":{"typeReachable":"org.apache.hive.org.apache.zookeeper.server.ServerCnxnFactory"},
+  "name":"org.apache.hive.org.apache.zookeeper.server.NIOServerCnxnFactory",
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "condition":{"typeReachable":"org.apache.hive.org.apache.zookeeper.server.ZooKeeperServer"},
+  "name":"org.apache.hive.org.apache.zookeeper.server.ZooKeeperServerBean",
+  "queryAllPublicConstructors":true
+},
+{
+  "condition":{"typeReachable":"org.apache.hive.org.apache.zookeeper.server.ZooKeeperServer"},
+  "name":"org.apache.hive.org.apache.zookeeper.server.ZooKeeperServerMXBean",
+  "queryAllPublicMethods":true
+},
+{
+  "condition":{"typeReachable":"org.apache.hive.org.apache.zookeeper.server.watch.WatchManagerFactory"},
+  "name":"org.apache.hive.org.apache.zookeeper.server.watch.WatchManager",
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+}
 ]

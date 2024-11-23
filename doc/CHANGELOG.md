@@ -2,6 +2,17 @@
 
 ## v1
 
+### 1.6.0-SNAPSHOT
+
+1. Support connecting to HiveServer2 with ZooKeeper Service Discovery enabled in GraalVM Native Image.
+
+Build from `apache/hive:rel/release-4.0.1`.
+
+```
+io.github.linghengqian:hive-server2-jdbc-driver-thin:1.6.0-SNAPSHOT
+io.github.linghengqian:hive-server2-jdbc-driver-uber:1.6.0-SNAPSHOT
+```
+
 ### 1.5.0
 
 1. Bump base HiveServer2 JDBC Driver version to `4.0.1`.
