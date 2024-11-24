@@ -47,7 +47,7 @@ Use third-party builds of this project in any Maven project.
     <dependency>
         <groupId>io.github.linghengqian</groupId>
         <artifactId>hive-server2-jdbc-driver-thin</artifactId>
-        <version>1.5.0</version>
+        <version>1.6.0</version>
     </dependency>
     <dependency>
         <groupId>com.zaxxer</groupId>
@@ -106,6 +106,8 @@ Refer to [CHANGELOG](./doc/CHANGELOG.md).
 
 Refer to [CONTRIBUTING](./doc/CONTRIBUTING.md).
 
-## LICENSE
+## License
 
 Refer to [LICENSE](./LICENSE) and [NOTICE](./NOTICE).
+
+The license applies to both the source code and the final JAR distributed on Maven Central.
