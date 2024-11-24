@@ -2,6 +2,15 @@
 
 ## v1
 
+### 1.7.0-SNAPSHOT
+
+Build from `apache/hive:rel/release-4.0.1`.
+
+```
+io.github.linghengqian:hive-server2-jdbc-driver-thin:1.7.0-SNAPSHOT
+io.github.linghengqian:hive-server2-jdbc-driver-uber:1.7.0-SNAPSHOT
+```
+
 ### 1.6.0
 
 1. Support connecting to HiveServer2 with ZooKeeper Service Discovery enabled in GraalVM Native Image.
