@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
-package io.github.linghengqian.hive.server2.jdbc.driver.thin;
+package io.github.linghengqian.hive.server2.jdbc.driver.uber;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
-import org.apache.curator.framework.CuratorFramework;
-import org.apache.curator.framework.CuratorFrameworkFactory;
-import org.apache.curator.retry.ExponentialBackoffRetry;
+import org.apache.hive.org.apache.curator.framework.CuratorFramework;
+import org.apache.hive.org.apache.curator.framework.CuratorFrameworkFactory;
+import org.apache.hive.org.apache.curator.retry.ExponentialBackoffRetry;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Test;
 import org.testcontainers.containers.FixedHostPortGenericContainer;
@@ -43,7 +43,7 @@ import static org.hamcrest.Matchers.is;
 
 @SuppressWarnings({"SqlDialectInspection", "SqlNoDataSourceInspection", "resource", "deprecation"})
 @Testcontainers
-class HiveZookeeperServiceDiscoveryTest {
+class ZookeeperServiceDiscoveryTest {
 
     private static final int RANDOM_PORT_FIRST = getRandomPort();
 

@@ -14,12 +14,14 @@
  * limitations under the License.
  */
 
-package io.github.linghengqian.hive.server2.jdbc.driver.uber;
+package io.github.linghengqian.hive.server2.jdbc.driver.thin;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Test;
 import org.testcontainers.containers.GenericContainer;
+import org.testcontainers.containers.Network;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 import org.testcontainers.utility.DockerImageName;
@@ -37,17 +39,34 @@ import static org.hamcrest.Matchers.is;
 
 @SuppressWarnings({"SqlNoDataSourceInspection", "resource"})
 @Testcontainers
-public class HiveServer2UberTest {
+public class StandaloneMetastoreTest {
+
+    private static final Network NETWORK = Network.newNetwork();
 
     @Container
-    public static final GenericContainer<?> CONTAINER = new GenericContainer<>(DockerImageName.parse("apache/hive:4.0.1"))
+    public static final GenericContainer<?> HMS_CONTAINER = new GenericContainer<>(DockerImageName.parse("apache/hive:4.0.1"))
+            .withEnv("SERVICE_NAME", "metastore")
+            .withNetwork(NETWORK)
+            .withNetworkAliases("metastore")
+            .withExposedPorts(9083);
+
+    @Container
+    public static final GenericContainer<?> HS2_CONTAINER = new GenericContainer<>(DockerImageName.parse("apache/hive:4.0.1"))
             .withEnv("SERVICE_NAME", "hiveserver2")
-            .withExposedPorts(10000, 10002);
+            .withEnv("SERVICE_OPTS", "-Dhive.metastore.uris=thrift://metastore:9083")
+            .withNetwork(NETWORK)
+            .withExposedPorts(10000)
+            .dependsOn(HMS_CONTAINER);
+
+    @AfterAll
+    static void afterAll() {
+        NETWORK.close();
+    }
 
     @Test
     void test() throws SQLException {
         HikariConfig config = new HikariConfig();
-        String jdbcUrlPrefix = "jdbc:hive2://" + CONTAINER.getHost() + ":" + CONTAINER.getMappedPort(10000);
+        String jdbcUrlPrefix = "jdbc:hive2://" + HS2_CONTAINER.getHost() + ":" + HS2_CONTAINER.getMappedPort(10000);
         config.setJdbcUrl(jdbcUrlPrefix + "/");
         config.setDriverClassName("org.apache.hive.jdbc.HiveDriver");
         await().atMost(Duration.of(30L, ChronoUnit.SECONDS)).until(() -> {

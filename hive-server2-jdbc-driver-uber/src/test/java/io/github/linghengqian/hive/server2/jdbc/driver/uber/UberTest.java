@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package io.github.linghengqian.hive.server2.jdbc.driver.thin;
+package io.github.linghengqian.hive.server2.jdbc.driver.uber;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
@@ -37,12 +37,12 @@ import static org.hamcrest.Matchers.is;
 
 @SuppressWarnings({"SqlNoDataSourceInspection", "resource"})
 @Testcontainers
-public class HiveServer2ThinTest {
+public class UberTest {
 
     @Container
     public static final GenericContainer<?> CONTAINER = new GenericContainer<>(DockerImageName.parse("apache/hive:4.0.1"))
             .withEnv("SERVICE_NAME", "hiveserver2")
-            .withExposedPorts(10000, 10002);
+            .withExposedPorts(10000);
 
     @Test
     void test() throws SQLException {
