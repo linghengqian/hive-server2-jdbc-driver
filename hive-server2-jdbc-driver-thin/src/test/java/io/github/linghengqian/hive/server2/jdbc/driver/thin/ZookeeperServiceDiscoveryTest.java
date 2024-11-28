@@ -23,7 +23,6 @@ import org.apache.curator.framework.CuratorFrameworkFactory;
 import org.apache.curator.retry.ExponentialBackoffRetry;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Test;
-import org.testcontainers.containers.FixedHostPortGenericContainer;
 import org.testcontainers.containers.GenericContainer;
 import org.testcontainers.containers.Network;
 import org.testcontainers.junit.jupiter.Container;
@@ -41,11 +40,9 @@ import static org.awaitility.Awaitility.await;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 
-@SuppressWarnings({"SqlDialectInspection", "SqlNoDataSourceInspection", "resource", "deprecation"})
+@SuppressWarnings({"SqlDialectInspection", "SqlNoDataSourceInspection", "resource"})
 @Testcontainers
 class ZookeeperServiceDiscoveryTest {
-
-    private static final int RANDOM_PORT_FIRST = getRandomPort();
 
     private static final Network NETWORK = Network.newNetwork();
 
@@ -55,20 +52,9 @@ class ZookeeperServiceDiscoveryTest {
             .withNetworkAliases("foo")
             .withExposedPorts(2181);
 
-    @Container
-    private static final GenericContainer<?> HIVE_SERVER2_1_CONTAINER = new FixedHostPortGenericContainer<>("apache/hive:4.0.1")
-            .withNetwork(NETWORK)
-            .withEnv("SERVICE_NAME", "hiveserver2")
-            .withEnv("SERVICE_OPTS", "-Dhive.server2.support.dynamic.service.discovery=true" + " "
-                    + "-Dhive.zookeeper.quorum=" + ZOOKEEPER_CONTAINER.getNetworkAliases().get(0) + ":2181" + " "
-                    + "-Dhive.server2.thrift.bind.host=0.0.0.0" + " "
-                    + "-Dhive.server2.thrift.port=" + RANDOM_PORT_FIRST)
-            .withFixedExposedPort(RANDOM_PORT_FIRST, RANDOM_PORT_FIRST)
-            .dependsOn(ZOOKEEPER_CONTAINER);
-
     private final String jdbcUrlSuffix = ";serviceDiscoveryMode=zooKeeper;zooKeeperNamespace=hiveserver2";
 
-    private String jdbcUrlPrefix;
+    private final String jdbcUrlPrefix = "jdbc:hive2://" + ZOOKEEPER_CONTAINER.getHost() + ":" + ZOOKEEPER_CONTAINER.getMappedPort(2181) + "/";
 
     @AfterAll
     static void afterAll() {
@@ -77,27 +63,45 @@ class ZookeeperServiceDiscoveryTest {
 
     @Test
     void assertShardingInLocalTransactions() throws SQLException {
-        jdbcUrlPrefix = "jdbc:hive2://" + ZOOKEEPER_CONTAINER.getHost() + ":" + ZOOKEEPER_CONTAINER.getMappedPort(2181) + "/";
-        DataSource dataSource = createDataSource();
-        extracted(dataSource);
-        HIVE_SERVER2_1_CONTAINER.stop();
-        int randomPortSecond = getRandomPort();
-        try (GenericContainer<?> hiveServer2SecondContainer = new FixedHostPortGenericContainer<>("apache/hive:4.0.1")
+        int randomPortFirst = getRandomPort();
+        GenericContainer<?> hs2FirstContainer = new GenericContainer<>("apache/hive:4.0.1")
                 .withNetwork(NETWORK)
                 .withEnv("SERVICE_NAME", "hiveserver2")
-                .withEnv("SERVICE_OPTS", "-Dhive.server2.support.dynamic.service.discovery=true" + " "
-                        + "-Dhive.zookeeper.quorum=" + ZOOKEEPER_CONTAINER.getNetworkAliases().get(0) + ":2181" + " "
-                        + "-Dhive.server2.thrift.bind.host=0.0.0.0" + " "
-                        + "-Dhive.server2.thrift.port=" + randomPortSecond)
-                .withFixedExposedPort(randomPortSecond, randomPortSecond)
-                .dependsOn(ZOOKEEPER_CONTAINER)) {
-            hiveServer2SecondContainer.start();
-            extracted(hiveServer2SecondContainer.getMappedPort(randomPortSecond));
-            extracted(dataSource);
-        }
+                .withExposedPorts(randomPortFirst)
+                .dependsOn(ZOOKEEPER_CONTAINER);
+        hs2FirstContainer.withEnv("SERVICE_OPTS", "-Dhive.server2.support.dynamic.service.discovery=true" + " "
+                + "-Dhive.zookeeper.quorum=" + ZOOKEEPER_CONTAINER.getNetworkAliases().get(0) + ":2181" + " "
+                + "-Dhive.server2.thrift.bind.host=0.0.0.0" + " "
+                + "-Dhive.server2.thrift.port=" + hs2FirstContainer.getMappedPort(randomPortFirst));
+        hs2FirstContainer.start();
+        awaitHS2(hs2FirstContainer.getMappedPort(randomPortFirst));
+        DataSource dataSource = createDataSource();
+        extractedSQL(dataSource);
+        hs2FirstContainer.stop();
+        int randomPortSecond = getRandomPort();
+        GenericContainer<?> hs2SecondContainer = new GenericContainer<>("apache/hive:4.0.1")
+                .withNetwork(NETWORK)
+                .withEnv("SERVICE_NAME", "hiveserver2")
+                .withExposedPorts(randomPortSecond)
+                .dependsOn(ZOOKEEPER_CONTAINER);
+        hs2SecondContainer.withEnv("SERVICE_OPTS", "-Dhive.server2.support.dynamic.service.discovery=true" + " "
+                + "-Dhive.zookeeper.quorum=" + ZOOKEEPER_CONTAINER.getNetworkAliases().get(0) + ":2181" + " "
+                + "-Dhive.server2.thrift.bind.host=0.0.0.0" + " "
+                + "-Dhive.server2.thrift.port=" + hs2SecondContainer.getMappedPort(randomPortSecond));
+        hs2SecondContainer.start();
+        awaitHS2(hs2SecondContainer.getMappedPort(randomPortSecond));
+        extractedSQL(dataSource);
+        hs2SecondContainer.stop();
     }
 
-    private static void extracted(DataSource dataSource) throws SQLException {
+    private DataSource createDataSource() {
+        HikariConfig config = new HikariConfig();
+        config.setDriverClassName("org.apache.hive.jdbc.HiveDriver");
+        config.setJdbcUrl(jdbcUrlPrefix + jdbcUrlSuffix);
+        return new HikariDataSource(config);
+    }
+
+    private static void extractedSQL(final DataSource dataSource) throws SQLException {
         try (Connection connection = dataSource.getConnection();
              Statement statement = connection.createStatement()) {
             statement.execute("CREATE DATABASE demo_ds_0");
@@ -120,23 +124,17 @@ class ZookeeperServiceDiscoveryTest {
         return DriverManager.getConnection(jdbcUrlPrefix + jdbcUrlSuffix, props);
     }
 
-    private DataSource createDataSource() {
-        extracted(HIVE_SERVER2_1_CONTAINER.getMappedPort(RANDOM_PORT_FIRST));
-        HikariConfig config = new HikariConfig();
-        config.setDriverClassName("org.apache.hive.jdbc.HiveDriver");
-        config.setJdbcUrl(jdbcUrlPrefix + jdbcUrlSuffix);
-        return new HikariDataSource(config);
-    }
-
-    private void extracted(final int hiveServer2Port) {
+    private void awaitHS2(final int hiveServer2Port) {
         String connectionString = ZOOKEEPER_CONTAINER.getHost() + ":" + ZOOKEEPER_CONTAINER.getMappedPort(2181);
         await().atMost(Duration.ofMinutes(2L)).ignoreExceptions().until(() -> {
-            try (CuratorFramework client = CuratorFrameworkFactory.builder().connectString(connectionString)
-                    .retryPolicy(new ExponentialBackoffRetry(1000, 3)).build()) {
+            try (CuratorFramework client = CuratorFrameworkFactory.builder()
+                    .connectString(connectionString)
+                    .retryPolicy(new ExponentialBackoffRetry(1000, 3))
+                    .build()) {
                 client.start();
                 List<String> children = client.getChildren().forPath("/hiveserver2");
                 assertThat(children.size(), is(1));
-                return children.get(0).contains(":" + hiveServer2Port + ";version=");
+                return children.get(0).startsWith("serverUri=0.0.0.0:" + hiveServer2Port + ";version=4.0.1;sequence=");
             }
         });
         await().atMost(Duration.ofMinutes(1L)).ignoreExceptions().until(() -> {
@@ -145,7 +143,7 @@ class ZookeeperServiceDiscoveryTest {
         });
     }
 
-    private static int getRandomPort() {
+    private int getRandomPort() {
         try (ServerSocket server = new ServerSocket(0)) {
             server.setReuseAddress(true);
             return server.getLocalPort();
