@@ -29,8 +29,6 @@ import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 
 import javax.sql.DataSource;
-import java.io.IOException;
-import java.net.ServerSocket;
 import java.sql.*;
 import java.time.Duration;
 import java.util.List;
@@ -63,35 +61,14 @@ class ZookeeperServiceDiscoveryTest {
 
     @Test
     void assertShardingInLocalTransactions() throws SQLException {
-        int randomPortFirst = getRandomPort();
-        GenericContainer<?> hs2FirstContainer = new GenericContainer<>("apache/hive:4.0.1")
+        GenericContainer<?> hs2FirstContainer = new HS2Container("apache/hive:4.0.1")
                 .withNetwork(NETWORK)
-                .withEnv("SERVICE_NAME", "hiveserver2")
-                .withExposedPorts(randomPortFirst)
                 .dependsOn(ZOOKEEPER_CONTAINER);
-        hs2FirstContainer.withEnv("SERVICE_OPTS", "-Dhive.server2.support.dynamic.service.discovery=true" + " "
-                + "-Dhive.zookeeper.quorum=" + ZOOKEEPER_CONTAINER.getNetworkAliases().get(0) + ":2181" + " "
-                + "-Dhive.server2.thrift.bind.host=0.0.0.0" + " "
-                + "-Dhive.server2.thrift.port=" + hs2FirstContainer.getMappedPort(randomPortFirst));
         hs2FirstContainer.start();
-        awaitHS2(hs2FirstContainer.getMappedPort(randomPortFirst));
+        awaitHS2(hs2FirstContainer.getFirstMappedPort());
         DataSource dataSource = createDataSource();
         extractedSQL(dataSource);
         hs2FirstContainer.stop();
-        int randomPortSecond = getRandomPort();
-        GenericContainer<?> hs2SecondContainer = new GenericContainer<>("apache/hive:4.0.1")
-                .withNetwork(NETWORK)
-                .withEnv("SERVICE_NAME", "hiveserver2")
-                .withExposedPorts(randomPortSecond)
-                .dependsOn(ZOOKEEPER_CONTAINER);
-        hs2SecondContainer.withEnv("SERVICE_OPTS", "-Dhive.server2.support.dynamic.service.discovery=true" + " "
-                + "-Dhive.zookeeper.quorum=" + ZOOKEEPER_CONTAINER.getNetworkAliases().get(0) + ":2181" + " "
-                + "-Dhive.server2.thrift.bind.host=0.0.0.0" + " "
-                + "-Dhive.server2.thrift.port=" + hs2SecondContainer.getMappedPort(randomPortSecond));
-        hs2SecondContainer.start();
-        awaitHS2(hs2SecondContainer.getMappedPort(randomPortSecond));
-        extractedSQL(dataSource);
-        hs2SecondContainer.stop();
     }
 
     private DataSource createDataSource() {
@@ -141,14 +118,5 @@ class ZookeeperServiceDiscoveryTest {
             openConnection().close();
             return true;
         });
-    }
-
-    private int getRandomPort() {
-        try (ServerSocket server = new ServerSocket(0)) {
-            server.setReuseAddress(true);
-            return server.getLocalPort();
-        } catch (IOException exception) {
-            throw new Error(exception);
-        }
     }
 }
