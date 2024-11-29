@@ -102,6 +102,10 @@ you can use `1.4.0` of `io.github.linghengqian:hive-server2-jdbc-driver-thin` or
 For the Docker Image of `apache/hive:4.0.1`, 
 you can use `1.6.0` of `io.github.linghengqian:hive-server2-jdbc-driver-thin` or `io.github.linghengqian:hive-server2-jdbc-driver-uber`.
 
+## FAQ
+
+Refer to [FAQ](./doc/FAQ.md).
+
 ## Background
 
 Refer to [Background](./doc/Background.md).
