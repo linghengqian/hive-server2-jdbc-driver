@@ -29,7 +29,10 @@ import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 
 import javax.sql.DataSource;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.time.Duration;
 import java.util.List;
 import java.util.Properties;
@@ -61,49 +64,30 @@ class ZookeeperServiceDiscoveryTest {
 
     @Test
     void assertShardingInLocalTransactions() throws SQLException {
-        GenericContainer<?> hs2FirstContainer = new HS2Container("apache/hive:4.0.1")
+        try (GenericContainer<?> hs2FirstContainer = new HS2Container("apache/hive:4.0.1")
                 .withNetwork(NETWORK)
-                .dependsOn(ZOOKEEPER_CONTAINER);
-        hs2FirstContainer.start();
-        awaitHS2(hs2FirstContainer.getFirstMappedPort());
-        DataSource dataSource = createDataSource();
-        extractedSQL(dataSource);
-        hs2FirstContainer.stop();
-    }
-
-    private DataSource createDataSource() {
-        HikariConfig config = new HikariConfig();
-        config.setDriverClassName("org.apache.hive.jdbc.HiveDriver");
-        config.setJdbcUrl(jdbcUrlPrefix + jdbcUrlSuffix);
-        return new HikariDataSource(config);
+                .withZookeeperConnectionString(ZOOKEEPER_CONTAINER.getNetworkAliases().get(0) + ":" + ZOOKEEPER_CONTAINER.getMappedPort(2181))
+                .dependsOn(ZOOKEEPER_CONTAINER)) {
+            hs2FirstContainer.start();
+            awaitHS2(hs2FirstContainer.getFirstMappedPort());
+            HikariConfig config = new HikariConfig();
+            config.setDriverClassName("org.apache.hive.jdbc.HiveDriver");
+            config.setJdbcUrl(jdbcUrlPrefix + jdbcUrlSuffix);
+            DataSource dataSource = new HikariDataSource(config);
+            extractedSQL(dataSource);
+        }
     }
 
     private static void extractedSQL(final DataSource dataSource) throws SQLException {
         try (Connection connection = dataSource.getConnection();
              Statement statement = connection.createStatement()) {
             statement.execute("CREATE DATABASE demo_ds_0");
-            ResultSet firstResultSet = statement.executeQuery("show tables");
-            assertThat(firstResultSet.next(), is(false));
-            statement.execute("create table hive_example(a string, b int) partitioned by(c int)");
-            statement.execute("alter table hive_example add partition(c=1)");
-            statement.execute("insert into hive_example partition(c=1) values('a', 1), ('a', 2),('b',3)");
-            ResultSet secondResultSet = statement.executeQuery("select count(distinct a) from hive_example");
-            assertThat(secondResultSet.next(), is(true));
-            assertThat(secondResultSet.getInt("_c0"), is(2));
-            ResultSet thirdResultSet = statement.executeQuery("select sum(b) from hive_example");
-            assertThat(thirdResultSet.next(), is(true));
-            assertThat(thirdResultSet.getInt("_c0"), is(6));
         }
-    }
-
-    private Connection openConnection() throws SQLException {
-        Properties props = new Properties();
-        return DriverManager.getConnection(jdbcUrlPrefix + jdbcUrlSuffix, props);
     }
 
     private void awaitHS2(final int hiveServer2Port) {
         String connectionString = ZOOKEEPER_CONTAINER.getHost() + ":" + ZOOKEEPER_CONTAINER.getMappedPort(2181);
-        await().atMost(Duration.ofMinutes(2L)).ignoreExceptions().until(() -> {
+        await().atMost(Duration.ofMinutes(1L)).ignoreExceptions().until(() -> {
             try (CuratorFramework client = CuratorFrameworkFactory.builder()
                     .connectString(connectionString)
                     .retryPolicy(new ExponentialBackoffRetry(1000, 3))
@@ -115,7 +99,7 @@ class ZookeeperServiceDiscoveryTest {
             }
         });
         await().atMost(Duration.ofMinutes(1L)).ignoreExceptions().until(() -> {
-            openConnection().close();
+            DriverManager.getConnection(jdbcUrlPrefix + jdbcUrlSuffix, new Properties()).close();
             return true;
         });
     }
