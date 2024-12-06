@@ -1,0 +1,8 @@
+{
+  "rules": [
+    {"excludeClasses": "**"},
+    {"includeClasses": "org.apache.hive.**"}
+  ],
+  "regexRules": [
+  ]
+}
