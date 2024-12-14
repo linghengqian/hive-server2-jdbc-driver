@@ -4,6 +4,9 @@
 
 ### 1.7.0-SNAPSHOT
 
+1. Fix GraalVM CE warning about
+`[WARNING] Properties file at 'jar:file:///home/root/.m2/repository/io/github/linghengqian/hive-server2-jdbc-driver-thin/1.6.0/hive-server2-jdbc-driver-thin-1.6.0.jar!/META-INF/native-image/io.grpc/grpc-netty-shaded/native-image.properties' does not match the recommended 'META-INF/native-image/io.github.linghengqian/hive-server2-jdbc-driver-thin/native-image.properties' layout.`.
+
 Build from `apache/hive:rel/release-4.0.1`.
 
 ```
