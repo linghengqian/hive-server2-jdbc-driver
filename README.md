@@ -3,7 +3,7 @@
 The purpose of the current project is to create a `Thin JAR` of HiveServer2 JDBC Driver.
 All release products have been verified and usable in the GraalVM Native Image compiled by GraalVM CE For JDK 22.0.2 and GraalVM CE For JDK 23.
 
-For HosSpot VM, all JAR products can be run on any OpenJDK 8 and later distribution.
+For HotSpot VM, all JAR products can be run on any OpenJDK 8 and later distribution.
 
 The steps to use directly in Maven are as follows.
 The latest version is available
