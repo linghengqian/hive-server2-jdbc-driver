@@ -44,7 +44,7 @@ For the Docker Image of `apache/hive:4.0.0`,
 you can use `1.4.0` of `io.github.linghengqian:hive-server2-jdbc-driver-thin` or `io.github.linghengqian:hive-server2-jdbc-driver-uber`.
 
 For the Docker Image of `apache/hive:4.0.1`, 
-you can use `1.6.0` of `io.github.linghengqian:hive-server2-jdbc-driver-thin` or `io.github.linghengqian:hive-server2-jdbc-driver-uber`.
+you can use `1.7.0` of `io.github.linghengqian:hive-server2-jdbc-driver-thin` or `io.github.linghengqian:hive-server2-jdbc-driver-uber`.
 
 ## FAQ
 
