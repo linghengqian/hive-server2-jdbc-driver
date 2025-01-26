@@ -13,7 +13,7 @@ Use third-party builds of this project in any Maven project.
     <dependency>
         <groupId>io.github.linghengqian</groupId>
         <artifactId>hive-server2-jdbc-driver-thin</artifactId>
-        <version>1.6.0</version>
+        <version>1.7.0</version>
     </dependency>
     <dependency>
         <groupId>com.zaxxer</groupId>
@@ -59,3 +59,5 @@ public class ExampleTest {
     }
 }
 ```
+
+More specific documentation for the current JAR can actually be found at https://hive.apache.org/docs/latest/hiveserver2-clients_30758725/ .
