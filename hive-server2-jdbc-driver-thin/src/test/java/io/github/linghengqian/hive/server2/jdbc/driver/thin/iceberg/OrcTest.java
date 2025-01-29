@@ -68,6 +68,5 @@ public class OrcTest {
             assertThat(secondResultSet.next(), is(false));
             statement.execute("DROP TABLE IF EXISTS t_order");
         }
-
     }
 }

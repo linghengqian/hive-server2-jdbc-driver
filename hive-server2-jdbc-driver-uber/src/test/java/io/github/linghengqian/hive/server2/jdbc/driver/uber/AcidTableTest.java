@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package io.github.linghengqian.hive.server2.jdbc.driver.thin.iceberg;
+package io.github.linghengqian.hive.server2.jdbc.driver.uber;
 
 import org.junit.jupiter.api.Test;
 import org.testcontainers.containers.GenericContainer;
@@ -32,7 +32,7 @@ import static org.hamcrest.Matchers.is;
 
 @SuppressWarnings({"SqlNoDataSourceInspection", "resource"})
 @Testcontainers
-public class ParquetTest {
+public class AcidTableTest {
     @Container
     public static final GenericContainer<?> CONTAINER = new GenericContainer<>(DockerImageName.parse("apache/hive:4.0.1"))
             .withEnv("SERVICE_NAME", "hiveserver2")
@@ -51,14 +51,20 @@ public class ParquetTest {
         }
         try (Connection connection = DriverManager.getConnection(jdbcUrlPrefix + "/demo_ds_0");
              Statement statement = connection.createStatement()) {
-            statement.execute("CREATE TABLE IF NOT EXISTS t_order (\n" +
+            statement.execute("set metastore.compactor.initiator.on=true");
+            statement.execute("set metastore.compactor.cleaner.on=true");
+            statement.execute("set metastore.compactor.worker.threads=1");
+            statement.execute("set hive.support.concurrency=true");
+            statement.execute("set hive.exec.dynamic.partition.mode=nonstrict");
+            statement.execute("set hive.txn.manager=org.apache.hadoop.hive.ql.lockmgr.DbTxnManager");
+            statement.execute("create table IF NOT EXISTS t_order (\n" +
                     "    order_id   BIGINT NOT NULL,\n" +
                     "    order_type INT,\n" +
                     "    user_id    INT    NOT NULL,\n" +
                     "    address_id BIGINT NOT NULL,\n" +
-                    "    status     string,\n" +
+                    "    status     VARCHAR(50),\n" +
                     "    PRIMARY KEY (order_id) disable novalidate\n" +
-                    ") STORED BY ICEBERG STORED AS Parquet TBLPROPERTIES ('format-version' = '2')");
+                    ") CLUSTERED BY (order_id) INTO 2 BUCKETS STORED AS ORC TBLPROPERTIES ('transactional' = 'true')");
             statement.execute("TRUNCATE TABLE t_order");
             statement.executeUpdate("INSERT INTO t_order (order_id, user_id, order_type, address_id, status) VALUES (1, 1, 1, 1, 'INSERT_TEST')");
             ResultSet firstResultSet = statement.executeQuery("select * from t_order");
