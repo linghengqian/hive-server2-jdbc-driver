@@ -1,7 +1,13 @@
 # Third-party builds of the HiveServer2 JDBC Driver
 
+<p>
+    <a>
+        <img src="https://img.shields.io/badge/JDK-8+-green.svg"  alt="">
+    </a>
+</p>
+
 The purpose of the current project is to create a `Thin JAR` of HiveServer2 JDBC Driver.
-All release products have been verified and usable in the GraalVM Native Image compiled by GraalVM CE For JDK 22.0.2 and GraalVM CE For JDK 23.
+All release products have been verified and usable in the GraalVM Native Image compiled by GraalVM CE For JDK 22.0.2 and GraalVM CE For JDK 23.0.2 .
 
 For HotSpot VM, all JAR products can be run on any OpenJDK 8 and later distribution.
 
@@ -34,7 +40,7 @@ The latest version is at https://central.sonatype.com/artifact/io.github.linghen
 </dependencies>
 ```
 
-## Quick Start
+## Document
 
 Refer to [QuickStart](./doc/QuickStart.md).
 
