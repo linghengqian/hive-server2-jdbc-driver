@@ -1,0 +1,9 @@
+{
+  "rules": [
+    {"includeClasses": "**"},
+
+    {"excludeClasses": "io.github.linghengqian.hive.server2.jdbc.driver.**"}
+  ],
+  "regexRules": [
+  ]
+}

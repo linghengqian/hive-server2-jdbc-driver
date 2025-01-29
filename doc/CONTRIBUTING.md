@@ -20,6 +20,17 @@ sdk use java 22.0.2-graalce
 ./mvnw -T 1.5C clean test
 ```
 
+### How to initially generate the JSON for GraalVM Reachability Metadata
+
+- Execute the following command.
+
+```shell
+git clone git@github.com:linghengqian/hive-server2-jdbc-driver.git -b add-agent
+cd ./hive-server2-jdbc-driver/
+sdk use java 22.0.2-graalce
+./mvnw -PgenerateMetadata -DskipNativeTests clean test native:metadata-copy
+```
+
 ### How to nativeTest under GraalVM Native Image
 
 - Execute the following command.
