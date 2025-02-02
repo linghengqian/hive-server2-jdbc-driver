@@ -33,6 +33,10 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+/**
+ * TODO This unit test is affected by <a href="https://github.com/apache/hive/pull/5629">apache/hive#5629</a>,
+ *  the `information_schema` database does not exist by default.
+ */
 @SuppressWarnings({"SqlNoDataSourceInspection", "resource"})
 @Testcontainers
 public class InformationSchemaTest {
