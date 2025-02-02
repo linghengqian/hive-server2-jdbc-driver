@@ -20,7 +20,6 @@ import org.junit.jupiter.api.Test;
 import org.testcontainers.containers.GenericContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
-import org.testcontainers.utility.DockerImageName;
 
 import java.sql.*;
 import java.time.Duration;
@@ -34,7 +33,7 @@ import static org.hamcrest.Matchers.is;
 @Testcontainers
 public class AcidTableTest {
     @Container
-    public static final GenericContainer<?> CONTAINER = new GenericContainer<>(DockerImageName.parse("apache/hive:4.0.1"))
+    public static final GenericContainer<?> CONTAINER = new GenericContainer<>("apache/hive:4.0.1")
             .withEnv("SERVICE_NAME", "hiveserver2")
             .withExposedPorts(10000);
 

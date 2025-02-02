@@ -21,7 +21,6 @@ import org.testcontainers.containers.Container.ExecResult;
 import org.testcontainers.containers.GenericContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
-import org.testcontainers.utility.DockerImageName;
 
 import java.io.IOException;
 import java.sql.*;
@@ -41,7 +40,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 @Testcontainers
 public class InformationSchemaTest {
     @Container
-    public static final GenericContainer<?> CONTAINER = new GenericContainer<>(DockerImageName.parse("apache/hive:4.0.1"))
+    public static final GenericContainer<?> CONTAINER = new GenericContainer<>("apache/hive:4.0.1")
             .withEnv("SERVICE_NAME", "hiveserver2")
             .withExposedPorts(10000);
 

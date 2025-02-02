@@ -90,3 +90,6 @@ echo "test" | gpg --clearsign
 ```
 
 Log in to https://central.sonatype.com/ and manually approve the publication.
+
+Then, set a new git tag for the specific git commit, 
+and write the new version information at https://github.com/linghengqian/hive-server2-jdbc-driver/releases with the git tag.

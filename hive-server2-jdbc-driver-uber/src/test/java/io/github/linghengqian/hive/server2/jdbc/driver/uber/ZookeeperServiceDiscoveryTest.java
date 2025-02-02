@@ -35,7 +35,6 @@ import java.net.ServerSocket;
 import java.sql.*;
 import java.time.Duration;
 import java.util.List;
-import java.util.Properties;
 
 import static org.awaitility.Awaitility.await;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -115,11 +114,6 @@ class ZookeeperServiceDiscoveryTest {
         }
     }
 
-    private Connection openConnection() throws SQLException {
-        Properties props = new Properties();
-        return DriverManager.getConnection(jdbcUrlPrefix + jdbcUrlSuffix, props);
-    }
-
     private DataSource createDataSource() {
         extracted(HIVE_SERVER2_1_CONTAINER.getMappedPort(RANDOM_PORT_FIRST));
         HikariConfig config = new HikariConfig();
@@ -136,11 +130,11 @@ class ZookeeperServiceDiscoveryTest {
                 client.start();
                 List<String> children = client.getChildren().forPath("/hiveserver2");
                 assertThat(children.size(), is(1));
-                return children.get(0).contains(":" + hiveServer2Port + ";version=");
+                return children.get(0).startsWith("serverUri=0.0.0.0:" + hiveServer2Port + ";version=4.0.1;sequence=");
             }
         });
         await().atMost(Duration.ofMinutes(1L)).ignoreExceptions().until(() -> {
-            openConnection().close();
+            DriverManager.getConnection(jdbcUrlPrefix + jdbcUrlSuffix).close();
             return true;
         });
     }

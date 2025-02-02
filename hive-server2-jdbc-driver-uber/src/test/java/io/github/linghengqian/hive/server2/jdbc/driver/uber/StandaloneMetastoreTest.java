@@ -24,7 +24,6 @@ import org.testcontainers.containers.GenericContainer;
 import org.testcontainers.containers.Network;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
-import org.testcontainers.utility.DockerImageName;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -44,14 +43,14 @@ public class StandaloneMetastoreTest {
     private static final Network NETWORK = Network.newNetwork();
 
     @Container
-    public static final GenericContainer<?> HMS_CONTAINER = new GenericContainer<>(DockerImageName.parse("apache/hive:4.0.1"))
+    public static final GenericContainer<?> HMS_CONTAINER = new GenericContainer<>("apache/hive:4.0.1")
             .withEnv("SERVICE_NAME", "metastore")
             .withNetwork(NETWORK)
             .withNetworkAliases("metastore")
             .withExposedPorts(9083);
 
     @Container
-    public static final GenericContainer<?> HS2_CONTAINER = new GenericContainer<>(DockerImageName.parse("apache/hive:4.0.1"))
+    public static final GenericContainer<?> HS2_CONTAINER = new GenericContainer<>("apache/hive:4.0.1")
             .withEnv("SERVICE_NAME", "hiveserver2")
             .withEnv("SERVICE_OPTS", "-Dhive.metastore.uris=thrift://metastore:9083")
             .withNetwork(NETWORK)
