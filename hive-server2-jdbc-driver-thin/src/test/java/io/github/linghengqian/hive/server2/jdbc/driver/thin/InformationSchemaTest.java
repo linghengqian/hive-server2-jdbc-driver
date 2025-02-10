@@ -16,13 +16,17 @@
 
 package io.github.linghengqian.hive.server2.jdbc.driver.thin;
 
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Test;
 import org.testcontainers.containers.Container.ExecResult;
 import org.testcontainers.containers.GenericContainer;
+import org.testcontainers.containers.Network;
+import org.testcontainers.images.builder.ImageFromDockerfile;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.sql.*;
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
@@ -32,21 +36,43 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-/**
- * TODO This unit test is affected by <a href="https://github.com/apache/hive/pull/5629">apache/hive#5629</a>,
- *  the `information_schema` database does not exist by default.
- */
 @SuppressWarnings({"SqlNoDataSourceInspection", "resource"})
 @Testcontainers
 public class InformationSchemaTest {
+
+    private static final Network NETWORK = Network.newNetwork();
+
     @Container
-    public static final GenericContainer<?> CONTAINER = new GenericContainer<>("apache/hive:4.0.1")
+    public static final GenericContainer<?> POSTGRES = new GenericContainer<>("postgres:17.2-bookworm")
+            .withEnv("POSTGRES_PASSWORD", "example")
+            .withNetwork(NETWORK)
+            .withNetworkAliases("some-postgres");
+
+    @Container
+    public static final GenericContainer<?> HS2 = new GenericContainer<>(
+            new ImageFromDockerfile().withFileFromPath(
+                    "Dockerfile",
+                    Paths.get("src/test/resources/information-schema/Dockerfile").toAbsolutePath()
+            ))
             .withEnv("SERVICE_NAME", "hiveserver2")
+            .withEnv("DB_DRIVER", "postgres")
+            .withEnv("SERVICE_OPTS", "-Djavax.jdo.option.ConnectionDriverName=org.postgresql.Driver" + " " +
+                    "-Djavax.jdo.option.ConnectionURL=jdbc:postgresql://some-postgres:5432/postgres" + " " +
+                    "-Djavax.jdo.option.ConnectionUserName=postgres" + " " +
+                    "-Djavax.jdo.option.ConnectionPassword=example")
+            .withNetwork(NETWORK)
+            .dependsOn(POSTGRES)
             .withExposedPorts(10000);
+
+
+    @AfterAll
+    static void afterAll() {
+        NETWORK.close();
+    }
 
     @Test
     void test() throws SQLException, IOException, InterruptedException {
-        String jdbcUrlPrefix = "jdbc:hive2://" + CONTAINER.getHost() + ":" + CONTAINER.getMappedPort(10000);
+        String jdbcUrlPrefix = "jdbc:hive2://" + HS2.getHost() + ":" + HS2.getMappedPort(10000);
         await().atMost(Duration.of(30L, ChronoUnit.SECONDS)).ignoreExceptions().until(() -> {
             DriverManager.getConnection(jdbcUrlPrefix).close();
             return true;
@@ -69,23 +95,14 @@ public class InformationSchemaTest {
             statement.executeUpdate("INSERT INTO t_order (order_id, user_id, order_type, address_id, status) VALUES (1, 1, 1, 1, 'INSERT_TEST')");
             ResultSet resultSet = statement.executeQuery("select * from t_order");
             assertThat(resultSet.next(), is(true));
+            assertThat(resultSet.next(), is(false));
         }
         assertThrows(SQLException.class, () -> DriverManager.getConnection(jdbcUrlPrefix + "/information_schema").close());
-        ExecResult infoResult = CONTAINER.execInContainer(
-                "/opt/hive/bin/schematool",
-                "-info",
-                "-dbType", "hive",
-                "-metaDbType", "derby",
-                "-url", "jdbc:hive2://localhost:10000/default"
-        );
-        assertThat(infoResult.getStdout(), is("Metastore connection URL:\t jdbc:hive2://localhost:10000/default\n" +
-                "Metastore connection Driver :\t org.apache.hive.jdbc.HiveDriver\n" +
-                "Metastore connection User:\t APP\n"));
-        ExecResult initResult = CONTAINER.execInContainer(
+        ExecResult initResult = HS2.execInContainer(
                 "/opt/hive/bin/schematool",
                 "-initSchema",
                 "-dbType", "hive",
-                "-metaDbType", "derby",
+                "-metaDbType", "postgres",
                 "-url", "jdbc:hive2://localhost:10000/default"
         );
         assertThat(initResult.getStdout(), is("Initializing the schema to: 4.0.0\n" +
@@ -97,7 +114,17 @@ public class InformationSchemaTest {
                 "Initialization script completed\n"));
         try (Connection connection = DriverManager.getConnection(jdbcUrlPrefix + "/information_schema");
              Statement statement = connection.createStatement()) {
-            ResultSet resultSet = statement.executeQuery("select * from information_schema.COLUMNS limit 100");
+            ResultSet resultSet = statement.executeQuery("select TABLE_CATALOG,\n" +
+                    "       TABLE_NAME,\n" +
+                    "       COLUMN_NAME,\n" +
+                    "       DATA_TYPE,\n" +
+                    "       ORDINAL_POSITION,\n" +
+                    "       IS_NULLABLE\n" +
+                    "FROM INFORMATION_SCHEMA.COLUMNS\n" +
+                    "WHERE TABLE_CATALOG = 'default'\n" +
+                    "  AND TABLE_SCHEMA = 'demo_ds_0'\n" +
+                    "  AND UPPER(TABLE_NAME) IN ('T_ORDER')\n" +
+                    "ORDER BY ORDINAL_POSITION limit 100");
             assertThat(resultSet.next(), is(true));
         }
     }
