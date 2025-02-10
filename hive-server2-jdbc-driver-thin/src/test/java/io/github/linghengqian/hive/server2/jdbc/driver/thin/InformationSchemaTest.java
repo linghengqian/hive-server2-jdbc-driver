@@ -49,39 +49,20 @@ public class InformationSchemaTest {
             .withNetworkAliases("some-postgres");
 
     @Container
-    public static final GenericContainer<?> HMS = new GenericContainer<>(
-            new ImageFromDockerfile().withFileFromPath(
-                    "Dockerfile",
-                    Paths.get("src/test/resources/information-schema/Dockerfile").toAbsolutePath()
-            )
-    )
-            .withEnv("SERVICE_NAME", "metastore")
-            .withEnv("DB_DRIVER", "postgres")
-            .withEnv("SERVICE_OPTS", "-Djavax.jdo.option.ConnectionDriverName=org.postgresql.Driver" + " " +
-                    "-Djavax.jdo.option.ConnectionURL=jdbc:postgresql://some-postgres:5432/postgres" + " " +
-                    "-Djavax.jdo.option.ConnectionUserName=postgres" + " " +
-                    "-Djavax.jdo.option.ConnectionPassword=example")
-            .withNetwork(NETWORK)
-            .withNetworkAliases("metastore-standalone")
-            .dependsOn(POSTGRES);
-
-    @Container
     public static final GenericContainer<?> HS2 = new GenericContainer<>(
             new ImageFromDockerfile().withFileFromPath(
                     "Dockerfile",
                     Paths.get("src/test/resources/information-schema/Dockerfile").toAbsolutePath()
             ))
             .withEnv("SERVICE_NAME", "hiveserver2")
-            .withEnv("IS_RESUME", "true")
+            .withEnv("DB_DRIVER", "postgres")
             .withEnv("SERVICE_OPTS", "-Djavax.jdo.option.ConnectionDriverName=org.postgresql.Driver" + " " +
                     "-Djavax.jdo.option.ConnectionURL=jdbc:postgresql://some-postgres:5432/postgres" + " " +
                     "-Djavax.jdo.option.ConnectionUserName=postgres" + " " +
-                    "-Djavax.jdo.option.ConnectionPassword=example" + " " +
-                    "-Dhive.metastore.uris=thrift://metastore-standalone:9083")
+                    "-Djavax.jdo.option.ConnectionPassword=example")
             .withNetwork(NETWORK)
-            .dependsOn(HMS)
-            .withExposedPorts(10000)
-            .withStartupTimeout(Duration.of(2, ChronoUnit.MINUTES));
+            .dependsOn(POSTGRES)
+            .withExposedPorts(10000);
 
 
     @AfterAll
