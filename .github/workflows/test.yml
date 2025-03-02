@@ -20,6 +20,8 @@ on:
   push:
     branches:
       - master
+permissions:
+  pull-requests: write
 jobs:
   license-check:
     runs-on: 'ubuntu-latest'
