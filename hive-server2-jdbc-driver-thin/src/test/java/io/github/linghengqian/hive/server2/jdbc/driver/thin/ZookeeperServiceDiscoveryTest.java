@@ -22,7 +22,7 @@ import io.github.linghengqian.hive.server2.jdbc.driver.thin.util.ImageUtils;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.CuratorFrameworkFactory;
 import org.apache.curator.retry.ExponentialBackoffRetry;
-import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AutoClose;
 import org.junit.jupiter.api.Test;
 import org.testcontainers.containers.FixedHostPortGenericContainer;
 import org.testcontainers.containers.GenericContainer;
@@ -47,15 +47,18 @@ class ZookeeperServiceDiscoveryTest {
 
     private static final int RANDOM_PORT_FIRST = getRandomPort();
 
+    @AutoClose
     private static final Network NETWORK = Network.newNetwork();
 
     @Container
+    @AutoClose
     private static final GenericContainer<?> ZOOKEEPER_CONTAINER = new GenericContainer<>("zookeeper:3.9.3-jre-17")
             .withNetwork(NETWORK)
             .withNetworkAliases("foo")
             .withExposedPorts(2181);
 
     @Container
+    @AutoClose
     private static final GenericContainer<?> HIVE_SERVER2_1_CONTAINER = new FixedHostPortGenericContainer<>(ImageUtils.HIVE_IMAGE)
             .withNetwork(NETWORK)
             .withEnv("SERVICE_NAME", "hiveserver2")
@@ -69,11 +72,6 @@ class ZookeeperServiceDiscoveryTest {
     private final String jdbcUrlSuffix = ";serviceDiscoveryMode=zooKeeper;zooKeeperNamespace=hiveserver2";
 
     private String jdbcUrlPrefix;
-
-    @AfterAll
-    static void afterAll() {
-        NETWORK.close();
-    }
 
     @Test
     void assertShardingInLocalTransactions() throws SQLException {

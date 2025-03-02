@@ -19,7 +19,7 @@ package io.github.linghengqian.hive.server2.jdbc.driver.thin;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import io.github.linghengqian.hive.server2.jdbc.driver.thin.util.ImageUtils;
-import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AutoClose;
 import org.junit.jupiter.api.Test;
 import org.testcontainers.containers.GenericContainer;
 import org.testcontainers.containers.Network;
@@ -41,27 +41,25 @@ import static org.hamcrest.Matchers.is;
 @Testcontainers
 public class StandaloneMetastoreTest {
 
+    @AutoClose
     private static final Network NETWORK = Network.newNetwork();
 
     @Container
-    public static final GenericContainer<?> HMS_CONTAINER = new GenericContainer<>(ImageUtils.HIVE_IMAGE)
+    @AutoClose
+    private static final GenericContainer<?> HMS_CONTAINER = new GenericContainer<>(ImageUtils.HIVE_IMAGE)
             .withEnv("SERVICE_NAME", "metastore")
             .withNetwork(NETWORK)
             .withNetworkAliases("metastore")
             .withExposedPorts(9083);
 
     @Container
-    public static final GenericContainer<?> HS2_CONTAINER = new GenericContainer<>(ImageUtils.HIVE_IMAGE)
+    @AutoClose
+    private static final GenericContainer<?> HS2_CONTAINER = new GenericContainer<>(ImageUtils.HIVE_IMAGE)
             .withEnv("SERVICE_NAME", "hiveserver2")
             .withEnv("SERVICE_OPTS", "-Dhive.metastore.uris=thrift://metastore:9083")
             .withNetwork(NETWORK)
             .withExposedPorts(10000)
             .dependsOn(HMS_CONTAINER);
-
-    @AfterAll
-    static void afterAll() {
-        NETWORK.close();
-    }
 
     @Test
     void test() throws SQLException {

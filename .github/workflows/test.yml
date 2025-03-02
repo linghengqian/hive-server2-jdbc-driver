@@ -60,5 +60,8 @@ jobs:
           distribution: 'graalvm-community'
           github-token: ${{ secrets.GITHUB_TOKEN }}
           cache: 'maven'
+          native-image-job-reports: 'true'
+          native-image-pr-reports: 'true'
+          native-image-pr-reports-update-existing: 'true'
       - run: |
           ./mvnw -T 1.5C -PnativeTestInCustom clean test
