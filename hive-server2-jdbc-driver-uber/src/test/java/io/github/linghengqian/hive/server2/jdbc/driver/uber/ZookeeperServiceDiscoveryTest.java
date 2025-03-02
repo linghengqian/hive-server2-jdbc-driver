@@ -18,10 +18,11 @@ package io.github.linghengqian.hive.server2.jdbc.driver.uber;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
+import io.github.linghengqian.hive.server2.jdbc.driver.uber.util.ImageUtils;
 import org.apache.hive.org.apache.curator.framework.CuratorFramework;
 import org.apache.hive.org.apache.curator.framework.CuratorFrameworkFactory;
 import org.apache.hive.org.apache.curator.retry.ExponentialBackoffRetry;
-import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AutoClose;
 import org.junit.jupiter.api.Test;
 import org.testcontainers.containers.FixedHostPortGenericContainer;
 import org.testcontainers.containers.GenericContainer;
@@ -46,16 +47,19 @@ class ZookeeperServiceDiscoveryTest {
 
     private static final int RANDOM_PORT_FIRST = getRandomPort();
 
+    @AutoClose
     private static final Network NETWORK = Network.newNetwork();
 
     @Container
+    @AutoClose
     private static final GenericContainer<?> ZOOKEEPER_CONTAINER = new GenericContainer<>("zookeeper:3.9.3-jre-17")
             .withNetwork(NETWORK)
             .withNetworkAliases("foo")
             .withExposedPorts(2181);
 
     @Container
-    private static final GenericContainer<?> HIVE_SERVER2_1_CONTAINER = new FixedHostPortGenericContainer<>("apache/hive:4.0.1")
+    @AutoClose
+    private static final GenericContainer<?> HIVE_SERVER2_1_CONTAINER = new FixedHostPortGenericContainer<>(ImageUtils.HIVE_IMAGE)
             .withNetwork(NETWORK)
             .withEnv("SERVICE_NAME", "hiveserver2")
             .withEnv("SERVICE_OPTS", "-Dhive.server2.support.dynamic.service.discovery=true" + " "
@@ -69,11 +73,6 @@ class ZookeeperServiceDiscoveryTest {
 
     private String jdbcUrlPrefix;
 
-    @AfterAll
-    static void afterAll() {
-        NETWORK.close();
-    }
-
     @Test
     void assertShardingInLocalTransactions() throws SQLException {
         jdbcUrlPrefix = "jdbc:hive2://" + ZOOKEEPER_CONTAINER.getHost() + ":" + ZOOKEEPER_CONTAINER.getMappedPort(2181) + "/";
@@ -81,7 +80,7 @@ class ZookeeperServiceDiscoveryTest {
         extracted(dataSource);
         HIVE_SERVER2_1_CONTAINER.stop();
         int randomPortSecond = getRandomPort();
-        try (GenericContainer<?> hiveServer2SecondContainer = new FixedHostPortGenericContainer<>("apache/hive:4.0.1")
+        try (GenericContainer<?> hiveServer2SecondContainer = new FixedHostPortGenericContainer<>(ImageUtils.HIVE_IMAGE)
                 .withNetwork(NETWORK)
                 .withEnv("SERVICE_NAME", "hiveserver2")
                 .withEnv("SERVICE_OPTS", "-Dhive.server2.support.dynamic.service.discovery=true" + " "

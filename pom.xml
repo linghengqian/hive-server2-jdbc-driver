@@ -76,15 +76,15 @@
         <stax2-api.version>4.2.1</stax2-api.version>
 
         <junit-bom.version>5.11.2</junit-bom.version>
-        <testcontainers-bom.version>1.20.2</testcontainers-bom.version>
+        <testcontainers-bom.version>1.20.5</testcontainers-bom.version>
         <hikaricp.version>4.0.3</hikaricp.version>
-        <awaitility.version>4.2.2</awaitility.version>
+        <awaitility.version>4.3.0</awaitility.version>
 
         <maven-source-plugin.version>3.3.1</maven-source-plugin.version>
         <maven-javadoc-plugin.version>3.10.1</maven-javadoc-plugin.version>
         <maven-gpg-plugin.version>3.2.7</maven-gpg-plugin.version>
         <central-publishing-maven-plugin.version>0.5.0</central-publishing-maven-plugin.version>
-        <native-maven-plugin.version>0.10.4</native-maven-plugin.version>
+        <native-maven-plugin.version>0.10.5</native-maven-plugin.version>
         <maven-resources-plugin.version>3.3.1</maven-resources-plugin.version>
         <maven-compiler-plugin.version>3.13.0</maven-compiler-plugin.version>
         <maven-surefire-plugin.version>3.5.0</maven-surefire-plugin.version>

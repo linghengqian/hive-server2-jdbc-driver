@@ -16,7 +16,7 @@
 
 package io.github.linghengqian.hive.server2.jdbc.driver.uber;
 
-import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AutoClose;
 import org.junit.jupiter.api.Test;
 import org.testcontainers.containers.Container.ExecResult;
 import org.testcontainers.containers.GenericContainer;
@@ -40,16 +40,19 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 @Testcontainers
 public class InformationSchemaTest {
 
+    @AutoClose
     private static final Network NETWORK = Network.newNetwork();
 
     @Container
-    public static final GenericContainer<?> POSTGRES = new GenericContainer<>("postgres:17.2-bookworm")
+    @AutoClose
+    private static final GenericContainer<?> POSTGRES = new GenericContainer<>("postgres:17.2-bookworm")
             .withEnv("POSTGRES_PASSWORD", "example")
             .withNetwork(NETWORK)
             .withNetworkAliases("some-postgres");
 
     @Container
-    public static final GenericContainer<?> HS2 = new GenericContainer<>(
+    @AutoClose
+    private static final GenericContainer<?> HS2 = new GenericContainer<>(
             new ImageFromDockerfile().withFileFromPath(
                     "Dockerfile",
                     Paths.get("src/test/resources/information-schema/Dockerfile").toAbsolutePath()
@@ -63,12 +66,6 @@ public class InformationSchemaTest {
             .withNetwork(NETWORK)
             .dependsOn(POSTGRES)
             .withExposedPorts(10000);
-
-
-    @AfterAll
-    static void afterAll() {
-        NETWORK.close();
-    }
 
     @Test
     void test() throws SQLException, IOException, InterruptedException {
