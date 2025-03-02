@@ -18,6 +18,7 @@ package io.github.linghengqian.hive.server2.jdbc.driver.thin;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
+import io.github.linghengqian.hive.server2.jdbc.driver.thin.util.ImageUtils;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.CuratorFrameworkFactory;
 import org.apache.curator.retry.ExponentialBackoffRetry;
@@ -55,7 +56,7 @@ class ZookeeperServiceDiscoveryTest {
             .withExposedPorts(2181);
 
     @Container
-    private static final GenericContainer<?> HIVE_SERVER2_1_CONTAINER = new FixedHostPortGenericContainer<>("apache/hive:4.0.1")
+    private static final GenericContainer<?> HIVE_SERVER2_1_CONTAINER = new FixedHostPortGenericContainer<>(ImageUtils.HIVE_IMAGE)
             .withNetwork(NETWORK)
             .withEnv("SERVICE_NAME", "hiveserver2")
             .withEnv("SERVICE_OPTS", "-Dhive.server2.support.dynamic.service.discovery=true" + " "
@@ -81,7 +82,7 @@ class ZookeeperServiceDiscoveryTest {
         extracted(dataSource);
         HIVE_SERVER2_1_CONTAINER.stop();
         int randomPortSecond = getRandomPort();
-        try (GenericContainer<?> hiveServer2SecondContainer = new FixedHostPortGenericContainer<>("apache/hive:4.0.1")
+        try (GenericContainer<?> hiveServer2SecondContainer = new FixedHostPortGenericContainer<>(ImageUtils.HIVE_IMAGE)
                 .withNetwork(NETWORK)
                 .withEnv("SERVICE_NAME", "hiveserver2")
                 .withEnv("SERVICE_OPTS", "-Dhive.server2.support.dynamic.service.discovery=true" + " "

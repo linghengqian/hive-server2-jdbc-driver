@@ -16,6 +16,7 @@
 
 package io.github.linghengqian.hive.server2.jdbc.driver.thin.iceberg;
 
+import io.github.linghengqian.hive.server2.jdbc.driver.thin.util.ImageUtils;
 import org.junit.jupiter.api.Test;
 import org.testcontainers.containers.GenericContainer;
 import org.testcontainers.junit.jupiter.Container;
@@ -33,7 +34,7 @@ import static org.hamcrest.Matchers.is;
 @Testcontainers
 public class AvroTest {
     @Container
-    public static final GenericContainer<?> CONTAINER = new GenericContainer<>("apache/hive:4.0.1")
+    public static final GenericContainer<?> CONTAINER = new GenericContainer<>(ImageUtils.HIVE_IMAGE)
             .withEnv("SERVICE_NAME", "hiveserver2")
             .withExposedPorts(10000);
 

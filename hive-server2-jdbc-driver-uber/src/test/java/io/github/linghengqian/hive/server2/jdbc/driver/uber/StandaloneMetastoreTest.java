@@ -18,6 +18,7 @@ package io.github.linghengqian.hive.server2.jdbc.driver.uber;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
+import io.github.linghengqian.hive.server2.jdbc.driver.uber.util.ImageUtils;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Test;
 import org.testcontainers.containers.GenericContainer;
@@ -43,14 +44,14 @@ public class StandaloneMetastoreTest {
     private static final Network NETWORK = Network.newNetwork();
 
     @Container
-    public static final GenericContainer<?> HMS_CONTAINER = new GenericContainer<>("apache/hive:4.0.1")
+    public static final GenericContainer<?> HMS_CONTAINER = new GenericContainer<>(ImageUtils.HIVE_IMAGE)
             .withEnv("SERVICE_NAME", "metastore")
             .withNetwork(NETWORK)
             .withNetworkAliases("metastore")
             .withExposedPorts(9083);
 
     @Container
-    public static final GenericContainer<?> HS2_CONTAINER = new GenericContainer<>("apache/hive:4.0.1")
+    public static final GenericContainer<?> HS2_CONTAINER = new GenericContainer<>(ImageUtils.HIVE_IMAGE)
             .withEnv("SERVICE_NAME", "hiveserver2")
             .withEnv("SERVICE_OPTS", "-Dhive.metastore.uris=thrift://metastore:9083")
             .withNetwork(NETWORK)
