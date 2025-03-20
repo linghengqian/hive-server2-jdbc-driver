@@ -1,37 +1,65 @@
 # Contributing
 
+## Preparation
+
+### For Ubuntu 22.04.5
+
 Take Ubuntu WSL 22.04.4 as an example.
 It is assumed that `Git` is configured, and `SDKMAN!` and `Docker Engine` are installed.
 
 ```shell
-sdk install java 8.0.422-tem
 sdk install java 22.0.2-graalce
 sudo apt-get install build-essential zlib1g-dev -y
+sdk use java 22.0.2-graalce
 ```
 
-### How to test
+### For Windows 11
+
+Take Windows 11 as an example.
+It is assumed that `Git.Git` is configured, and `version-fox.vfox` and `Rancher Desktop` are installed.
+
+```
+vfox install java@22.0.2-graalce
+vfox use --global java@22.0.2-graalce
+winget install --id Microsoft.VisualStudio.2022.Community
+```
+
+Modify `Visual Studio Community 2022` in `Visual Studio Installer` to install `使用 C++ 的桌面开发` according 
+to the requirements of https://www.graalvm.org/latest/getting-started/windows/#prerequisites-for-native-image-on-windows .
+**Please note that Visual Studio is commercial software that requires a license to use.**
+
+## How to test
 
 - Execute the following command.
 
 ```shell
 git clone git@github.com:linghengqian/hive-server2-jdbc-driver.git
 cd ./hive-server2-jdbc-driver/
-sdk use java 22.0.2-graalce
 ./mvnw -T 1.5C clean test
 ```
 
-### How to nativeTest under GraalVM Native Image
+## How to nativeTest under GraalVM Native Image
 
 - Execute the following command.
 
 ```shell
 git clone git@github.com:linghengqian/hive-server2-jdbc-driver.git
 cd ./hive-server2-jdbc-driver/
-sdk use java 22.0.2-graalce
 ./mvnw -T 1.5C -PnativeTestInCustom clean test
 ```
 
-### Fixes LICENSE issue
+### Special handling for Windows 11
+
+If you execute `./mvnw -T 1.5C -PnativeTestInCustom clean test` under Windows 11, 
+a window may pop up asking you to set up `控制面板\系统和安全\Windows Defender 防火墙\允许的应用` for `native-tests.exe` 
+like `D:\twinklingliftworks\git\public\hive-server2-jdbc-driver\hive-server2-jdbc-driver-thin\target\native-tests.exe.exe`. 
+At this time, you need to set up `专用` and `公用` for this.
+
+You need to approve `native-test.exe` more than once because this command builds multiple GraalVM Native Images.
+
+## Fixes LICENSE issue
+
+### For Ubuntu 22.04.5
 
 - Execute the following command.
 
@@ -41,8 +69,19 @@ cd ./hive-server2-jdbc-driver/
 docker run -it --rm -v $(pwd):/github/workspace apache/skywalking-eyes:0.6.0 header fix
 ```
 
+### For Windows 11
 
-### How to publish via the central portal
+- Execute the following command.
+
+```
+git clone git@github.com:linghengqian/hive-server2-jdbc-driver.git
+cd ./hive-server2-jdbc-driver/
+docker run -it --rm -v ${pwd}:/github/workspace apache/skywalking-eyes:0.6.0 header fix
+```
+
+## How to publish via the central portal
+
+**TODO: This section only applies to Ubuntu 22.04.5.**
 
 First set up GPG.
 Take Ubuntu WSL 22.04.4 as an example and provide your real name and email address.
@@ -80,7 +119,6 @@ Then execute the following command.
 Suppose the release to be released is `1.1.0`, and the next version is `1.2.0-SNAPSHOT`.
 
 ```shell
-sdk use java 22.0.2-graalce
 git clone git@github.com:linghengqian/hive-server2-jdbc-driver.git
 cd ./hive-server2-jdbc-driver/
 ./mvnw versions:set -DgenerateBackupPoms=false -DnewVersion=1.1.0
