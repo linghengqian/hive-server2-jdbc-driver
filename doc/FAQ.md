@@ -42,3 +42,20 @@ Since only the `org.apache.hadoop.mapred.JobConf` class is needed, excluding all
     </exclusions>
 </dependency>
 ```
+
+## Why doesn't the project have CI for the Runner for `windows-latest`?
+
+When we talk about the `windows-latest` Runner, we are referring to `Windows Server 2025`, 
+and `Windows Server 2025` on Github Actions only supports creating Windows containers, 
+not Linux containers.
+
+The project's unit tests currently only use Linux containers, and `Windows Server 2025` actually only supports Windows containers. 
+`Ubuntu 22.04` or `Windows 11` have ways to run Linux containers, 
+so this does not affect local testing.
+
+The project's unit tests also make extensive use of `testcontainers-java`. 
+However, `testcontainers-java` explicitly does not support Windows Server, 
+which is documented at https://github.com/testcontainers/testcontainers-java/issues/2960.
+
+`Windows 11` can create Linux containers by installing `Docker Desktop For Windows`,
+`Rancher Desktop For Windows`, `Podman Desktop For Windows`, or `Podman CLI For Windows`.
