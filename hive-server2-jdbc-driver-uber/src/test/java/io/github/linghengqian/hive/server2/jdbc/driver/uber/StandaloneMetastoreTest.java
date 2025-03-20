@@ -56,10 +56,12 @@ public class StandaloneMetastoreTest {
     @AutoClose
     private static final GenericContainer<?> HS2_CONTAINER = new GenericContainer<>(ImageUtils.HIVE_IMAGE)
             .withEnv("SERVICE_NAME", "hiveserver2")
+            .withEnv("IS_RESUME", "true")
             .withEnv("SERVICE_OPTS", "-Dhive.metastore.uris=thrift://metastore:9083")
             .withNetwork(NETWORK)
             .withExposedPorts(10000)
-            .dependsOn(HMS_CONTAINER);
+            .dependsOn(HMS_CONTAINER)
+            .withStartupTimeout(Duration.ofMinutes(2L));
 
     @Test
     void test() throws SQLException {
