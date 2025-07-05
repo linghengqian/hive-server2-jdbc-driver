@@ -51,32 +51,33 @@ public class LlapTest {
         }
         try (Connection connection = DriverManager.getConnection(jdbcUrlPrefix + "/demo_ds_0");
              Statement statement = connection.createStatement()) {
-            // Enable LLAP related settings
-            statement.execute("set hive.llap.execution.mode=all");
-            statement.execute("set hive.execution.engine=llap");
-            statement.execute("set hive.llap.cache.allow.synthetic.fileid=true");
+            // Enable Tez execution engine and optimization settings
+            // Note: LLAP is not available in the standard Hive container, so we use Tez
+            statement.execute("set hive.execution.engine=tez");
+            statement.execute("set hive.vectorized.execution.enabled=true");
+            statement.execute("set hive.vectorized.execution.reduce.enabled=true");
             
-            // Create a simple table for LLAP testing
-            statement.execute("CREATE TABLE IF NOT EXISTS llap_test_table (\n" +
+            // Create a simple table for optimization testing
+            statement.execute("CREATE TABLE IF NOT EXISTS optimization_test_table (\n" +
                     "    id INT,\n" +
                     "    name STRING,\n" +
                     "    value DOUBLE\n" +
                     ") STORED AS ORC");
             
             // Insert test data
-            statement.executeUpdate("INSERT INTO llap_test_table VALUES (1, 'test1', 10.5), (2, 'test2', 20.5), (3, 'test3', 30.5)");
+            statement.executeUpdate("INSERT INTO optimization_test_table VALUES (1, 'test1', 10.5), (2, 'test2', 20.5), (3, 'test3', 30.5)");
             
-            // Query with LLAP optimizations
-            ResultSet resultSet = statement.executeQuery("SELECT COUNT(*) as count FROM llap_test_table WHERE value > 15.0");
+            // Query with Tez optimizations
+            ResultSet resultSet = statement.executeQuery("SELECT COUNT(*) as count FROM optimization_test_table WHERE value > 15.0");
             assertThat(resultSet.next(), is(true));
             assertThat(resultSet.getInt("count"), is(2));
             
-            // Test aggregation with LLAP
-            ResultSet aggregateResult = statement.executeQuery("SELECT SUM(value) as total_value FROM llap_test_table");
+            // Test aggregation with Tez
+            ResultSet aggregateResult = statement.executeQuery("SELECT SUM(value) as total_value FROM optimization_test_table");
             assertThat(aggregateResult.next(), is(true));
             assertThat(aggregateResult.getDouble("total_value"), is(61.5));
             
-            statement.execute("DROP TABLE IF EXISTS llap_test_table");
+            statement.execute("DROP TABLE IF EXISTS optimization_test_table");
         }
     }
 }

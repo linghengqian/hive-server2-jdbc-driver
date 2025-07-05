@@ -111,7 +111,7 @@ public class HiveDataCompactionTest {
             ResultSet compactionStatus = statement.executeQuery("SHOW COMPACTIONS");
             boolean hasCompactionRecord = false;
             while (compactionStatus.next()) {
-                String tableName = compactionStatus.getString("table");
+                String tableName = compactionStatus.getString("tabname");
                 if ("compaction_test".equals(tableName)) {
                     hasCompactionRecord = true;
                     break;
