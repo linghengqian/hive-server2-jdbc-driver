@@ -281,30 +281,5 @@
                 </pluginManagement>
             </build>
         </profile>
-        <profile>
-            <id>ci</id>
-            <build>
-                <pluginManagement>
-                    <plugins>
-                        <plugin>
-                            <groupId>org.apache.maven.plugins</groupId>
-                            <artifactId>maven-surefire-plugin</artifactId>
-                            <version>${maven-surefire-plugin.version}</version>
-                            <configuration>
-                                <excludes>
-                                    <exclude>**/ThinTest.java</exclude>
-                                    <exclude>**/UberTest.java</exclude>
-                                    <exclude>**/AcidTableTest.java</exclude>
-                                    <exclude>**/StandaloneMetastoreTest.java</exclude>
-                                    <exclude>**/iceberg/*.java</exclude>
-                                    <exclude>**/InformationSchemaTest.java</exclude>
-                                    <exclude>**/ZookeeperServiceDiscoveryTest.java</exclude>
-                                </excludes>
-                            </configuration>
-                        </plugin>
-                    </plugins>
-                </pluginManagement>
-            </build>
-        </profile>
     </profiles>
 </project>
