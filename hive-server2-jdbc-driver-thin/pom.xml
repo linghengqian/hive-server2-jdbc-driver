@@ -236,6 +236,14 @@
                     <groupId>org.slf4j</groupId>
                     <artifactId>slf4j-api</artifactId>
                 </exclusion>
+                <!--
+                Exclude problematic audience-annotations:0.5.0 which references non-existent tools.jar in JDK 9+.
+                We use the newer version from zookeeper:3.8.3 which provides audience-annotations:0.12.0.
+                -->
+                <exclusion>
+                    <groupId>org.apache.yetus</groupId>
+                    <artifactId>audience-annotations</artifactId>
+                </exclusion>
             </exclusions>
         </dependency>
         <dependency>
@@ -246,6 +254,14 @@
                 <exclusion>
                     <groupId>com.google.code.findbugs</groupId>
                     <artifactId>*</artifactId>
+                </exclusion>
+                <!--
+                Exclude problematic audience-annotations:0.5.0 which references non-existent tools.jar in JDK 9+.
+                We use the newer version from zookeeper:3.8.3 which provides audience-annotations:0.12.0.
+                -->
+                <exclusion>
+                    <groupId>org.apache.yetus</groupId>
+                    <artifactId>audience-annotations</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>
