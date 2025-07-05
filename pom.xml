@@ -75,7 +75,7 @@
         -->
         <stax2-api.version>4.2.1</stax2-api.version>
 
-        <junit-bom.version>5.11.2</junit-bom.version>
+        <junit-bom.version>5.12.0</junit-bom.version>
         <testcontainers-bom.version>1.20.5</testcontainers-bom.version>
         <hikaricp.version>4.0.3</hikaricp.version>
         <awaitility.version>4.3.0</awaitility.version>
