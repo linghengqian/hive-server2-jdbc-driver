@@ -17,6 +17,7 @@
 package io.github.linghengqian.hive.server2.jdbc.driver.thin;
 
 import org.junit.jupiter.api.AutoClose;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.testcontainers.containers.Container.ExecResult;
 import org.testcontainers.containers.GenericContainer;
@@ -37,6 +38,7 @@ import static org.hamcrest.Matchers.is;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @SuppressWarnings({"SqlNoDataSourceInspection", "resource"})
+@Tag("testcontainers")
 @Testcontainers
 public class InformationSchemaTest {
 
