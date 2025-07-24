@@ -10,7 +10,7 @@
 </p>
 
 The purpose of the current project is to create a `Thin JAR` of HiveServer2 JDBC Driver.
-All release products have been verified and usable in the GraalVM Native Image compiled by GraalVM CE For JDK 22.0.2 and GraalVM CE For JDK 24.0.1 .
+All release products have been verified and usable in the GraalVM Native Image compiled by GraalVM CE For JDK 22.0.2 and GraalVM CE For JDK 24.0.2 .
 
 For HotSpot VM, all JAR products can be run on any OpenJDK 8 and later distribution.
 

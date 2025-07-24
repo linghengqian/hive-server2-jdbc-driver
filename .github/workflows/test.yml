@@ -51,7 +51,7 @@ jobs:
     if: github.repository == 'linghengqian/hive-server2-jdbc-driver'
     strategy:
       matrix:
-        java: [ '22.0.2', '24.0.1' ]
+        java: [ '22.0.2', '24.0.2' ]
         os: [ 'ubuntu-latest' ]
     runs-on: ${{ matrix.os }}
     steps:
