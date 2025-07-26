@@ -105,4 +105,4 @@ jobs:
           cache: 'maven'
           native-image-job-reports: 'true'
       - name: NativeTest on Oracle GraalVM For JDK ${{ matrix.java }}
-        run: ./mvnw -T 1.5C -PnativeTestInCustom clean test
+        run: ./mvnw -PnativeTestInCustom clean test
