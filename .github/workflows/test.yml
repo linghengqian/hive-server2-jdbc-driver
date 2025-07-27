@@ -35,10 +35,19 @@ jobs:
     strategy:
       matrix:
         java: [ '8', '24' ]
-        os: [ 'ubuntu-latest' ]
+        os: [ 'ubuntu-latest', 'windows-2025' ]
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
+      - name: Setup Rancher Desktop without GUI on Windows Server
+        if: matrix.os == 'windows-2025'
+        run: |
+          ./doc/helpful_tools/uninstall-docker-engine-for-wcow.ps1
+          winget install --id jazzdelightsme.WingetPathUpdater --source winget
+          winget install --id SUSE.RancherDesktop --source winget --skip-dependencies
+          rdctl start --application.start-in-background --container-engine.name=moby --kubernetes.enabled=false
+          ./doc/helpful_tools/wait-for-rancher-desktop-backend.ps1
+          "PATH=$env:PATH" >> $env:GITHUB_ENV
       - uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
@@ -65,5 +74,7 @@ jobs:
           native-image-job-reports: 'true'
           native-image-pr-reports: 'true'
           native-image-pr-reports-update-existing: 'true'
-      - run: |
+      - name: NativeTest on GraalVM CE For JDK ${{ matrix.java }} on Ubuntu
+        if: matrix.os == 'ubuntu-latest'
+        run: |
           ./mvnw -T 1.5C -PnativeTestInCustom clean test
