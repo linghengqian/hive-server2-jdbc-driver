@@ -1,5 +1,9 @@
 [
 {
+  "condition":{"typeReachable":"ch.qos.logback.classic.util.EnvUtil"},
+  "name":"groovy.lang.Binding"
+},
+{
   "condition":{"typeReachable":"ch.qos.logback.core.joran.action.NestedComplexPropertyIA"},
   "name":"ch.qos.logback.classic.encoder.PatternLayoutEncoder",
   "methods":[{"name":"<init>","parameterTypes":[] }],
@@ -53,6 +57,12 @@
 {
   "condition":{"typeReachable":"ch.qos.logback.core.util.OptionHelper"},
   "name":"ch.qos.logback.core.ConsoleAppender",
+  "allPublicConstructors":true,
+  "allPublicMethods":true
+},
+{
+  "condition":{"typeReachable":"ch.qos.logback.core.joran.util.PropertySetter"},
+  "name":"ch.qos.logback.core.pattern.PatternLayoutEncoderBase",
   "allPublicMethods":true
 }
 ]
