@@ -8,10 +8,11 @@
 2. Add more GraalVM Reachability Metadata for `commons-logging:commons-logging:1.1.3`.
 3. Add more GraalVM Reachability Metadata for `org.apache.hadoop;hadoop-common:3.3.6`.
 4. Add more GraalVM Reachability Metadata for `org.apache.hive;hive-jdbc:4.0.1`.
-5. Add more GraalVM Reachability Metadata for `org.apache.hive;hive-jdbc:4.0.1-standalone`.
+5. Add more GraalVM Reachability Metadata for `org.apache.hive;hive-jdbc:4.0.1:standalone`.
 6. Add more GraalVM Reachability Metadata for `org.apache.zookeeper:zookeeper:3.8.3`.
 7. Add more GraalVM Reachability Metadata for `org.apiguardian:apiguardian-api:1.1.2`.
 8. Add more GraalVM Reachability Metadata for `org.slf4j:slf4j-api:1.7.30`.
+9. Introduce new subproject `tinycircus` for distributing Linux Containers.
 
 Build from `apache/hive:rel/release-4.0.1`.
 
