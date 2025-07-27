@@ -4,6 +4,8 @@
 
 ### 1.8.0-SNAPSHOT
 
+1. Introduce a new module `io.github.linghengqian:hive-server2-jdbc-driver-reachability-metadata` to store GraalVM Reachability Metadata for third-party dependencies.
+
 Build from `apache/hive:rel/release-4.0.1`.
 
 ```
