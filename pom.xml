@@ -270,10 +270,6 @@
                         <configuration>
                             <quickBuild>true</quickBuild>
                             <buildArgs>
-                                <buildArg>-H:+UnlockExperimentalVMOptions</buildArg>
-                                <buildArg>-H:+AddAllCharsets</buildArg>
-                                <buildArg>-H:+IncludeAllLocales</buildArg>
-                                <buildArg>--exact-reachability-metadata</buildArg>
                                 <buildArg>
                                     --initialize-at-build-time=org.junit.jupiter.api.DisplayNameGenerator$IndicativeSentences
                                 </buildArg>
