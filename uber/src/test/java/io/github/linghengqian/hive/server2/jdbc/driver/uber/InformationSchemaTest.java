@@ -21,12 +21,10 @@ import org.junit.jupiter.api.Test;
 import org.testcontainers.containers.Container.ExecResult;
 import org.testcontainers.containers.GenericContainer;
 import org.testcontainers.containers.Network;
-import org.testcontainers.images.builder.ImageFromDockerfile;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 
 import java.io.IOException;
-import java.nio.file.Paths;
 import java.sql.*;
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
@@ -52,11 +50,7 @@ public class InformationSchemaTest {
 
     @Container
     @AutoClose
-    private static final GenericContainer<?> HS2 = new GenericContainer<>(
-            new ImageFromDockerfile().withFileFromPath(
-                    "Dockerfile",
-                    Paths.get("src/test/resources/information-schema/Dockerfile").toAbsolutePath()
-            ))
+    private static final GenericContainer<?> HS2 = new GenericContainer<>("ghcr.io/linghengqian/hive:4.0.1-all-in-one")
             .withEnv("SERVICE_NAME", "hiveserver2")
             .withEnv("DB_DRIVER", "postgres")
             .withEnv("SERVICE_OPTS", "-Djavax.jdo.option.ConnectionDriverName=org.postgresql.Driver" + " " +
