@@ -79,13 +79,15 @@
         <testcontainers-bom.version>1.21.3</testcontainers-bom.version>
         <hikaricp.version>4.0.3</hikaricp.version>
         <awaitility.version>4.3.0</awaitility.version>
+        <logback-classic.version>1.2.13</logback-classic.version>
 
         <maven-source-plugin.version>3.3.1</maven-source-plugin.version>
         <maven-javadoc-plugin.version>3.10.1</maven-javadoc-plugin.version>
         <maven-gpg-plugin.version>3.2.7</maven-gpg-plugin.version>
         <central-publishing-maven-plugin.version>0.5.0</central-publishing-maven-plugin.version>
         <native-maven-plugin.version>0.10.6</native-maven-plugin.version>
-        <maven-surefire-plugin.version>3.5.3</maven-surefire-plugin.version>
+        <metadata-repository.version>0.3.23</metadata-repository.version>
+        <maven-compiler-plugin.version>3.14.0</maven-compiler-plugin.version>
     </properties>
 
     <modules>
@@ -168,13 +170,36 @@
             </exclusions>
         </dependency>
         <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-nop</artifactId>
-            <version>${slf4j.version}</version>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>${logback-classic.version}</version>
             <scope>test</scope>
             <optional>true</optional>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-api</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
     </dependencies>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>${maven-compiler-plugin.version}</version>
+                    <configuration>
+                        <compilerArgs>
+                            <arg>-Xlint:-options</arg>
+                        </compilerArgs>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
 
     <profiles>
         <profile>
@@ -298,6 +323,10 @@
                                         --initialize-at-build-time=org.junit.platform.suite.engine.SuiteTestDescriptor$LifecycleMethods
                                     </buildArg>
                                 </buildArgs>
+                                <metadataRepository>
+                                    <enabled>true</enabled>
+                                    <version>${metadata-repository.version}</version>
+                                </metadataRepository>
                             </configuration>
                             <executions>
                                 <execution>

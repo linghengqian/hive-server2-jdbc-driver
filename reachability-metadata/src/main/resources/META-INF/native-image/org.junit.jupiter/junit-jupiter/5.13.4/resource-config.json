@@ -16,9 +16,5 @@
     "condition":{"typeReachable":"org.junit.platform.launcher.core.LauncherConfigurationParameters"},
     "pattern":"\\Qjunit-platform.properties\\E"
   }]},
-  "bundles":[
-    {
-      "name":"sun.util.logging.resources.logging"
-    }
-  ]
+  "bundles":[]
 }
