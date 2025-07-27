@@ -49,5 +49,10 @@
   "condition":{"typeReachable":"ch.qos.logback.core.joran.action.StatusListenerAction"},
   "name":"ch.qos.logback.core.status.NopStatusListener",
   "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "condition":{"typeReachable":"ch.qos.logback.core.util.OptionHelper"},
+  "name":"ch.qos.logback.core.ConsoleAppender",
+  "allPublicMethods":true
 }
 ]

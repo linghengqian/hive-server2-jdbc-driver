@@ -1,5 +1,67 @@
 [
 {
+  "condition":{"typeReachable":"org.testcontainers.shaded.com.fasterxml.jackson.databind.introspect.POJOPropertiesCollector"},
+  "name":"java.io.Serializable",
+  "allDeclaredMethods": true
+},
+{
+  "condition":{"typeReachable":"org.testcontainers.shaded.com.fasterxml.jackson.databind.introspect.POJOPropertiesCollector"},
+  "name":"java.lang.Enum",
+  "allDeclaredMethods": true
+},
+{
+  "condition":{"typeReachable":"org.testcontainers.shaded.com.fasterxml.jackson.databind.introspect.POJOPropertiesCollector"},
+  "name":"java.io.Closeable",
+  "allDeclaredMethods": true
+},
+{
+  "condition":{"typeReachable":"org.testcontainers.shaded.com.fasterxml.jackson.databind.introspect.POJOPropertiesCollector"},
+  "name":"java.lang.AutoCloseable",
+  "allDeclaredMethods": true
+},
+{
+  "condition":{"typeReachable":"org.testcontainers.shaded.com.fasterxml.jackson.databind.introspect.POJOPropertiesCollector"},
+  "name":"java.lang.Boolean",
+  "allDeclaredFields": true,
+  "allDeclaredConstructors": true,
+  "allDeclaredMethods": true
+},
+{
+  "condition":{"typeReachable":"org.testcontainers.shaded.com.fasterxml.jackson.databind.introspect.POJOPropertiesCollector"},
+  "name":"java.lang.Comparable",
+  "allDeclaredMethods": true
+},
+{
+  "condition":{"typeReachable":"org.testcontainers.shaded.com.fasterxml.jackson.databind.introspect.POJOPropertiesCollector"},
+  "name":"java.lang.constant.Constable",
+  "allDeclaredMethods": true
+},
+{
+  "condition":{"typeReachable":"org.testcontainers.shaded.com.fasterxml.jackson.databind.introspect.POJOPropertiesCollector"},
+  "name":"java.lang.Number",
+  "allDeclaredFields": true,
+  "allDeclaredMethods": true
+},
+{
+  "condition":{"typeReachable":"org.testcontainers.shaded.com.fasterxml.jackson.databind.introspect.POJOPropertiesCollector"},
+  "name":"java.lang.Integer",
+  "allDeclaredFields": true,
+  "allDeclaredMethods": true,
+  "allDeclaredConstructors": true
+},
+{
+  "condition":{"typeReachable":"org.testcontainers.shaded.com.fasterxml.jackson.databind.introspect.POJOPropertiesCollector"},
+  "name":"java.lang.constant.ConstantDesc",
+  "allDeclaredMethods": true
+},
+{
+  "condition":{"typeReachable":"org.testcontainers.shaded.com.fasterxml.jackson.databind.introspect.POJOPropertiesCollector"},
+  "name":"java.lang.Long",
+  "allDeclaredFields": true,
+  "allDeclaredMethods": true,
+  "allDeclaredConstructors": true
+},
+{
   "condition":{"typeReachable":"org.testcontainers.jdbc.ContainerDatabaseDriver"},
   "name":"org.testcontainers.containers.ClickHouseProvider"
 },

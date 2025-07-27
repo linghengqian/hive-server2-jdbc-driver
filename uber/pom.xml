@@ -41,14 +41,4 @@
             <classifier>standalone</classifier>
         </dependency>
     </dependencies>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.graalvm.buildtools</groupId>
-                <artifactId>native-maven-plugin</artifactId>
-                <version>${native-maven-plugin.version}</version>
-            </plugin>
-        </plugins>
-    </build>
 </project>

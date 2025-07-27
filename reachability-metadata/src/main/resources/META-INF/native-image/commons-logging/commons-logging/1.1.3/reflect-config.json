@@ -1,0 +1,16 @@
+[
+{
+  "condition":{"typeReachable":"org.apache.commons.logging.LogFactory"},
+  "name":"java.lang.Thread",
+  "allPublicMethods": true
+},
+{
+  "condition":{"typeReachable":"org.apache.commons.logging.impl.LogFactoryImpl"},
+  "name":"org.apache.commons.logging.impl.Log4JLogger"
+},
+{
+  "condition":{"typeReachable":"org.apache.commons.logging.impl.LogFactoryImpl"},
+  "name":"org.apache.commons.logging.impl.Jdk14Logger",
+  "allPublicMethods": true
+}
+]
