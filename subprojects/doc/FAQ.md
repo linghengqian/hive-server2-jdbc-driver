@@ -118,9 +118,3 @@ Possible Maven 3 examples are as follows,
      </build>
 </project>
 ```
-
-## Why doesn't the project have NativeTest CI for the Runner for `windows-2025`?
-
-We have run the NativeTest test suite under the HotSpot VM of Windows Server 2025 CI. 
-However, due to the lack of local test environment of Windows Server 2025 for developers, 
-the NativeTest test suite has not yet been run under the GraalVM Native Image of Windows Server 2025 CI.
