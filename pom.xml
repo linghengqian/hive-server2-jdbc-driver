@@ -89,8 +89,9 @@
     </properties>
 
     <modules>
-        <module>hive-server2-jdbc-driver-thin</module>
-        <module>hive-server2-jdbc-driver-uber</module>
+        <module>thin</module>
+        <module>uber</module>
+        <module>reachability-metadata</module>
     </modules>
 
     <dependencyManagement>

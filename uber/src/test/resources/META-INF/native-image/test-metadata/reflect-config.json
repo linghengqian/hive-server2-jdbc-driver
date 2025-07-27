@@ -1,0 +1,74 @@
+[
+{
+  "condition":{"typeReachable":"io.github.linghengqian.hive.server2.jdbc.driver.uber.iceberg.AvroTest"},
+  "name":"io.github.linghengqian.hive.server2.jdbc.driver.uber.iceberg.AvroTest",
+  "allDeclaredConstructors": true,
+  "allDeclaredMethods": true,
+  "allPublicMethods": true,
+  "allDeclaredFields": true
+},
+{
+  "condition":{"typeReachable":"io.github.linghengqian.hive.server2.jdbc.driver.uber.iceberg.OrcTest"},
+  "name":"io.github.linghengqian.hive.server2.jdbc.driver.uber.iceberg.OrcTest",
+  "allDeclaredConstructors": true,
+  "allDeclaredMethods": true,
+  "allPublicMethods": true,
+  "allDeclaredFields": true
+},
+{
+  "condition":{"typeReachable":"io.github.linghengqian.hive.server2.jdbc.driver.uber.iceberg.ParquetTest"},
+  "name":"io.github.linghengqian.hive.server2.jdbc.driver.uber.iceberg.ParquetTest",
+  "allDeclaredConstructors": true,
+  "allDeclaredMethods": true,
+  "allPublicMethods": true,
+  "allDeclaredFields": true
+},
+{
+  "condition":{"typeReachable":"io.github.linghengqian.hive.server2.jdbc.driver.uber.AcidTableTest"},
+  "name":"io.github.linghengqian.hive.server2.jdbc.driver.uber.AcidTableTest",
+  "allDeclaredConstructors": true,
+  "allDeclaredMethods": true,
+  "allPublicMethods": true,
+  "allDeclaredFields": true
+},
+{
+  "condition":{"typeReachable":"io.github.linghengqian.hive.server2.jdbc.driver.uber.ClassExistTest"},
+  "name":"io.github.linghengqian.hive.server2.jdbc.driver.uber.ClassExistTest",
+  "allDeclaredConstructors": true,
+  "allDeclaredMethods": true,
+  "allPublicMethods": true,
+  "allDeclaredFields": true
+},
+{
+  "condition":{"typeReachable":"io.github.linghengqian.hive.server2.jdbc.driver.uber.InformationSchemaTest"},
+  "name":"io.github.linghengqian.hive.server2.jdbc.driver.uber.InformationSchemaTest",
+  "allDeclaredConstructors": true,
+  "allDeclaredMethods": true,
+  "allPublicMethods": true,
+  "allDeclaredFields": true
+},
+{
+  "condition":{"typeReachable":"io.github.linghengqian.hive.server2.jdbc.driver.uber.StandaloneMetastoreTest"},
+  "name":"io.github.linghengqian.hive.server2.jdbc.driver.uber.StandaloneMetastoreTest",
+  "allDeclaredConstructors": true,
+  "allDeclaredMethods": true,
+  "allPublicMethods": true,
+  "allDeclaredFields": true
+},
+{
+  "condition":{"typeReachable":"io.github.linghengqian.hive.server2.jdbc.driver.uber.SimpleTest"},
+  "name":"io.github.linghengqian.hive.server2.jdbc.driver.uber.SimpleTest",
+  "allDeclaredConstructors": true,
+  "allDeclaredMethods": true,
+  "allPublicMethods": true,
+  "allDeclaredFields": true
+},
+{
+  "condition":{"typeReachable":"io.github.linghengqian.hive.server2.jdbc.driver.uber.ZookeeperServiceDiscoveryTest"},
+  "name":"io.github.linghengqian.hive.server2.jdbc.driver.uber.ZookeeperServiceDiscoveryTest",
+  "allDeclaredConstructors": true,
+  "allDeclaredMethods": true,
+  "allPublicMethods": true,
+  "allDeclaredFields": true
+}
+]
