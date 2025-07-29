@@ -14,11 +14,13 @@
 
 FROM alpine:3.22.1 AS prepare
 RUN apk add --no-cache wget
+RUN wget https://repo1.maven.org/maven2/com/microsoft/sqlserver/mssql-jdbc/12.10.1.jre8/mssql-jdbc-12.10.1.jre8.jar --directory-prefix=/opt/hive/lib
+RUN wget https://repo1.maven.org/maven2/com/mysql/mysql-connector-j/9.3.0/mysql-connector-j-9.3.0.jar --directory-prefix=/opt/hive/lib
+RUN wget https://repo1.maven.org/maven2/com/oracle/database/jdbc/ojdbc8/23.8.0.25.04/ojdbc8-23.8.0.25.04.jar --directory-prefix=/opt/hive/lib
 RUN wget https://repo1.maven.org/maven2/org/postgresql/postgresql/42.7.7/postgresql-42.7.7.jar --directory-prefix=/opt/hive/lib
 
 FROM apache/hive:4.0.1
 LABEL org.opencontainers.image.authors="Qiheng He linghengqian@outlook.com"
 LABEL org.opencontainers.image.source="https://github.com/linghengqian/hive-server2-jdbc-driver"
 LABEL org.opencontainers.image.description="Linux Container of HiveServer2 and Hive Metastore Server built by the third party"
-LABEL org.opencontainers.image.licenses="Apache-2.0"
 COPY --from=prepare /opt/hive/lib /opt/hive/lib

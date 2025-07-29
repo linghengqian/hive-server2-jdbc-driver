@@ -11,7 +11,10 @@ Windows Containers and WASM module are not the focus of this project.
 The current project creates some Linux Containers based on `apache/hive` which contain more dependencies.
 Currently, container includes:
 
-- PostgreSQL JDBC Driver 42.7.7 `postgresql-42.7.7.jar` in `/opt/hive/lib`
+- MS SQL Server JDBC Driver 12.10.1.jre8 `mssql-jdbc-12.10.1.jre8.jar` in `/opt/hive/lib`
+- MySQL JDBC Driver 9.3.0 `mysql-connector-j-9.3.0.jar` in `/opt/hive/lib`
+- Oracle Database Free JDBC Driver 23.8.0.25.04 `ojdbc8-23.8.0.25.04.jar` in `/opt/hive/lib`
+- Postgres JDBC Driver 42.7.7 `postgresql-42.7.7.jar` in `/opt/hive/lib`
 
 ### Usage
 
