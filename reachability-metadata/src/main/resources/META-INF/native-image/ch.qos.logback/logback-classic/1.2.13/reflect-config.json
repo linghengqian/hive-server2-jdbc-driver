@@ -1,9 +1,5 @@
 [
 {
-  "condition":{"typeReachable":"ch.qos.logback.classic.util.EnvUtil"},
-  "name":"groovy.lang.Binding"
-},
-{
   "condition":{"typeReachable":"ch.qos.logback.core.joran.action.NestedComplexPropertyIA"},
   "name":"ch.qos.logback.classic.encoder.PatternLayoutEncoder",
   "methods":[{"name":"<init>","parameterTypes":[] }],

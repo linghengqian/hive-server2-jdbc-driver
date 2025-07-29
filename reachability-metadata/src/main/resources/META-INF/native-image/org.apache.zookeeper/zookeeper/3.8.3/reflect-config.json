@@ -52,10 +52,5 @@
   "condition":{"typeReachable":"org.apache.zookeeper.server.watch.WatchManagerFactory"},
   "name":"org.apache.zookeeper.server.watch.WatchManager",
   "methods":[{"name":"<init>","parameterTypes":[] }]
-},
-{
-  "condition":{"typeReachable":"org.apache.zookeeper.client.ZooKeeperSaslClient"},
-  "name":"sun.security.provider.ConfigFile",
-  "methods":[{"name":"<init>","parameterTypes":[] }]
 }
 ]
