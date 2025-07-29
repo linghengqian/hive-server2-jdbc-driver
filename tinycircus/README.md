@@ -4,7 +4,7 @@ This project is inspired by `apache/bigtop` and provides third-party Linux Conta
 components.
 
 Since developers lack a local development environment for Windows Containers and WASM modules,
-the Windows Containers WASM module is not the focus of this project.
+Windows Containers and WASM module are not the focus of this project.
 
 ## `ghcr.io/linghengqian/hive`
 

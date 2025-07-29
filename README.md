@@ -77,7 +77,7 @@ The latest version is at https://central.sonatype.com/artifact/io.github.linghen
 
 ## Subprojects
 
-- [tinycircus](tinycircus/README.md)
+- [tinycircus](tinycircus/README.md), for distributing unit-test-friendly Linux Containers.
 
 ## Document
 
