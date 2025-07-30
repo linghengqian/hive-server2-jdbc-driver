@@ -9,7 +9,7 @@ and https://github.com/settings/tokens .
 git clone git@github.com:linghengqian/hive-server2-jdbc-driver.git
 cd ./hive-server2-jdbc-driver/
 
-cd ./tinycircus/hive/4.0.1
+cd ./subprojects/tinycircus/hive/4.0.1
 docker buildx build -t ghcr.io/linghengqian/hive:4.0.1-all-in-one .
 docker login ghcr.io/linghengqian/hive-server2-jdbc-driver --username linghengqian
 docker push ghcr.io/linghengqian/hive:4.0.1-all-in-one

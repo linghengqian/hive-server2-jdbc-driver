@@ -77,11 +77,11 @@ The latest version is at https://central.sonatype.com/artifact/io.github.linghen
 
 ## Subprojects
 
-- [tinycircus](tinycircus/README.md), for distributing unit-test-friendly Linux Containers.
+- [tinycircus](subprojects/tinycircus/README.md), for distributing unit-test-friendly Linux Containers.
 
 ## Document
 
-Refer to [QuickStart](./doc/QuickStart.md).
+Refer to [QuickStart](subprojects/doc/QuickStart.md).
 
 ## Compatibility
 
@@ -93,19 +93,19 @@ you can use `1.7.0` of `io.github.linghengqian:hive-server2-jdbc-driver-thin` or
 
 ## FAQ
 
-Refer to [FAQ](./doc/FAQ.md).
+Refer to [FAQ](subprojects/doc/FAQ.md).
 
 ## Background
 
-Refer to [Background](./doc/Background.md).
+Refer to [Background](subprojects/doc/Background.md).
 
 ## Release Note
 
-Refer to [CHANGELOG](./doc/CHANGELOG.md).
+Refer to [CHANGELOG](subprojects/doc/CHANGELOG.md).
 
 ## Contributing
 
-Refer to [CONTRIBUTING](./doc/CONTRIBUTING.md).
+Refer to [CONTRIBUTING](subprojects/doc/CONTRIBUTING.md).
 
 ## License
 

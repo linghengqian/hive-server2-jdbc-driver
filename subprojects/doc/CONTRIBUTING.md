@@ -52,7 +52,7 @@ cd ./hive-server2-jdbc-driver/
 
 If you execute `./mvnw -T 1.5C -PnativeTestInCustom clean test` under Windows 11, 
 a window may pop up asking you to set up `控制面板\系统和安全\Windows Defender 防火墙\允许的应用` for `native-tests.exe` 
-like `D:\twinklingliftworks\git\public\hive-server2-jdbc-driver\hive-server2-jdbc-driver-thin\target\native-tests.exe.exe`. 
+like `D:\twinklingliftworks\git\public\hive-server2-jdbc-driver\thin\target\native-tests.exe.exe`. 
 At this time, you need to set up `专用` and `公用` for this.
 
 You need to approve `native-test.exe` more than once because this command builds multiple GraalVM Native Images.
