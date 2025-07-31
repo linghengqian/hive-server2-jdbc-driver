@@ -13,6 +13,8 @@
 7. Add more GraalVM Reachability Metadata for `org.apiguardian:apiguardian-api:1.1.2`.
 8. Add more GraalVM Reachability Metadata for `org.slf4j:slf4j-api:1.7.30`.
 9. Introduce new subproject `tinycircus` for distributing Linux Containers.
+10. Support using Thin JAR and Uber JAR of HiveServer2 JDBC Driver under `OpenJDK 24`.
+11. Supports using Thin JAR and Uber JAR of HiveServer2 JDBC Driver in GraalVM Native Image compiled by `GraalVM CE For JDK 24`.
 
 Build from `apache/hive:rel/release-4.0.1`.
 
@@ -47,8 +49,8 @@ io.github.linghengqian:hive-server2-jdbc-driver-uber:1.6.0
 ### 1.5.0
 
 1. Bump base HiveServer2 JDBC Driver version to `4.0.1`.
-2. Support for Thin JAR and Uber JAR of HiveServer2 JDBC Driver under OpenJDK 23.
-3. Supports using Thin JAR and Uber JAR of HiveServer2 JDBC Driver in GraalVM Native Image compiled by GraalVM CE For JDK23.
+2. Support using Thin JAR and Uber JAR of HiveServer2 JDBC Driver under `OpenJDK 23`.
+3. Supports using Thin JAR and Uber JAR of HiveServer2 JDBC Driver in GraalVM Native Image compiled by `GraalVM CE For JDK 23`.
 
 Build from `apache/hive:rel/release-4.0.1`.
 

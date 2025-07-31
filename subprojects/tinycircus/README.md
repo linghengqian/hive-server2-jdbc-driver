@@ -6,6 +6,16 @@ components.
 Since developers lack a local development environment for Windows Containers and WASM modules,
 Windows Containers and WASM module are not the focus of this project.
 
+## License
+
+View [LICENSE](../../LICENSE) and [NOTICE](../../NOTICE) for the software contained in this OCI Image.
+
+As with all OCI Image, these likely also contain other software which may be under other licenses (such as OpenJDK, 
+etc from the base distribution, along with any direct or indirect dependencies of the primary software being contained).
+
+As for any pre-built OCI Image usage, 
+it is the OCI Image user's responsibility to ensure that any use of this OCI Image complies with any relevant licenses for all software contained within.
+
 ## `ghcr.io/linghengqian/hive`
 
 The current project creates some Linux Containers based on `apache/hive` which contain more dependencies.
