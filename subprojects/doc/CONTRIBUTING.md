@@ -81,7 +81,7 @@ docker run -it --rm -v ${pwd}:/github/workspace apache/skywalking-eyes:0.6.0 hea
 
 ## How to publish via the central portal
 
-**TODO: This section only applies to Ubuntu 22.04.5.**
+### Ubuntu
 
 First set up GPG.
 Take Ubuntu WSL 22.04.4 as an example and provide your real name and email address.
@@ -103,7 +103,6 @@ gnome-text-editor ~/.m2/settings.xml
 The contents of `~/.m2/settings.xml` might be as follows.
 
 ```xml
-
 <settings>
     <servers>
         <server>
@@ -130,4 +129,51 @@ echo "test" | gpg --clearsign
 Log in to https://central.sonatype.com/ and manually approve the publication.
 
 Then, set a new git tag for the specific git commit, 
+and write the new version information at https://github.com/linghengqian/hive-server2-jdbc-driver/releases with the git tag.
+
+### windows
+
+Download and install gpg4win from https://gpg4win.org/download.html . Then,
+
+```shell
+gpg --gen-key
+gpg --list-keys
+gpg --keyserver keyserver.ubuntu.com --send-keys {Aloha, your keyname}
+```
+
+According to https://central.sonatype.org/publish/publish-portal-maven/#credentials,
+use the following command to change the content of `~/.m2/settings.xml`.
+
+The contents of `~/.m2/settings.xml` might be as follows.
+
+```xml
+<settings>
+    <servers>
+        <server>
+            <id>central</id>
+            <username><!-- Aloha, your token username --></username>
+            <password><!-- Aloha, your token password --></password>
+        </server>
+    </servers>
+</settings>
+```
+
+Then execute the following command.
+Suppose the release to be released is `1.8.0`, and the next version is `2.0.0-SNAPSHOT`.
+
+**Warning: `echo "test" | gpg --clearsign` cannot be executed in PowerShell 7 of `IntelliJ IDEA`. 
+You need to open PowerShell 7 in the Windows terminal to execute this command.**
+
+```shell
+git clone git@github.com:linghengqian/hive-server2-jdbc-driver.git
+cd ./hive-server2-jdbc-driver/
+./mvnw versions:set -DgenerateBackupPoms=false -DnewVersion=1.8.0
+echo "test" | gpg --clearsign
+./mvnw -T 1.5C -Ppublishing-via-the-central-portal -DskipTests clean deploy
+./mvnw versions:set -DgenerateBackupPoms=false -DnewVersion=2.0.0-SNAPSHOT
+```
+
+Log in to https://central.sonatype.com/ and manually approve the publication.
+
+Then, set a new git tag for the specific git commit,
 and write the new version information at https://github.com/linghengqian/hive-server2-jdbc-driver/releases with the git tag.
