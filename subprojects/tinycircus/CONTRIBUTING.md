@@ -14,9 +14,24 @@ If you need to create and push a Linux Container, you can do something like this
 git clone git@github.com:linghengqian/hive-server2-jdbc-driver.git
 cd ./hive-server2-jdbc-driver/
 
-cd ./subprojects/tinycircus/hive/4.0.1
 docker login ghcr.io/linghengqian/hive-server2-jdbc-driver --username linghengqian
-docker buildx build --push -t ghcr.io/linghengqian/hive:4.0.1-all-in-one .
+docker buildx create --name container-builder --driver docker-container --bootstrap --use
+docker buildx build --push --platform linux/amd64,linux/arm64 -t ghcr.io/linghengqian/hive:4.0.1-all-in-one ./subprojects/tinycircus/hive/4.0.1
+docker buildx rm container-builder
+```
+
+## For `4.1.0` on `apache/hive`
+
+If you need to create and push a Linux Container, you can do something like this.
+
+```shell
+git clone git@github.com:linghengqian/hive-server2-jdbc-driver.git
+cd ./hive-server2-jdbc-driver/
+
+docker login ghcr.io/linghengqian/hive-server2-jdbc-driver --username linghengqian
+docker buildx create --name container-builder --driver docker-container --bootstrap --use
+docker buildx build --push --platform linux/amd64,linux/arm64 -t ghcr.io/linghengqian/hive:4.1.0-all-in-one ./subprojects/tinycircus/hive/4.1.0
+docker buildx rm container-builder
 ```
 
 ## For `4.2.0-SNAPSHOT` on `apache/hive`
@@ -24,6 +39,9 @@ docker buildx build --push -t ghcr.io/linghengqian/hive:4.0.1-all-in-one .
 **Warning: You can only build `apache/hive` binary from source code on Linux with `glibc`.**
 1. Building `apache/hive` binary on `Windows 11 Home 24H2` will not work.
 2. Building `apache/hive` binary on `Alpine Linux 3.22.1` will not work, **too**. This is related to https://github.com/protocolbuffers/protobuf-ci/issues/10 .
+
+Multi-architecture image generation is not supported yet. 
+If the device you are using is `amd64`, the generated image will be `amd64`,
 
 This is why the current project is to build `apache/hive` binary in `Ubuntu 24.04` Linux Container.
 
@@ -49,7 +67,6 @@ exit
 
 git clone git@github.com:linghengqian/hive-server2-jdbc-driver.git
 cd ./hive-server2-jdbc-driver/
-cd ./subprojects/tinycircus/hive/4.2.0-SNAPSHOT
 docker login ghcr.io/linghengqian/hive-server2-jdbc-driver --username linghengqian
-docker buildx build --push -t ghcr.io/linghengqian/hive:4.2.0-SNAPSHOT-all-in-one .
+docker buildx build --push -t ghcr.io/linghengqian/hive:4.2.0-SNAPSHOT-all-in-one ./subprojects/tinycircus/hive/4.2.0-SNAPSHOT
 ```
