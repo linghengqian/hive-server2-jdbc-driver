@@ -77,8 +77,7 @@
         <maven-javadoc-plugin.version>3.11.2</maven-javadoc-plugin.version>
         <maven-gpg-plugin.version>3.2.8</maven-gpg-plugin.version>
         <central-publishing-maven-plugin.version>0.8.0</central-publishing-maven-plugin.version>
-        <native-maven-plugin.version>0.10.6</native-maven-plugin.version>
-        <graalvm-reachability-metadata.version>0.3.23</graalvm-reachability-metadata.version>
+        <native-maven-plugin.version>0.11.0</native-maven-plugin.version>
         <maven-compiler-plugin.version>3.14.0</maven-compiler-plugin.version>
     </properties>
 
@@ -157,13 +156,6 @@
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
             <scope>test</scope>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>org.junit.platform</groupId>
-            <artifactId>junit-platform-launcher</artifactId>
-            <scope>test</scope>
-            <optional>true</optional>
         </dependency>
 
         <dependency>
@@ -281,62 +273,8 @@
                         <configuration>
                             <quickBuild>true</quickBuild>
                             <buildArgs>
-                                <buildArg>
-                                    --initialize-at-build-time=org.junit.jupiter.api.DisplayNameGenerator$IndicativeSentences
-                                </buildArg>
-                                <buildArg>
-                                    --initialize-at-build-time=org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor$ClassInfo
-                                </buildArg>
-                                <buildArg>
-                                    --initialize-at-build-time=org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor$LifecycleMethods
-                                </buildArg>
-                                <buildArg>
-                                    --initialize-at-build-time=org.junit.jupiter.engine.descriptor.ClassTemplateInvocationTestDescriptor
-                                </buildArg>
-                                <buildArg>
-                                    --initialize-at-build-time=org.junit.jupiter.engine.descriptor.ClassTemplateTestDescriptor
-                                </buildArg>
-                                <buildArg>
-                                    --initialize-at-build-time=org.junit.jupiter.engine.descriptor.DynamicDescendantFilter$Mode
-                                </buildArg>
-                                <buildArg>
-                                    --initialize-at-build-time=org.junit.jupiter.engine.descriptor.ExclusiveResourceCollector$1
-                                </buildArg>
-                                <buildArg>
-                                    --initialize-at-build-time=org.junit.jupiter.engine.descriptor.MethodBasedTestDescriptor$MethodInfo
-                                </buildArg>
-                                <buildArg>
-                                    --initialize-at-build-time=org.junit.jupiter.engine.discovery.ClassSelectorResolver$DummyClassTemplateInvocationContext
-                                </buildArg>
-                                <buildArg>
-                                    --initialize-at-build-time=org.junit.platform.engine.support.store.NamespacedHierarchicalStore$EvaluatedValue
-                                </buildArg>
-                                <buildArg>
-                                    --initialize-at-build-time=org.junit.platform.launcher.core.DiscoveryIssueNotifier
-                                </buildArg>
-                                <buildArg>
-                                    --initialize-at-build-time=org.junit.platform.launcher.core.HierarchicalOutputDirectoryProvider
-                                </buildArg>
-                                <buildArg>
-                                    --initialize-at-build-time=org.junit.platform.launcher.core.LauncherDiscoveryResult$EngineResultInfo
-                                </buildArg>
-                                <buildArg>
-                                    --initialize-at-build-time=org.junit.platform.launcher.core.LauncherPhase
-                                </buildArg>
-                                <buildArg>
-                                    --initialize-at-build-time=org.junit.platform.suite.engine.DiscoverySelectorResolver
-                                </buildArg>
-                                <buildArg>
-                                    --initialize-at-build-time=org.junit.platform.suite.engine.SuiteTestDescriptor$DiscoveryIssueForwardingListener
-                                </buildArg>
-                                <buildArg>
-                                    --initialize-at-build-time=org.junit.platform.suite.engine.SuiteTestDescriptor$LifecycleMethods
-                                </buildArg>
+                                <buildArg>-H:+UnlockExperimentalVMOptions</buildArg>
                             </buildArgs>
-                            <metadataRepository>
-                                <enabled>true</enabled>
-                                <version>${graalvm-reachability-metadata.version}</version>
-                            </metadataRepository>
                         </configuration>
                         <executions>
                             <execution>

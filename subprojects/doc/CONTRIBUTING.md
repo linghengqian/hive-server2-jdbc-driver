@@ -161,9 +161,6 @@ The contents of `~/.m2/settings.xml` might be as follows.
 Then execute the following command.
 Suppose the release to be released is `1.8.0`, and the next version is `2.0.0-SNAPSHOT`.
 
-**Warning: `echo "test" | gpg --clearsign` cannot be executed in PowerShell 7 of `IntelliJ IDEA`. 
-You need to open PowerShell 7 in the Windows terminal to execute this command.**
-
 ```shell
 git clone git@github.com:linghengqian/hive-server2-jdbc-driver.git
 cd ./hive-server2-jdbc-driver/
