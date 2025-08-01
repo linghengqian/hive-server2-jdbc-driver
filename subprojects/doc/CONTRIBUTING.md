@@ -164,10 +164,10 @@ Suppose the release to be released is `1.8.0`, and the next version is `2.0.0-SN
 ```shell
 git clone git@github.com:linghengqian/hive-server2-jdbc-driver.git
 cd ./hive-server2-jdbc-driver/
-./mvnw versions:set -DgenerateBackupPoms=false -DnewVersion=1.8.0
+./mvnw versions:set "-DgenerateBackupPoms=false" "-DnewVersion=1.8.0"
 echo "test" | gpg --clearsign
 ./mvnw -T 1.5C -Ppublishing-via-the-central-portal -DskipTests clean deploy
-./mvnw versions:set -DgenerateBackupPoms=false -DnewVersion=2.0.0-SNAPSHOT
+./mvnw versions:set "-DgenerateBackupPoms=false" "-DnewVersion=2.0.0-SNAPSHOT"
 ```
 
 Log in to https://central.sonatype.com/ and manually approve the publication.
