@@ -91,6 +91,10 @@ you can use `1.4.0` of `io.github.linghengqian:hive-server2-jdbc-driver-thin` or
 For the Docker Image of `apache/hive:4.0.1`, 
 you can use `1.7.0` of `io.github.linghengqian:hive-server2-jdbc-driver-thin` or `io.github.linghengqian:hive-server2-jdbc-driver-uber`.
 
+For the Docker Image of `apache/hive:4.1.0`,
+you can use `2.0.0-SNAPSHOT` of `io.github.linghengqian:hive-server2-jdbc-driver-thin` or `io.github.linghengqian:hive-server2-jdbc-driver-uber`.
+**This sub-task has not yet been completed.**
+
 ## FAQ
 
 Refer to [FAQ](subprojects/doc/FAQ.md).
