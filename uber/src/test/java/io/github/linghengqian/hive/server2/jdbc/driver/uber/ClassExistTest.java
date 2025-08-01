@@ -27,7 +27,23 @@ public class ClassExistTest {
     void test() {
         assertDoesNotThrow(() -> {
             Class.forName("org.apache.hadoop.hive.conf.HiveConf");
+            Class.forName("org.apache.hive.org.apache.commons.text.similarity.CosineDistance");
+            Class.forName("org.apache.hive.org.apache.commons.logging.LogFactory");
+            Class.forName("org.apache.hive.com.google.common.base.MoreObjects");
+            Class.forName("org.apache.hive.org.apache.commons.codec.binary.Base16");
+            Class.forName("org.apache.hive.org.codehaus.stax2.AttributeInfo");
+            Class.forName("org.apache.hive.org.apache.thrift.transport.TSSLTransportFactory$TSSLTransportParameters");
+            Class.forName("org.apache.hive.org.apache.zookeeper.KeeperException");
+            Class.forName("org.apache.hive.org.apache.http.Consts");
         });
         assertThrows(ClassNotFoundException.class, () -> Class.forName("org.apache.hadoop.mapred.JobConf"));
+        assertThrows(ClassNotFoundException.class, () -> Class.forName("org.apache.commons.text.similarity.CosineDistance"));
+        assertThrows(ClassNotFoundException.class, () -> Class.forName("org.apache.commons.logging.LogFactory"));
+        assertThrows(ClassNotFoundException.class, () -> Class.forName("com.google.common.base.MoreObjects"));
+        assertThrows(ClassNotFoundException.class, () -> Class.forName("org.apache.commons.codec.binary.Base16"));
+        assertThrows(ClassNotFoundException.class, () -> Class.forName("org.codehaus.stax2.AttributeInfo"));
+        assertThrows(ClassNotFoundException.class, () -> Class.forName("org.apache.thrift.transport.TSSLTransportFactory$TSSLTransportParameters"));
+        assertThrows(ClassNotFoundException.class, () -> Class.forName("org.apache.zookeeper.KeeperException"));
+        assertThrows(ClassNotFoundException.class, () -> Class.forName("org.apache.http.Consts"));
     }
 }

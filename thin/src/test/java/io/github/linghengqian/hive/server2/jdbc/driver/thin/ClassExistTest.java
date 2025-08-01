@@ -27,6 +27,14 @@ public class ClassExistTest {
     void test() {
         assertDoesNotThrow(() -> {
             Class.forName("org.apache.hadoop.hive.conf.HiveConf");
+            Class.forName("org.apache.commons.text.similarity.CosineDistance");
+            Class.forName("org.apache.commons.logging.LogFactory");
+            Class.forName("com.google.common.base.MoreObjects");
+            Class.forName("org.apache.commons.codec.binary.Base16");
+            Class.forName("org.codehaus.stax2.AttributeInfo");
+            Class.forName("org.apache.thrift.transport.TSSLTransportFactory$TSSLTransportParameters");
+            Class.forName("org.apache.zookeeper.KeeperException");
+            Class.forName("org.apache.http.Consts");
         });
         assertThrows(ClassNotFoundException.class, () -> Class.forName("org.apache.hadoop.mapred.JobConf"));
     }

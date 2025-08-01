@@ -58,21 +58,13 @@
         <libthrift.version>0.16.0</libthrift.version>
         <zookeeper.version>3.8.3</zookeeper.version>
         <curator.version>5.2.0</curator.version>
-
-        <!--
-        TODO Fix class conflicts in master branch of apache/hive .
-         Refer to https://github.com/apache/hive/commit/b09d76e68bfba6be19733d864b3207f95265d11f .
-        -->
         <commons-codec.version>1.15</commons-codec.version>
         <guava.version>22.0</guava.version>
         <commons-logging.version>1.1.3</commons-logging.version>
         <commons-text.version>1.10.0</commons-text.version>
         <slf4j.version>1.7.30</slf4j.version>
 
-        <!--
-        TODO Fix class conflicts in trunk branch of apache/hadoop .
-         Refer to https://github.com/apache/hadoop/blob/release-3.3.6-RC1/hadoop-project/pom.xml#L1244 .
-        -->
+        <!-- Dependencies come from `apache/hadoop` -->
         <stax2-api.version>4.2.1</stax2-api.version>
 
         <junit-bom.version>5.13.4</junit-bom.version>
@@ -86,7 +78,7 @@
         <maven-gpg-plugin.version>3.2.7</maven-gpg-plugin.version>
         <central-publishing-maven-plugin.version>0.5.0</central-publishing-maven-plugin.version>
         <native-maven-plugin.version>0.10.6</native-maven-plugin.version>
-        <metadata-repository.version>0.3.23</metadata-repository.version>
+        <graalvm-reachability-metadata.version>0.3.23</graalvm-reachability-metadata.version>
         <maven-compiler-plugin.version>3.14.0</maven-compiler-plugin.version>
     </properties>
 
@@ -112,6 +104,51 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+            <dependency>
+                <groupId>org.apache.httpcomponents</groupId>
+                <artifactId>httpcore</artifactId>
+                <version>${httpcomponents.core.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.zookeeper</groupId>
+                <artifactId>zookeeper</artifactId>
+                <version>${zookeeper.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.thrift</groupId>
+                <artifactId>libthrift</artifactId>
+                <version>${libthrift.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-codec</groupId>
+                <artifactId>commons-codec</artifactId>
+                <version>${commons-codec.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${guava.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-logging</groupId>
+                <artifactId>commons-logging</artifactId>
+                <version>${commons-logging.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-text</artifactId>
+                <version>${commons-text.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>${slf4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.codehaus.woodstox</groupId>
+                <artifactId>stax2-api</artifactId>
+                <version>${stax2-api.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -134,16 +171,6 @@
             <artifactId>junit-jupiter</artifactId>
             <scope>test</scope>
             <optional>true</optional>
-            <exclusions>
-                <!--
-               TODO Fix class conflicts in master branch of apache/hive .
-                Refer to https://github.com/apache/hive/commit/b09d76e68bfba6be19733d864b3207f95265d11f .
-               -->
-                <exclusion>
-                    <groupId>org.slf4j</groupId>
-                    <artifactId>slf4j-api</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.awaitility</groupId>
@@ -158,16 +185,6 @@
             <version>${hikaricp.version}</version>
             <scope>test</scope>
             <optional>true</optional>
-            <exclusions>
-                <!--
-               TODO Fix class conflicts in master branch of apache/hive .
-                Refer to https://github.com/apache/hive/commit/b09d76e68bfba6be19733d864b3207f95265d11f .
-               -->
-                <exclusion>
-                    <groupId>org.slf4j</groupId>
-                    <artifactId>slf4j-api</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
         <dependency>
             <groupId>ch.qos.logback</groupId>
@@ -175,12 +192,6 @@
             <version>${logback-classic.version}</version>
             <scope>test</scope>
             <optional>true</optional>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.slf4j</groupId>
-                    <artifactId>slf4j-api</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
     </dependencies>
 
@@ -324,7 +335,7 @@
                             </buildArgs>
                             <metadataRepository>
                                 <enabled>true</enabled>
-                                <version>${metadata-repository.version}</version>
+                                <version>${graalvm-reachability-metadata.version}</version>
                             </metadataRepository>
                         </configuration>
                         <executions>
