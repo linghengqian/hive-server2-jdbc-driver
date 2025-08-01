@@ -1,5 +1,14 @@
 # Release Note
 
+## v2
+
+Build from `apache/hive:rel/release-4.1.0`.
+
+```
+io.github.linghengqian:hive-server2-jdbc-driver-thin:2.0.0-SNAPSHOT
+io.github.linghengqian:hive-server2-jdbc-driver-uber:2.0.0-SNAPSHOT
+```
+
 ## v1
 
 ### 1.8.0
