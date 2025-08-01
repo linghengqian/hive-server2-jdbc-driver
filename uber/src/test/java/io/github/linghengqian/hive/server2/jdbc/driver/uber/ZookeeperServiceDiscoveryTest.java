@@ -24,6 +24,7 @@ import org.apache.hive.org.apache.curator.framework.CuratorFrameworkFactory;
 import org.apache.hive.org.apache.curator.retry.ExponentialBackoffRetry;
 import org.junit.jupiter.api.AutoClose;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.parallel.Isolated;
 import org.testcontainers.containers.FixedHostPortGenericContainer;
 import org.testcontainers.containers.GenericContainer;
 import org.testcontainers.containers.Network;
@@ -43,6 +44,7 @@ import static org.hamcrest.Matchers.is;
 
 @SuppressWarnings({"SqlDialectInspection", "SqlNoDataSourceInspection", "resource", "deprecation"})
 @Testcontainers
+@Isolated("This unit test starts two or more Linux containers, which will hit the performance limit of GitHub Actions Runner")
 class ZookeeperServiceDiscoveryTest {
 
     private static final int RANDOM_PORT_FIRST = getRandomPort();

@@ -21,6 +21,7 @@ import com.zaxxer.hikari.HikariDataSource;
 import io.github.linghengqian.hive.server2.jdbc.driver.thin.util.ImageUtils;
 import org.junit.jupiter.api.AutoClose;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.parallel.Isolated;
 import org.testcontainers.containers.GenericContainer;
 import org.testcontainers.containers.Network;
 import org.testcontainers.junit.jupiter.Container;
@@ -39,6 +40,7 @@ import static org.hamcrest.Matchers.is;
 
 @SuppressWarnings({"SqlNoDataSourceInspection", "resource"})
 @Testcontainers
+@Isolated("This unit test starts two or more Linux containers, which will hit the performance limit of GitHub Actions Runner")
 public class StandaloneMetastoreTest {
 
     @AutoClose

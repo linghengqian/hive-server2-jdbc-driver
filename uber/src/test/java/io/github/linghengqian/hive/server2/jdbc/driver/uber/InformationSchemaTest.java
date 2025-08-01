@@ -18,6 +18,7 @@ package io.github.linghengqian.hive.server2.jdbc.driver.uber;
 
 import org.junit.jupiter.api.AutoClose;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.parallel.Isolated;
 import org.testcontainers.containers.Container.ExecResult;
 import org.testcontainers.containers.GenericContainer;
 import org.testcontainers.containers.Network;
@@ -36,6 +37,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @SuppressWarnings({"SqlNoDataSourceInspection", "resource"})
 @Testcontainers
+@Isolated("This unit test starts two or more Linux containers, which will hit the performance limit of GitHub Actions Runner")
 public class InformationSchemaTest {
 
     @AutoClose
@@ -43,7 +45,7 @@ public class InformationSchemaTest {
 
     @Container
     @AutoClose
-    private static final GenericContainer<?> POSTGRES = new GenericContainer<>("postgres:17.2-bookworm")
+    private static final GenericContainer<?> POSTGRES = new GenericContainer<>("postgres:17.5-bookworm")
             .withEnv("POSTGRES_PASSWORD", "example")
             .withNetwork(NETWORK)
             .withNetworkAliases("some-postgres");
