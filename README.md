@@ -42,10 +42,6 @@ flowchart TD
     class App_Dependencies accent4
 ```
 
-All release products have been verified and usable in the GraalVM Native Image compiled by GraalVM CE For JDK 22.0.2 and GraalVM CE For JDK 24.0.2 .
-
-For HotSpot VM, all JAR products can be run on any OpenJDK 8 and later distribution.
-
 The steps to use directly in Maven are as follows.
 The latest version is available
 at https://central.sonatype.com/artifact/io.github.linghengqian/hive-server2-jdbc-driver-thin .
@@ -85,11 +81,23 @@ Refer to [QuickStart](subprojects/doc/QuickStart.md).
 
 ## Compatibility
 
+### For HiveServer2 `4.0.x`
+
+All release products have been verified and usable in the GraalVM Native Image compiled by `GraalVM CE For JDK 22.0.2` and `GraalVM CE For JDK 24.0.2`.
+
+For HotSpot VM, all JAR products can be run on any `OpenJDK 8` and later distribution.
+
 For the Docker Image of `apache/hive:4.0.0`, 
 you can use `1.4.0` of `io.github.linghengqian:hive-server2-jdbc-driver-thin` or `io.github.linghengqian:hive-server2-jdbc-driver-uber`.
 
 For the Docker Image of `apache/hive:4.0.1`, 
 you can use `1.7.0` of `io.github.linghengqian:hive-server2-jdbc-driver-thin` or `io.github.linghengqian:hive-server2-jdbc-driver-uber`.
+
+### For HiveServer2 `4.1.x`
+
+All release products have been verified and usable in the GraalVM Native Image compiled by `GraalVM CE For JDK 22.0.2` and `GraalVM CE For JDK 24.0.2`.
+
+For HotSpot VM, all JAR products can be run on any `OpenJDK 17` and later distribution.
 
 For the Docker Image of `apache/hive:4.1.0`,
 you can use `2.0.0-SNAPSHOT` of `io.github.linghengqian:hive-server2-jdbc-driver-thin` or `io.github.linghengqian:hive-server2-jdbc-driver-uber`.
