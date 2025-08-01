@@ -36,7 +36,7 @@ Assuming `Docker Engine` are installed, a possible use case is as follows. Creat
 ```yaml
 services:
   some-postgres:
-    image: postgres:17.2-bookworm
+    image: postgres:17.5-bookworm
     environment:
       POSTGRES_PASSWORD: "example"
   hiveserver2-standalone:

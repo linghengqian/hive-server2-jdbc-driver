@@ -43,7 +43,7 @@ public class InformationSchemaTest {
 
     @Container
     @AutoClose
-    private static final GenericContainer<?> POSTGRES = new GenericContainer<>("postgres:17.2-bookworm")
+    private static final GenericContainer<?> POSTGRES = new GenericContainer<>("postgres:17.5-bookworm")
             .withEnv("POSTGRES_PASSWORD", "example")
             .withNetwork(NETWORK)
             .withNetworkAliases("some-postgres");
