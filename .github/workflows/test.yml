@@ -62,29 +62,6 @@ jobs:
     strategy:
       matrix:
         java: [ '22.0.2', '24.0.2' ]
-        os: [ 'ubuntu-latest' ]
-    runs-on: ${{ matrix.os }}
-    steps:
-      - uses: actions/checkout@v4
-      - uses: graalvm/setup-graalvm@v1
-        with:
-          java-version: ${{ matrix.java }}
-          distribution: 'graalvm-community'
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          cache: 'maven'
-          native-image-job-reports: 'true'
-          native-image-pr-reports: 'true'
-          native-image-pr-reports-update-existing: 'true'
-      - name: NativeTest on GraalVM CE For JDK ${{ matrix.java }} on Ubuntu
-        if: matrix.os == 'ubuntu-latest'
-        run: ./mvnw -PnativeTestInCustom -T 1.5C clean test
-  # todo wait for GraalVM CE For JDK 25 release
-  native-test-ci-on-oracle-graalvm:
-    name: NativeTest - GraalVM CE for JDK ${{ matrix.java }} on ${{ matrix.os }}
-    if: github.repository == 'linghengqian/hive-server2-jdbc-driver'
-    strategy:
-      matrix:
-        java: [ '25-ea' ]
         os: [ 'ubuntu-latest', 'windows-2025' ]
     runs-on: ${{ matrix.os }}
     steps:
@@ -97,13 +74,18 @@ jobs:
           winget install --id SUSE.RancherDesktop --source winget --skip-dependencies
           rdctl start --application.start-in-background --container-engine.name=moby --kubernetes.enabled=false
           ./subprojects/doc/helpful_tools/wait-for-rancher-desktop-backend.ps1
+          rdctl shell apk add dbus-x11
+          rdctl shell rc-service dbus start
+          rdctl shell dbus-launch true
           "PATH=$env:PATH" >> $env:GITHUB_ENV
       - uses: graalvm/setup-graalvm@v1
         with:
           java-version: ${{ matrix.java }}
-          distribution: 'graalvm'
+          distribution: 'graalvm-community'
           github-token: ${{ secrets.GITHUB_TOKEN }}
           cache: 'maven'
           native-image-job-reports: 'true'
-      - name: NativeTest on Oracle GraalVM For JDK ${{ matrix.java }}
+          native-image-pr-reports: 'true'
+          native-image-pr-reports-update-existing: 'true'
+      - name: NativeTest on GraalVM CE For JDK ${{ matrix.java }}
         run: ./mvnw -PnativeTestInCustom -T 1.5C clean test
