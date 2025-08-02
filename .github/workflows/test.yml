@@ -20,6 +20,7 @@ on:
   push:
     branches:
       - master
+  workflow_dispatch:
 permissions:
   pull-requests: write
 jobs:
@@ -76,7 +77,7 @@ jobs:
           native-image-pr-reports-update-existing: 'true'
       - name: NativeTest on GraalVM CE For JDK ${{ matrix.java }} on Ubuntu
         if: matrix.os == 'ubuntu-latest'
-        run: ./mvnw -T 1.5C -PnativeTestInCustom clean test
+        run: ./mvnw -PnativeTestInCustom -T 1.5C clean test
   # todo wait for GraalVM CE For JDK 25 release
   native-test-ci-on-oracle-graalvm:
     name: NativeTest - GraalVM CE for JDK ${{ matrix.java }} on ${{ matrix.os }}
@@ -105,4 +106,4 @@ jobs:
           cache: 'maven'
           native-image-job-reports: 'true'
       - name: NativeTest on Oracle GraalVM For JDK ${{ matrix.java }}
-        run: ./mvnw -PnativeTestInCustom clean test
+        run: ./mvnw -PnativeTestInCustom -T 1.5C clean test

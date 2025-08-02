@@ -11,6 +11,18 @@ io.github.linghengqian:hive-server2-jdbc-driver-uber:2.0.0-SNAPSHOT
 
 ## v1
 
+### 1.8.1
+
+1. Only configure `native-image.properties` related to `io.grpc:grpc-netty-shaded` in Thin JAR.
+   This is because the Uber JAR of HiveServer2 JDBC Driver does not use `io.grpc:grpc-netty-shaded`.
+
+Build from `apache/hive:rel/release-4.0.1`.
+
+```
+io.github.linghengqian:hive-server2-jdbc-driver-thin:1.8.1-SNAPSHOT
+io.github.linghengqian:hive-server2-jdbc-driver-uber:1.8.1-SNAPSHOT
+```
+
 ### 1.8.0
 
 1. Introduce a new module `io.github.linghengqian:hive-server2-jdbc-driver-reachability-metadata` to store GraalVM Reachability Metadata for third-party dependencies.
@@ -19,11 +31,10 @@ io.github.linghengqian:hive-server2-jdbc-driver-uber:2.0.0-SNAPSHOT
 4. Add more GraalVM Reachability Metadata for `org.apache.hive:hive-jdbc:4.0.1`.
 5. Add more GraalVM Reachability Metadata for `org.apache.hive:hive-jdbc:4.0.1:standalone`.
 6. Add more GraalVM Reachability Metadata for `org.apache.zookeeper:zookeeper:3.8.3`.
-7. Add more GraalVM Reachability Metadata for `org.apiguardian:apiguardian-api:1.1.2`.
-8. Add more GraalVM Reachability Metadata for `org.slf4j:slf4j-api:1.7.30`.
-9. Introduce new subproject `tinycircus` for distributing Linux Containers.
-10. Support using Thin JAR and Uber JAR of HiveServer2 JDBC Driver under `OpenJDK 24`.
-11. Supports using Thin JAR and Uber JAR of HiveServer2 JDBC Driver in GraalVM Native Image compiled by `GraalVM CE For JDK 24`.
+7. Add more GraalVM Reachability Metadata for `org.slf4j:slf4j-api:1.7.30`.
+8. Introduce new subproject `tinycircus` for distributing Linux Containers.
+9. Support using Thin JAR and Uber JAR of HiveServer2 JDBC Driver under `OpenJDK 24`.
+10. Supports using Thin JAR and Uber JAR of HiveServer2 JDBC Driver in GraalVM Native Image compiled by `GraalVM CE For JDK 24`.
 
 Build from `apache/hive:rel/release-4.0.1`.
 

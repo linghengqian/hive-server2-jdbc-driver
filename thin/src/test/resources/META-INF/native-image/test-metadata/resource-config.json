@@ -1,8 +1,0 @@
-{
-  "resources":{
-  "includes":[{
-    "condition":{"typeReachable":"io.github.linghengqian.hive.server2.jdbc.driver.thin.InformationSchemaTest"},
-    "pattern":"\\Qinformation-schema/Dockerfile\\E"
-  }]},
-  "bundles":[]
-}
