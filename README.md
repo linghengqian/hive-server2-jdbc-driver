@@ -2,7 +2,7 @@
 
 <p>
     <a>
-        <img src="https://img.shields.io/badge/HotSpot VM-OpenJDK 8+-green.svg"  alt="">
+        <img src="https://img.shields.io/badge/HotSpot VM-OpenJDK 17+-green.svg"  alt="">
     </a>
     <a>
         <img src="https://img.shields.io/badge/GraalVM Native Image-GraalVM CE For JDK 22.0.2+-blue.svg"  alt="">

@@ -33,6 +33,7 @@ import java.time.temporal.ChronoUnit;
 import static org.awaitility.Awaitility.await;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.stringContainsInOrder;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @SuppressWarnings({"SqlNoDataSourceInspection", "resource"})
@@ -96,13 +97,35 @@ public class InformationSchemaTest {
                 "-metaDbType", "postgres",
                 "-url", "jdbc:hive2://localhost:10000/default"
         );
-        assertThat(initResult.getStdout(), is("Initializing the schema to: 4.0.0\n" +
-                "Metastore connection URL:\t jdbc:hive2://localhost:10000/default\n" +
-                "Metastore connection Driver :\t org.apache.hive.jdbc.HiveDriver\n" +
-                "Metastore connection User:\t APP\n" +
-                "Starting metastore schema initialization to 4.0.0\n" +
-                "Initialization script hive-schema-4.0.0.hive.sql\n" +
-                "Initialization script completed\n"));
+        assertThat(initResult.getStdout(), stringContainsInOrder(
+                "main WARN The use of package scanning to locate Log4j plugins is deprecated.\n",
+                "Please remove the `packages` attribute from your configuration file.\n",
+                "See https://logging.apache.org/log4j/2.x/faq.html#package-scanning for details.\n",
+                "main INFO Starting configuration org.apache.logging.log4j.core.config.properties.PropertiesConfiguration@14f9390f...\n",
+                "main INFO Start watching for changes to /opt/hive/conf/hive-log4j2.properties every 0 seconds\n",
+                "main INFO Configuration org.apache.logging.log4j.core.config.properties.PropertiesConfiguration@14f9390f started.\n",
+                "main INFO Stopping configuration org.apache.logging.log4j.core.config.DefaultConfiguration@34f5090e...\n",
+                "main INFO Configuration org.apache.logging.log4j.core.config.DefaultConfiguration@34f5090e stopped.\n",
+                "INFO [main] conf.MetastoreConf: Found configuration file: file:/opt/hive/conf/hive-site.xml\n",
+                "INFO [main] conf.MetastoreConf: Unable to find config file: hivemetastore-site.xml\n",
+                "INFO [main] conf.MetastoreConf: Unable to find config file: metastore-site.xml\n",
+                "Initializing the schema to: 4.1.0\n",
+                "INFO [main] schematool.HiveSchemaHelper: Metastore connection URL:\t jdbc:hive2://localhost:10000/default\n",
+                "Metastore connection URL:\t jdbc:hive2://localhost:10000/default\n",
+                "INFO [main] schematool.HiveSchemaHelper: Metastore connection Driver :\t org.apache.hive.jdbc.HiveDriver\n",
+                "Metastore connection Driver :\t org.apache.hive.jdbc.HiveDriver\n",
+                "INFO [main] schematool.HiveSchemaHelper: Metastore connection User:\t APP\n",
+                "Metastore connection User:\t APP\n",
+                "Starting metastore schema initialization to 4.1.0\n",
+                "Initialization script hive-schema-4.1.0.hive.sql\n",
+                "INFO [main] conf.HiveConf: Found configuration file file:/opt/hive/conf/hive-site.xml\n",
+                "INFO [main] conf.HiveConf: Found configuration file null\n",
+                "INFO [main] conf.HiveConf: Found configuration file null\n",
+                "INFO [main] conf.HiveConf: Found configuration file null\n",
+                "WARN [main] schematool.HiveSchemaTool: Hive conf variable hive.hook.proto.base-directory is not set for creating protologging tables\n",
+                "WARN [main] schematool.HiveSchemaTool: Tez conf variable tez.history.logging.proto-base-dir is not set for creating protologging tables\n",
+                "Initialization script completed\n"
+        ));
         try (Connection connection = DriverManager.getConnection(jdbcUrlPrefix + "/information_schema");
              Statement statement = connection.createStatement()) {
             ResultSet resultSet = statement.executeQuery("select TABLE_CATALOG,\n" +

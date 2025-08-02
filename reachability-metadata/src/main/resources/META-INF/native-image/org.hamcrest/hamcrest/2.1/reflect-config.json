@@ -1,0 +1,7 @@
+[
+{
+  "condition":{"typeReachable":"org.hamcrest.text.StringContainsInOrder"},
+  "name":"org.hamcrest.text.StringContainsInOrder",
+  "allDeclaredMethods": true
+}
+]
