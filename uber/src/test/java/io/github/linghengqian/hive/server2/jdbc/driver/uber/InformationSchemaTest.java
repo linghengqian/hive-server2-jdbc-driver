@@ -16,6 +16,7 @@
 
 package io.github.linghengqian.hive.server2.jdbc.driver.uber;
 
+import io.github.linghengqian.hive.server2.jdbc.driver.uber.util.ImageUtils;
 import org.junit.jupiter.api.AutoClose;
 import org.junit.jupiter.api.Test;
 import org.testcontainers.containers.Container.ExecResult;
@@ -43,14 +44,14 @@ public class InformationSchemaTest {
 
     @Container
     @AutoClose
-    private static final GenericContainer<?> POSTGRES = new GenericContainer<>("postgres:17.5-bookworm")
+    private static final GenericContainer<?> POSTGRES = new GenericContainer<>(ImageUtils.POSTGRES_IMAGE)
             .withEnv("POSTGRES_PASSWORD", "example")
             .withNetwork(NETWORK)
             .withNetworkAliases("some-postgres");
 
     @Container
     @AutoClose
-    private static final GenericContainer<?> HS2 = new GenericContainer<>("ghcr.io/linghengqian/hive:4.0.1-all-in-one")
+    private static final GenericContainer<?> HS2 = new GenericContainer<>(ImageUtils.HIVE_ALL_IN_ONE_IMAGE)
             .withEnv("SERVICE_NAME", "hiveserver2")
             .withEnv("DB_DRIVER", "postgres")
             .withEnv("SERVICE_OPTS", "-Djavax.jdo.option.ConnectionDriverName=org.postgresql.Driver" + " " +

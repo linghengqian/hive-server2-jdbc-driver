@@ -19,4 +19,8 @@ package io.github.linghengqian.hive.server2.jdbc.driver.thin.util;
 public class ImageUtils {
 
     public static final String HIVE_IMAGE = "apache/hive:4.0.1";
+
+    public static final String HIVE_ALL_IN_ONE_IMAGE = "ghcr.io/linghengqian/hive:4.0.1-all-in-one";
+
+    public static final String POSTGRES_IMAGE = "postgres:17.5-bookworm";
 }
