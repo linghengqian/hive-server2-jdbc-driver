@@ -71,7 +71,16 @@
   "allDeclaredConstructors": true
 },
 {
+  "condition":{"typeReachable":"org.junit.platform.reporting.legacy.xml.XmlReportWriter"},
+  "name":"com.ctc.wstx.stax.WstxOutputFactory"
+},
+{
   "condition":{"typeReachable":"org.apache.zookeeper.client.ZooKeeperSaslClient"},
+  "name":"sun.security.provider.ConfigFile",
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "condition":{"typeReachable":"org.apache.hive.org.apache.zookeeper.client.ZooKeeperSaslClient"},
   "name":"sun.security.provider.ConfigFile",
   "methods":[{"name":"<init>","parameterTypes":[] }]
 }

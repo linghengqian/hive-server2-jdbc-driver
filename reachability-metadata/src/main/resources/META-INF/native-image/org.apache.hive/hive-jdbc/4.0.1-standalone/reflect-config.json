@@ -8,9 +8,14 @@
   "condition": {"typeReachable": "org.apache.hive.org.apache.commons.logging.impl.LogFactoryImpl"}
 },
 {
+  "condition":{"typeReachable":"org.apache.hive.org.apache.commons.logging.impl.LogFactoryImpl"},
+  "name":"org.apache.hive.org.apache.commons.logging.impl.Log4JLogger"
+},
+{
   "name": "org.apache.hive.org.apache.commons.logging.impl.Jdk14Logger",
   "condition": {"typeReachable": "org.apache.hive.org.apache.commons.logging.impl.LogFactoryImpl"},
-  "methods": [{"name": "<init>", "parameterTypes": ["java.lang.String"]}]
+  "methods": [{"name": "<init>", "parameterTypes": ["java.lang.String"]}],
+  "allPublicMethods": true
 },
 {
   "name": "org.apache.hive.org.apache.commons.logging.impl.LogFactoryImpl",

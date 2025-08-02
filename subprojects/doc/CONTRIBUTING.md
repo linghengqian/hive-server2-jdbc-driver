@@ -45,12 +45,12 @@ cd ./hive-server2-jdbc-driver/
 ```shell
 git clone git@github.com:linghengqian/hive-server2-jdbc-driver.git
 cd ./hive-server2-jdbc-driver/
-./mvnw -PnativeTestInCustom -T 1.5C clean test
+./mvnw -PnativeTestInCustom clean test
 ```
 
 ### Special handling for Windows 11
 
-If you execute `./mvnw -PnativeTestInCustom -T 1.5C clean test` under Windows 11, 
+If you execute `./mvnw -PnativeTestInCustom clean test` under Windows 11, 
 a window may pop up asking you to set up `控制面板\系统和安全\Windows Defender 防火墙\允许的应用` for `native-tests.exe` 
 like `D:\twinklingliftworks\git\public\hive-server2-jdbc-driver\thin\target\native-tests.exe.exe`. 
 At this time, you need to set up `专用` and `公用` for this.

@@ -15,6 +15,7 @@ io.github.linghengqian:hive-server2-jdbc-driver-uber:2.0.0-SNAPSHOT
 
 1. Only configure `native-image.properties` related to `io.grpc:grpc-netty-shaded` in Thin JAR.
    This is because the Uber JAR of HiveServer2 JDBC Driver does not use `io.grpc:grpc-netty-shaded`.
+2. Add more GraalVM Reachability Metadata for `org.apache.hive:hive-jdbc:4.0.1:standalone`.
 
 Build from `apache/hive:rel/release-4.0.1`.
 
