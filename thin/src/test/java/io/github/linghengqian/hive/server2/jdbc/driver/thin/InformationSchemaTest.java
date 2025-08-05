@@ -91,8 +91,7 @@ public class InformationSchemaTest {
         }
         assertThrows(SQLException.class, () -> DriverManager.getConnection(jdbcUrlPrefix + "/information_schema").close());
         ExecResult initResult = HS2.execInContainer(
-                "/opt/hive/bin/schematool",
-                "-initSchema",
+                "/opt/hive/bin/schematool", "-initSchema",
                 "-dbType", "hive",
                 "-metaDbType", "postgres",
                 "-url", "jdbc:hive2://localhost:10000/default"
