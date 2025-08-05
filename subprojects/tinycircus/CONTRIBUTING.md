@@ -68,5 +68,5 @@ exit
 git clone git@github.com:linghengqian/hive-server2-jdbc-driver.git
 cd ./hive-server2-jdbc-driver/
 docker login ghcr.io/linghengqian/hive-server2-jdbc-driver --username linghengqian
-docker buildx build "--provenance=false" --push -t ghcr.io/linghengqian/hive:4.2.0-SNAPSHOT-all-in-one ./subprojects/tinycircus/hive/4.2.0-SNAPSHOT
+docker buildx build "--provenance=false" --push -t ghcr.io/linghengqian/hive-snapshot:4.2.0-all-in-one ./subprojects/tinycircus/hive/4.2.0-SNAPSHOT
 ```
