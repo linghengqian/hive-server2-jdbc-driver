@@ -9,6 +9,76 @@
           ]
         }
       }
+    },
+    {
+      "type": {
+        "lambda": {
+          "declaringClass": "io.github.linghengqian.hive.server2.jdbc.driver.thin.iceberg.ParquetTest",
+          "interfaces": [
+            "java.util.concurrent.Callable"
+          ]
+        }
+      }
+    },
+    {
+      "type": {
+        "lambda": {
+          "declaringClass": "io.github.linghengqian.hive.server2.jdbc.driver.thin.iceberg.OrcTest",
+          "interfaces": [
+            "java.util.concurrent.Callable"
+          ]
+        }
+      }
+    },
+    {
+      "type": {
+        "lambda": {
+          "declaringClass": "io.github.linghengqian.hive.server2.jdbc.driver.thin.StandaloneMetastoreTest",
+          "interfaces": [
+            "java.util.concurrent.Callable"
+          ]
+        }
+      }
+    },
+    {
+      "type": {
+        "lambda": {
+          "declaringClass": "io.github.linghengqian.hive.server2.jdbc.driver.thin.SimpleTest",
+          "interfaces": [
+            "java.util.concurrent.Callable"
+          ]
+        }
+      }
+    },
+    {
+      "type": {
+        "lambda": {
+          "declaringClass": "io.github.linghengqian.hive.server2.jdbc.driver.thin.ZookeeperServiceDiscoveryTest",
+          "interfaces": [
+            "java.util.concurrent.Callable"
+          ]
+        }
+      }
+    },
+    {
+      "type": {
+        "lambda": {
+          "declaringClass": "io.github.linghengqian.hive.server2.jdbc.driver.thin.AcidTableTest",
+          "interfaces": [
+            "java.util.concurrent.Callable"
+          ]
+        }
+      }
+    },
+    {
+      "type": {
+        "lambda": {
+          "declaringClass": "io.github.linghengqian.hive.server2.jdbc.driver.thin.InformationSchemaTest",
+          "interfaces": [
+            "java.util.concurrent.Callable"
+          ]
+        }
+      }
     }
   ],
   "resources": [

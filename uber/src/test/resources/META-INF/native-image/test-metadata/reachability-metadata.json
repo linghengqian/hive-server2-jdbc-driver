@@ -9,6 +9,76 @@
           ]
         }
       }
+    },
+    {
+      "type": {
+        "lambda": {
+          "declaringClass": "io.github.linghengqian.hive.server2.jdbc.driver.uber.iceberg.ParquetTest",
+          "interfaces": [
+            "java.util.concurrent.Callable"
+          ]
+        }
+      }
+    },
+    {
+      "type": {
+        "lambda": {
+          "declaringClass": "io.github.linghengqian.hive.server2.jdbc.driver.uber.iceberg.OrcTest",
+          "interfaces": [
+            "java.util.concurrent.Callable"
+          ]
+        }
+      }
+    },
+    {
+      "type": {
+        "lambda": {
+          "declaringClass": "io.github.linghengqian.hive.server2.jdbc.driver.uber.StandaloneMetastoreTest",
+          "interfaces": [
+            "java.util.concurrent.Callable"
+          ]
+        }
+      }
+    },
+    {
+      "type": {
+        "lambda": {
+          "declaringClass": "io.github.linghengqian.hive.server2.jdbc.driver.uber.SimpleTest",
+          "interfaces": [
+            "java.util.concurrent.Callable"
+          ]
+        }
+      }
+    },
+    {
+      "type": {
+        "lambda": {
+          "declaringClass": "io.github.linghengqian.hive.server2.jdbc.driver.uber.ZookeeperServiceDiscoveryTest",
+          "interfaces": [
+            "java.util.concurrent.Callable"
+          ]
+        }
+      }
+    },
+    {
+      "type": {
+        "lambda": {
+          "declaringClass": "io.github.linghengqian.hive.server2.jdbc.driver.uber.AcidTableTest",
+          "interfaces": [
+            "java.util.concurrent.Callable"
+          ]
+        }
+      }
+    },
+    {
+      "type": {
+        "lambda": {
+          "declaringClass": "io.github.linghengqian.hive.server2.jdbc.driver.uber.InformationSchemaTest",
+          "interfaces": [
+            "java.util.concurrent.Callable"
+          ]
+        }
+      }
     }
   ],
   "resources": [
