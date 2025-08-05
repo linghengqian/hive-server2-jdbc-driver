@@ -275,6 +275,8 @@
                             <quickBuild>true</quickBuild>
                             <buildArgs>
                                 <buildArg>-H:+UnlockExperimentalVMOptions</buildArg>
+                                <buildArg>-H:ThrowMissingRegistrationErrors=</buildArg>
+                                <buildArg>-H:MissingRegistrationReportingMode=Warn</buildArg>
                             </buildArgs>
                         </configuration>
                         <executions>
@@ -291,7 +293,7 @@
             </build>
         </profile>
         <profile>
-            <id>nativeTestWithSafeCompositionOfMetadata</id>
+            <id>nativeTestInJava23+</id>
             <build>
                 <plugins>
                     <plugin>
