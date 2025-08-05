@@ -290,5 +290,37 @@
                 </plugins>
             </build>
         </profile>
+        <profile>
+            <id>nativeTestWithSafeCompositionOfMetadata</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.graalvm.buildtools</groupId>
+                        <artifactId>native-maven-plugin</artifactId>
+                        <version>${native-maven-plugin.version}</version>
+                        <extensions>true</extensions>
+                        <configuration>
+                            <quickBuild>true</quickBuild>
+                            <buildArgs>
+                                <buildArg>-H:+UnlockExperimentalVMOptions</buildArg>
+                                <buildArg>--exact-reachability-metadata</buildArg>
+                            </buildArgs>
+                            <runtimeArgs>
+                                <runtimeArg>-XX:MissingRegistrationReportingMode=Warn</runtimeArg>
+                            </runtimeArgs>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>test-native</id>
+                                <goals>
+                                    <goal>test</goal>
+                                </goals>
+                                <phase>test</phase>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
     </profiles>
 </project>

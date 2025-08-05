@@ -106,4 +106,4 @@ jobs:
       #   with many MOJOs bundled with the Maven lifecycle by default.
       #   See https://github.com/graalvm/native-build-tools/issues/410 .
       - name: NativeTest on Oracle GraalVM For JDK ${{ matrix.java }}
-        run: ./mvnw -PnativeTestInCustom clean test
+        run: ./mvnw -PnativeTestWithSafeCompositionOfMetadata clean test
