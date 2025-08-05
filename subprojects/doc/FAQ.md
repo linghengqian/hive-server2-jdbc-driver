@@ -81,10 +81,9 @@ Possible Maven 3 examples are as follows,
          <dependency>
              <groupId>io.github.linghengqian</groupId>
              <artifactId>hive-server2-jdbc-driver-thin</artifactId>
-             <version>1.7.0</version>
+             <version>1.8.1</version>
          </dependency>
      </dependencies>
-    
      <build>
          <plugins>
              <plugin>

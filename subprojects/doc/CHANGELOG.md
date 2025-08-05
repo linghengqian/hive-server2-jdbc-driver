@@ -21,8 +21,8 @@ io.github.linghengqian:hive-server2-jdbc-driver-uber:2.0.0-SNAPSHOT
 Build from `apache/hive:rel/release-4.0.1`.
 
 ```
-io.github.linghengqian:hive-server2-jdbc-driver-thin:1.8.1-SNAPSHOT
-io.github.linghengqian:hive-server2-jdbc-driver-uber:1.8.1-SNAPSHOT
+io.github.linghengqian:hive-server2-jdbc-driver-thin:1.8.1
+io.github.linghengqian:hive-server2-jdbc-driver-uber:1.8.1
 ```
 
 ### 1.8.0
