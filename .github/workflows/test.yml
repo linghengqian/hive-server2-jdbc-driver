@@ -73,8 +73,6 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           cache: 'maven'
           native-image-job-reports: 'true'
-          native-image-pr-reports: 'true'
-          native-image-pr-reports-update-existing: 'true'
       - name: NativeTest on GraalVM CE For JDK ${{ matrix.java }}
         run: ./mvnw -PnativeTestInCustom -T 1.5C clean test
   # todo wait for GraalVM CE For JDK 25 release
