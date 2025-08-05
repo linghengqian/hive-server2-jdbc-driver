@@ -73,8 +73,12 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           cache: 'maven'
           native-image-job-reports: 'true'
-      - name: NativeTest on GraalVM CE For JDK ${{ matrix.java }}
+      - name: NativeTest on GraalVM CE For JDK 22.0.2
+        if: matrix.java == '22.0.2'
         run: ./mvnw -PnativeTestInCustom -T 1.5C clean test
+      - name: NativeTest on GraalVM CE For JDK 24.0.2
+        if: matrix.java == '24.0.2'
+        run: ./mvnw -PnativeTestInJava23+ -T 1.5C clean test
   # todo wait for GraalVM CE For JDK 25 release
   native-test-ci-on-oracle-graalvm:
     name: NativeTest - Oracle GraalVM for JDK ${{ matrix.java }} on ${{ matrix.os }}
