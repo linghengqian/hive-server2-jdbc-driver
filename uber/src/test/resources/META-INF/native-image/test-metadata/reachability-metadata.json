@@ -1,0 +1,23 @@
+{
+  "reflection": [
+    {
+      "type": {
+        "lambda": {
+          "declaringClass": "io.github.linghengqian.hive.server2.jdbc.driver.uber.iceberg.AvroTest",
+          "interfaces": [
+            "java.util.concurrent.Callable"
+          ]
+        }
+      }
+    }
+  ],
+  "resources": [
+    {
+      "condition": {
+        "typeReached": "org.junit.platform.commons.logging.LoggerFactory"
+      },
+      "module": "java.logging",
+      "glob": "sun/util/logging/resources/logging_en.properties"
+    }
+  ]
+}
