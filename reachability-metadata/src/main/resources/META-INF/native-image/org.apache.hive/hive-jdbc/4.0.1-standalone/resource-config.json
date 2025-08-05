@@ -1,0 +1,11 @@
+{
+  "resources":{
+  "includes":[{
+    "condition":{"typeReachable":"org.apache.hive.org.apache.commons.logging.LogFactory"},
+    "pattern":"\\Qcommons-logging.properties\\E"
+  }, {
+    "condition":{"typeReachable":"org.apache.hive.org.apache.commons.logging.LogFactory"},
+    "pattern":"\\QMETA-INF/services/org.apache.commons.logging.LogFactory\\E"
+  }]},
+  "bundles":[]
+}
