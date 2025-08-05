@@ -1,9 +1,5 @@
 [
 {
-  "condition":{"typeReachable":"ch.qos.logback.classic.util.EnvUtil"},
-  "name":"groovy.lang.Binding"
-},
-{
   "condition":{"typeReachable":"org.apache.commons.logging.LogFactory"},
   "name":"java.lang.Thread",
   "allPublicMethods": true

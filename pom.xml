@@ -73,7 +73,6 @@
         <testcontainers-bom.version>1.21.3</testcontainers-bom.version>
         <hikaricp.version>4.0.3</hikaricp.version>
         <awaitility.version>4.3.0</awaitility.version>
-        <logback-classic.version>1.2.13</logback-classic.version>
 
         <maven-source-plugin.version>3.3.1</maven-source-plugin.version>
         <maven-javadoc-plugin.version>3.11.2</maven-javadoc-plugin.version>
@@ -181,9 +180,9 @@
             <optional>true</optional>
         </dependency>
         <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-classic</artifactId>
-            <version>${logback-classic.version}</version>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-nop</artifactId>
+            <version>${slf4j.version}</version>
             <scope>test</scope>
             <optional>true</optional>
         </dependency>

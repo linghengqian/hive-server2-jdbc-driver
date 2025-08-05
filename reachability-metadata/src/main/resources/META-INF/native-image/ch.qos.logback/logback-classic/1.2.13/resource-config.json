@@ -1,8 +1,0 @@
-{
-  "resources":{
-  "includes":[{
-    "condition":{"typeReachable":"org.slf4j.LoggerFactory"},
-    "pattern":"\\QMETA-INF/services/javax.xml.parsers.SAXParserFactory\\E"
-  }]},
-  "bundles":[]
-}
