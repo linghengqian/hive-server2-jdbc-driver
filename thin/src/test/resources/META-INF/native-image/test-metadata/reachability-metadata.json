@@ -80,14 +80,5 @@
         }
       }
     }
-  ],
-  "resources": [
-    {
-      "condition": {
-        "typeReached": "org.junit.platform.commons.logging.LoggerFactory"
-      },
-      "module": "java.logging",
-      "glob": "sun/util/logging/resources/logging_en.properties"
-    }
   ]
 }

@@ -15,9 +15,6 @@
   }, {
     "condition":{"typeReachable":"org.junit.platform.launcher.core.LauncherConfigurationParameters"},
     "pattern":"\\Qjunit-platform.properties\\E"
-  }, {
-    "condition":{"typeReachable":"org.junit.platform.reporting.legacy.xml.XmlReportWriter"},
-    "pattern":"\\QMETA-INF/services/javax.xml.stream.XMLOutputFactory\\E"
   }]},
   "bundles":[]
 }
