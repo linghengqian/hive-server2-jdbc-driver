@@ -142,9 +142,9 @@ gpg --keyserver keyserver.ubuntu.com --send-keys {Aloha, your keyname}
 ```
 
 According to https://central.sonatype.org/publish/publish-portal-maven/#credentials,
-use the following command to change the content of `~/.m2/settings.xml`.
+use the following command to change the content of `%USERPROFILE%/.m2/settings.xml`.
 
-The contents of `~/.m2/settings.xml` might be as follows.
+The contents of `%USERPROFILE%/.m2/settings.xml` might be as follows.
 
 ```xml
 <settings>

@@ -11,6 +11,18 @@ io.github.linghengqian:hive-server2-jdbc-driver-uber:2.0.0-SNAPSHOT
 
 ## v1
 
+### 1.8.2
+
+1. Remove unnecessary Junit XML report-related GraalVM Reachability Metadata.
+
+Build from `apache/hive:rel/release-4.0.1`.
+
+```
+io.github.linghengqian:hive-server2-jdbc-driver-reachability-metadata:1.8.2
+io.github.linghengqian:hive-server2-jdbc-driver-thin:1.8.2
+io.github.linghengqian:hive-server2-jdbc-driver-uber:1.8.2
+```
+
 ### 1.8.1
 
 1. Only configure `native-image.properties` related to `io.grpc:grpc-netty-shaded` in Thin JAR.
@@ -21,6 +33,7 @@ io.github.linghengqian:hive-server2-jdbc-driver-uber:2.0.0-SNAPSHOT
 Build from `apache/hive:rel/release-4.0.1`.
 
 ```
+io.github.linghengqian:hive-server2-jdbc-driver-reachability-metadata:1.8.1
 io.github.linghengqian:hive-server2-jdbc-driver-thin:1.8.1
 io.github.linghengqian:hive-server2-jdbc-driver-uber:1.8.1
 ```
@@ -41,6 +54,7 @@ io.github.linghengqian:hive-server2-jdbc-driver-uber:1.8.1
 Build from `apache/hive:rel/release-4.0.1`.
 
 ```
+io.github.linghengqian:hive-server2-jdbc-driver-reachability-metadata:1.8.0
 io.github.linghengqian:hive-server2-jdbc-driver-thin:1.8.0
 io.github.linghengqian:hive-server2-jdbc-driver-uber:1.8.0
 ```

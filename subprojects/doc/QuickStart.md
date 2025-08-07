@@ -13,7 +13,7 @@ Use third-party builds of this project in any Maven project.
     <dependency>
         <groupId>io.github.linghengqian</groupId>
         <artifactId>hive-server2-jdbc-driver-thin</artifactId>
-        <version>1.8.1</version>
+        <version>1.8.2</version>
     </dependency>
     <dependency>
         <groupId>com.zaxxer</groupId>
