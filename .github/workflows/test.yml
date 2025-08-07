@@ -45,7 +45,7 @@ jobs:
         run: |
           ./subprojects/doc/helpful_tools/uninstall-docker-engine-for-wcow.ps1
           winget install --id jazzdelightsme.WingetPathUpdater --source winget
-          winget install --id SUSE.RancherDesktop --source winget --skip-dependencies
+          winget install --id SUSE.RancherDesktop --source winget
           rdctl start --application.start-in-background --container-engine.name=moby --kubernetes.enabled=false
           ./subprojects/doc/helpful_tools/wait-for-rancher-desktop-backend.ps1
           "PATH=$env:PATH" >> $env:GITHUB_ENV
@@ -98,7 +98,7 @@ jobs:
         run: |
           ./subprojects/doc/helpful_tools/uninstall-docker-engine-for-wcow.ps1
           winget install --id jazzdelightsme.WingetPathUpdater --source winget
-          winget install --id SUSE.RancherDesktop --source winget --skip-dependencies
+          winget install --id SUSE.RancherDesktop --source winget
           rdctl start --application.start-in-background --container-engine.name=moby --kubernetes.enabled=false
           ./subprojects/doc/helpful_tools/wait-for-rancher-desktop-backend.ps1
           "PATH=$env:PATH" >> $env:GITHUB_ENV
