@@ -22,7 +22,7 @@
     <parent>
         <groupId>io.github.linghengqian</groupId>
         <artifactId>hive-parent</artifactId>
-        <version>1.8.2-SNAPSHOT</version>
+        <version>1.8.2</version>
     </parent>
     <artifactId>hive-server2-jdbc-driver-reachability-metadata</artifactId>
     <name>${project.groupId}:${project.artifactId}</name>
