@@ -73,12 +73,15 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           cache: 'maven'
           native-image-job-reports: 'true'
-      - name: NativeTest on GraalVM CE For JDK 22.0.2
+      # TODO The `-T 1.5C` flag cannot be used because the `native-maven-plugin` is poorly designed,
+      #   with many MOJOs bundled with the Maven lifecycle by default.
+      #   See https://github.com/graalvm/native-build-tools/issues/410 .
+      - name: NativeTest on GraalVM CE For JDK 22.0.2 on ${{ matrix.os }}
         if: matrix.java == '22.0.2'
-        run: ./mvnw -PnativeTestInCustom -T 1.5C clean test
-      - name: NativeTest on GraalVM CE For JDK 24.0.2
+        run: ./mvnw -PnativeTestInCustom clean test
+      - name: NativeTest on GraalVM CE For JDK 24.0.2 on ${{ matrix.os }}
         if: matrix.java == '24.0.2'
-        run: ./mvnw -PnativeTestInJava23+ -T 1.5C clean test
+        run: ./mvnw -PnativeTestInJava23+ clean test
   # todo wait for GraalVM CE For JDK 25 release
   native-test-ci-on-oracle-graalvm:
     name: NativeTest - Oracle GraalVM for JDK ${{ matrix.java }} on ${{ matrix.os }}
@@ -109,5 +112,5 @@ jobs:
       # TODO The `-T 1.5C` flag cannot be used because the `native-maven-plugin` is poorly designed,
       #   with many MOJOs bundled with the Maven lifecycle by default.
       #   See https://github.com/graalvm/native-build-tools/issues/410 .
-      - name: NativeTest on Oracle GraalVM For JDK ${{ matrix.java }}
+      - name: NativeTest on Oracle GraalVM For JDK ${{ matrix.java }} on ${{ matrix.os }}
         run: ./mvnw -PnativeTestInJava23+ clean test
