@@ -101,7 +101,6 @@ Then create the following JSON entry in any `reflect-config.json` on the classpa
 If there are no related dependency `com.fasterxml.woodstox:woodstox-core:5.4.0`, it will result in,
 
 ```shell
-```shell
 Aug 05, 2025 3:09:36 PM org.junit.platform.launcher.core.CompositeTestExecutionListener lambda$notifyEach$21
 WARNING: TestExecutionListener [org.junit.platform.reporting.legacy.xml.LegacyXmlReportGeneratingListener] threw exception for method: executionFinished(TestIdentifier [uniqueId = [engine:junit-jupiter], parentId = null, displayName = 'JUnit Jupiter', legacyReportingName = 'JUnit Jupiter', source = null, tags = [], type = CONTAINER], TestExecutionResult [status = SUCCESSFUL, throwable = null])
 javax.xml.stream.FactoryConfigurationError: Provider for class javax.xml.stream.XMLOutputFactory cannot be created
