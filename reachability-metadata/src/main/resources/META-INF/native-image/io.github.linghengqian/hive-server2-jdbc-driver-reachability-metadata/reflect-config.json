@@ -67,6 +67,16 @@
   "allDeclaredConstructors": true
 },
 {
+  "condition":{"typeReachable":"org.apache.hive.io.netty.util.internal.PlatformDependent0"},
+  "name":"java.nio.DirectByteBuffer",
+  "allDeclaredConstructors": true
+},
+{
+  "condition":{"typeReachable":"org.apache.hive.io.netty.util.internal.PlatformDependent0"},
+  "name":"jdk.internal.misc.Unsafe",
+  "allPublicMethods": true
+},
+{
   "condition":{"typeReachable":"org.apache.zookeeper.client.ZooKeeperSaslClient"},
   "name":"sun.security.provider.ConfigFile",
   "methods":[{"name":"<init>","parameterTypes":[] }]

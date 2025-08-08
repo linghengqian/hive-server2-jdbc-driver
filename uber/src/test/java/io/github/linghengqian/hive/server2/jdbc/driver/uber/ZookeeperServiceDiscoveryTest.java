@@ -129,7 +129,7 @@ class ZookeeperServiceDiscoveryTest {
                 client.start();
                 List<String> children = client.getChildren().forPath("/hiveserver2");
                 assertThat(children.size(), is(1));
-                return children.get(0).startsWith("serverUri=0.0.0.0:" + hiveServer2Port + ";version=4.0.1;sequence=");
+                return children.get(0).startsWith("serverUri=0.0.0.0:" + hiveServer2Port + ";version=4.1.0;sequence=");
             }
         });
         await().atMost(Duration.ofMinutes(1L)).ignoreExceptions().until(() -> {

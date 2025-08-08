@@ -12,6 +12,9 @@
   }, {
     "condition":{"typeReachable":"org.apache.hadoop.hive.conf.HiveConf"},
     "pattern":"\\Qhiveserver2-site.xml\\E"
+  }, {
+    "condition":{"typeReachable":"org.apache.hadoop.hive.conf.HiveConf"},
+    "pattern":"\\Qmetastore-site.xml\\E"
   }]},
   "bundles":[]
 }
