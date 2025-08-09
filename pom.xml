@@ -63,7 +63,7 @@
         <commons-text.version>1.10.0</commons-text.version>
         <slf4j.version>1.7.30</slf4j.version>
         <netty.version>4.1.116.Final</netty.version>
-        <commons-lang3.version>3.12.0</commons-lang3.version>
+        <commons-lang3.version>3.18.0</commons-lang3.version>
 
         <!-- Dependencies come from `hive-storage-api` under `apache/hive` -->
         <commons-logging.version>1.1.3</commons-logging.version>
