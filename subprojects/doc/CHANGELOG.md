@@ -2,6 +2,17 @@
 
 ## v2
 
+### 2.1.0-SNAPSHOT
+
+Build from `apache/hive:rel/release-4.1.0`.
+
+```
+io.github.linghengqian:hive-server2-jdbc-driver-thin:2.1.0-SNAPSHOT
+io.github.linghengqian:hive-server2-jdbc-driver-uber:2.1.0-SNAPSHOT
+```
+
+### 2.0.0
+
 1. Bump base HiveServer2 JDBC Driver version from `4.0.1` to `4.1.0`.
 2. Fix the warning message
    `[WARNING] 2 problems were encountered while building the effective model for org.apache.yetus:audience-annotations:jar:0.5.0 during dependency collection step for project (use -X to see details)`
