@@ -2,7 +2,7 @@
 
 ## v2
 
-1. Bump base HiveServer2 JDBC Driver version to `4.1.0`.
+1. Bump base HiveServer2 JDBC Driver version from `4.0.1` to `4.1.0`.
 2. Fix the warning message
    `[WARNING] 2 problems were encountered while building the effective model for org.apache.yetus:audience-annotations:jar:0.5.0 during dependency collection step for project (use -X to see details)`
    passed by HiveServer2 JDBC Driver.
@@ -10,13 +10,13 @@
 4. Add more GraalVM Reachability Metadata for `org.apache.hive:hive-jdbc:4.1.0`.
 5. Add more GraalVM Reachability Metadata for `org.apache.hive:hive-jdbc:4.1.0:standalone`.
 6. Add more GraalVM Reachability Metadata for `org.apache.zookeeper:zookeeper:3.8.4`.
-7. Bump the minimum JDK runtime requirement to `OpenJDK 17`.
+7. Bump the minimum JDK runtime requirement from `OpenJDK 8` to `OpenJDK 17`.
 
 Build from `apache/hive:rel/release-4.1.0`.
 
 ```
-io.github.linghengqian:hive-server2-jdbc-driver-thin:2.0.0-SNAPSHOT
-io.github.linghengqian:hive-server2-jdbc-driver-uber:2.0.0-SNAPSHOT
+io.github.linghengqian:hive-server2-jdbc-driver-thin:2.0.0
+io.github.linghengqian:hive-server2-jdbc-driver-uber:2.0.0
 ```
 
 ## v1
@@ -94,7 +94,7 @@ io.github.linghengqian:hive-server2-jdbc-driver-uber:1.6.0
 
 ### 1.5.0
 
-1. Bump base HiveServer2 JDBC Driver version to `4.0.1`.
+1. Bump base HiveServer2 JDBC Driver version from `4.0.0` to `4.0.1`.
 2. Support using Thin JAR and Uber JAR of HiveServer2 JDBC Driver under `OpenJDK 23`.
 3. Supports using Thin JAR and Uber JAR of HiveServer2 JDBC Driver in GraalVM Native Image compiled by `GraalVM CE For JDK 23`.
 
