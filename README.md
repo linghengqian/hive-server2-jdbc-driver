@@ -100,8 +100,7 @@ All release products have been verified and usable in the GraalVM Native Image c
 For HotSpot VM, all JAR products can be run on any `OpenJDK 17` and later distribution.
 
 For the Docker Image of `apache/hive:4.1.0`,
-you can use `2.0.0-SNAPSHOT` of `io.github.linghengqian:hive-server2-jdbc-driver-thin` or `io.github.linghengqian:hive-server2-jdbc-driver-uber`.
-**This sub-task has not yet been completed.**
+you can use `2.0.0` of `io.github.linghengqian:hive-server2-jdbc-driver-thin` or `io.github.linghengqian:hive-server2-jdbc-driver-uber`.
 
 ## FAQ
 
