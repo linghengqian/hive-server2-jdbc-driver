@@ -161,3 +161,14 @@ Caused by: java.util.ServiceConfigurationError: javax.xml.stream.XMLOutputFactor
 	at java.xml@25/javax.xml.stream.FactoryFinder.findServiceProvider(FactoryFinder.java:275)
 	... 43 more
 ```
+
+## Why don't the containers distributed by the `tinycircus` subproject include `provenance attestations`?
+
+The concept of `provenance attestations` can be obtained from https://docs.docker.com/build/metadata/attestations/slsa-provenance/ 
+and https://github.com/docker/buildx/issues/1964#issuecomment-1644634461 .
+
+However, due to the unresolved issue https://github.com/orgs/community/discussions/45969 , 
+the default configuration of `provenance attestations` in the docker buildx plugin will cause the GHCR WebUI to display a manifest of `unknown/unknown`. 
+This is not a user-friendly behavior.
+
+Therefore, maintainers always use `--provenance=false` to disable the creation of `provenance attestations` when building Linux Containers of `tinycircus`.
