@@ -83,24 +83,23 @@ Refer to [QuickStart](subprojects/doc/QuickStart.md).
 
 ### For HiveServer2 `4.0.x`
 
-All release products have been verified and usable in the GraalVM Native Image compiled by `GraalVM CE For JDK 22.0.2` and `GraalVM CE For JDK 24.0.2`.
-
 For HotSpot VM, all JAR products can be run on any `OpenJDK 8` and later distribution.
 
 For the Docker Image of `apache/hive:4.0.0`, 
 you can use `1.4.0` of `io.github.linghengqian:hive-server2-jdbc-driver-thin` or `io.github.linghengqian:hive-server2-jdbc-driver-uber`.
+All release products have been verified and usable in the GraalVM Native Image compiled by `GraalVM CE For JDK 22.0.2` and `GraalVM CE For JDK 23.0.2`.
 
 For the Docker Image of `apache/hive:4.0.1`, 
 you can use `1.8.2` of `io.github.linghengqian:hive-server2-jdbc-driver-thin` or `io.github.linghengqian:hive-server2-jdbc-driver-uber`.
+All release products have been verified and usable in the GraalVM Native Image compiled by `GraalVM CE For JDK 22.0.2` and `GraalVM CE For JDK 24.0.2`.
 
 ### For HiveServer2 `4.1.x`
-
-All release products have been verified and usable in the GraalVM Native Image compiled by `GraalVM CE For JDK 22.0.2` and `GraalVM CE For JDK 24.0.2`.
 
 For HotSpot VM, all JAR products can be run on any `OpenJDK 17` and later distribution.
 
 For the Docker Image of `apache/hive:4.1.0`,
 you can use `2.0.0` of `io.github.linghengqian:hive-server2-jdbc-driver-thin` or `io.github.linghengqian:hive-server2-jdbc-driver-uber`.
+All release products have been verified and usable in the GraalVM Native Image compiled by `GraalVM CE For JDK 22.0.2` and `GraalVM CE For JDK 24.0.2`.
 
 ## FAQ
 
