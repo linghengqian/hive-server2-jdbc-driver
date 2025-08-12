@@ -21,8 +21,6 @@ on:
     branches:
       - master
   workflow_dispatch:
-permissions:
-  pull-requests: write
 jobs:
   license-check:
     runs-on: 'ubuntu-latest'
@@ -63,7 +61,7 @@ jobs:
     if: github.repository == 'linghengqian/hive-server2-jdbc-driver'
     strategy:
       matrix:
-        java: [ '22.0.2', '24.0.2' ]
+        java: [ '22.0.2', '25' ]
         os: [ 'ubuntu-latest' ]
     runs-on: ${{ matrix.os }}
     steps:
@@ -81,22 +79,21 @@ jobs:
       - name: NativeTest on GraalVM CE For JDK 22.0.2 on ${{ matrix.os }}
         if: matrix.java == '22.0.2'
         run: ./mvnw -PnativeTestInCustom clean test
-      - name: NativeTest on GraalVM CE For JDK 24.0.2 on ${{ matrix.os }}
-        if: matrix.java == '24.0.2'
+      - name: NativeTest on GraalVM CE For JDK 25 on ${{ matrix.os }}
+        if: matrix.java == '25'
         run: ./mvnw -PnativeTestInJava23+ clean test
-  # todo wait for GraalVM CE For JDK 25 release
-  native-test-ci-on-oracle-graalvm:
-    name: NativeTest - Oracle GraalVM for JDK ${{ matrix.java }} on ${{ matrix.os }}
+  native-test-ci-on-mandrel:
+    name: NativeTest - ${{ matrix.graalvm-distribution }} for JDK ${{ matrix.java }} on ${{ matrix.os }}
     if: github.repository == 'linghengqian/hive-server2-jdbc-driver'
     strategy:
       matrix:
-        java: [ '25-ea' ]
-        os: [ 'ubuntu-latest', 'windows-2025' ]
+        java: [ '24' ]
+        os: [ 'windows-2025' ]
+        graalvm-distribution: [ 'mandrel' ]
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
       - name: Setup Rancher Desktop without GUI on Windows Server
-        if: matrix.os == 'windows-2025'
         run: |
           iwr -Uri "https://raw.githubusercontent.com/microsoft/Windows-Containers/refs/heads/Main/helpful_tools/Install-DockerCE/uninstall-docker-ce.ps1" -OutFile uninstall-docker-ce.ps1
           .\uninstall-docker-ce.ps1 -Force
@@ -109,12 +106,69 @@ jobs:
       - uses: graalvm/setup-graalvm@v1
         with:
           java-version: ${{ matrix.java }}
-          distribution: 'graalvm'
+          distribution: ${{ matrix.graalvm-distribution }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
           cache: 'maven'
           native-image-job-reports: 'true'
-      # TODO The `-T 1.5C` flag cannot be used because the `native-maven-plugin` is poorly designed,
-      #   with many MOJOs bundled with the Maven lifecycle by default.
-      #   See https://github.com/graalvm/native-build-tools/issues/410 .
-      - name: NativeTest on Oracle GraalVM For JDK ${{ matrix.java }} on ${{ matrix.os }}
+      - name: NativeTest on ${{ matrix.os }}
+        run: ./mvnw -PnativeTestInJava23+ clean test
+  native-test-ci-on-liberica:
+    name: NativeTest - ${{ matrix.graalvm-distribution }} for JDK ${{ matrix.java }} on ${{ matrix.os }}
+    if: github.repository == 'linghengqian/hive-server2-jdbc-driver'
+    strategy:
+      matrix:
+        java: [ '24.0.2' ]
+        os: [ 'windows-2025' ]
+        graalvm-distribution: [ 'liberica' ]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Rancher Desktop without GUI on Windows Server
+        run: |
+          iwr -Uri "https://raw.githubusercontent.com/microsoft/Windows-Containers/refs/heads/Main/helpful_tools/Install-DockerCE/uninstall-docker-ce.ps1" -OutFile uninstall-docker-ce.ps1
+          .\uninstall-docker-ce.ps1 -Force
+          ri .\uninstall-docker-ce.ps1
+          winget install --id jazzdelightsme.WingetPathUpdater --source winget
+          winget install --id SUSE.RancherDesktop --source winget --skip-dependencies
+          rdctl start --application.start-in-background --container-engine.name=moby --kubernetes.enabled=false
+          ./subprojects/doc/helpful_tools/wait-for-rancher-desktop-backend.ps1
+          "PATH=$env:PATH" >> $env:GITHUB_ENV
+      - uses: graalvm/setup-graalvm@v1
+        with:
+          java-version: ${{ matrix.java }}
+          distribution: ${{ matrix.graalvm-distribution }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          cache: 'maven'
+          native-image-job-reports: 'true'
+      - name: NativeTest on ${{ matrix.os }}
+        run: ./mvnw -PnativeTestInJava23+ clean test
+  native-test-ci-on-oracle-graalvm:
+    name: NativeTest - ${{ matrix.graalvm-distribution }} for JDK ${{ matrix.java }} on ${{ matrix.os }}
+    if: github.repository == 'linghengqian/hive-server2-jdbc-driver'
+    strategy:
+      matrix:
+        java: [ '25' ]
+        os: [ 'windows-2025' ]
+        graalvm-distribution: [ 'graalvm' ]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Rancher Desktop without GUI on Windows Server
+        run: |
+          iwr -Uri "https://raw.githubusercontent.com/microsoft/Windows-Containers/refs/heads/Main/helpful_tools/Install-DockerCE/uninstall-docker-ce.ps1" -OutFile uninstall-docker-ce.ps1
+          .\uninstall-docker-ce.ps1 -Force
+          ri .\uninstall-docker-ce.ps1
+          winget install --id jazzdelightsme.WingetPathUpdater --source winget
+          winget install --id SUSE.RancherDesktop --source winget --skip-dependencies
+          rdctl start --application.start-in-background --container-engine.name=moby --kubernetes.enabled=false
+          ./subprojects/doc/helpful_tools/wait-for-rancher-desktop-backend.ps1
+          "PATH=$env:PATH" >> $env:GITHUB_ENV
+      - uses: graalvm/setup-graalvm@v1
+        with:
+          java-version: ${{ matrix.java }}
+          distribution: ${{ matrix.graalvm-distribution }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          cache: 'maven'
+          native-image-job-reports: 'true'
+      - name: NativeTest on ${{ matrix.os }}
         run: ./mvnw -PnativeTestInJava23+ clean test
