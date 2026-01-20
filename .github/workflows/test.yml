@@ -43,10 +43,9 @@ jobs:
       - name: Setup Rancher Desktop without GUI on Windows Server
         if: matrix.os == 'windows-2025'
         run: |
-          iwr -Uri "https://raw.githubusercontent.com/microsoft/Windows-Containers/refs/heads/Main/helpful_tools/Install-DockerCE/uninstall-docker-ce.ps1" -OutFile uninstall-docker-ce.ps1
-          .\uninstall-docker-ce.ps1 -Force
-          ri .\uninstall-docker-ce.ps1
-          winget install --id jazzdelightsme.WingetPathUpdater --source winget
+          [Environment]::SetEnvironmentVariable('DOCKER_API_VERSION','1.44','Machine')
+          iex "& { $(irm https://raw.githubusercontent.com/microsoft/Windows-Containers/refs/heads/Main/helpful_tools/Install-DockerCE/uninstall-docker-ce.ps1) } -Force"
+          irm https://raw.githubusercontent.com/jazzdelightsme/WingetPathUpdater/v1.2/WingetPathUpdaterInstall.ps1 | iex
           winget install --id SUSE.RancherDesktop --source winget --skip-dependencies
           rdctl start --application.start-in-background --container-engine.name=moby --kubernetes.enabled=false
           ./subprojects/doc/helpful_tools/wait-for-rancher-desktop-backend.ps1
@@ -98,10 +97,9 @@ jobs:
       - name: Setup Rancher Desktop without GUI on Windows Server
         if: matrix.os == 'windows-2025'
         run: |
-          iwr -Uri "https://raw.githubusercontent.com/microsoft/Windows-Containers/refs/heads/Main/helpful_tools/Install-DockerCE/uninstall-docker-ce.ps1" -OutFile uninstall-docker-ce.ps1
-          .\uninstall-docker-ce.ps1 -Force
-          ri .\uninstall-docker-ce.ps1
-          winget install --id jazzdelightsme.WingetPathUpdater --source winget
+          [Environment]::SetEnvironmentVariable('DOCKER_API_VERSION','1.44','Machine')
+          iex "& { $(irm https://raw.githubusercontent.com/microsoft/Windows-Containers/refs/heads/Main/helpful_tools/Install-DockerCE/uninstall-docker-ce.ps1) } -Force"
+          irm https://raw.githubusercontent.com/jazzdelightsme/WingetPathUpdater/v1.2/WingetPathUpdaterInstall.ps1 | iex
           winget install --id SUSE.RancherDesktop --source winget --skip-dependencies
           rdctl start --application.start-in-background --container-engine.name=moby --kubernetes.enabled=false
           ./subprojects/doc/helpful_tools/wait-for-rancher-desktop-backend.ps1

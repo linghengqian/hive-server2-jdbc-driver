@@ -15,9 +15,7 @@ git clone git@github.com:linghengqian/hive-server2-jdbc-driver.git
 cd ./hive-server2-jdbc-driver/
 
 docker login ghcr.io/linghengqian/hive-server2-jdbc-driver --username linghengqian
-docker buildx create --name container-builder --driver docker-container --bootstrap --use
 docker buildx build "--provenance=false" --push --platform linux/amd64,linux/arm64 -t ghcr.io/linghengqian/hive:4.0.1-all-in-one ./subprojects/tinycircus/hive/4.0.1
-docker buildx rm container-builder
 ```
 
 ## For `4.1.0` on `apache/hive`
@@ -29,9 +27,7 @@ git clone git@github.com:linghengqian/hive-server2-jdbc-driver.git
 cd ./hive-server2-jdbc-driver/
 
 docker login ghcr.io/linghengqian/hive-server2-jdbc-driver --username linghengqian
-docker buildx create --name container-builder --driver docker-container --bootstrap --use
 docker buildx build "--provenance=false" --push --platform linux/amd64,linux/arm64 -t ghcr.io/linghengqian/hive:4.1.0-all-in-one ./subprojects/tinycircus/hive/4.1.0
-docker buildx rm container-builder
 ```
 
 ## For `4.2.0-SNAPSHOT` on `apache/hive`
