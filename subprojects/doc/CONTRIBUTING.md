@@ -2,9 +2,9 @@
 
 ## Preparation
 
-### For Ubuntu 22.04.5
+### For Ubuntu 24.04
 
-Take Ubuntu WSL 22.04.4 as an example.
+Take Ubuntu WSL 24.04 as an example.
 It is assumed that `Git` is configured, and `SDKMAN!` and `Docker Engine` are installed.
 
 ```shell
@@ -19,6 +19,7 @@ Take Windows 11 as an example.
 It is assumed that `Git.Git` is configured, and `version-fox.vfox` and `Rancher Desktop` are installed.
 
 ```
+[Environment]::SetEnvironmentVariable('DOCKER_API_VERSION','1.44','Machine')
 vfox install java@22.0.2-graalce
 vfox use --global java@22.0.2-graalce
 winget install --id Microsoft.VisualStudio.2022.Community
@@ -59,7 +60,7 @@ You need to approve `native-test.exe` more than once because this command builds
 
 ## Fixes LICENSE issue
 
-### For Ubuntu 22.04.5
+### For Ubuntu 24
 
 - Execute the following command.
 
@@ -84,7 +85,7 @@ docker run -it --rm -v ${pwd}:/github/workspace apache/skywalking-eyes:0.7.0 hea
 ### Ubuntu
 
 First set up GPG.
-Take Ubuntu WSL 22.04.4 as an example and provide your real name and email address.
+Take Ubuntu WSL 24.04 as an example and provide your real name and email address.
 
 ```shell
 gpg --gen-key
