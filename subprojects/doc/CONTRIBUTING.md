@@ -67,7 +67,7 @@ You need to approve `native-test.exe` more than once because this command builds
 ```shell
 git clone git@github.com:linghengqian/hive-server2-jdbc-driver.git
 cd ./hive-server2-jdbc-driver/
-docker run -it --rm -v $(pwd):/github/workspace apache/skywalking-eyes:0.7.0 header fix
+docker run -it --rm -v $(pwd):/github/workspace apache/skywalking-eyes:0.8.0 header fix
 ```
 
 ### For Windows 11
@@ -77,7 +77,7 @@ docker run -it --rm -v $(pwd):/github/workspace apache/skywalking-eyes:0.7.0 hea
 ```
 git clone git@github.com:linghengqian/hive-server2-jdbc-driver.git
 cd ./hive-server2-jdbc-driver/
-docker run -it --rm -v ${pwd}:/github/workspace apache/skywalking-eyes:0.7.0 header fix
+docker run -it --rm -v ${pwd}:/github/workspace apache/skywalking-eyes:0.8.0 header fix
 ```
 
 ## How to publish via the central portal
