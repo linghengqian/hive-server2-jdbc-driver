@@ -37,13 +37,13 @@ jobs:
       matrix:
         java: [ '17', '24' ]
         os: [ 'ubuntu-latest', 'windows-2025' ]
+      fail-fast: false
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
       - name: Setup Rancher Desktop without GUI on Windows Server
         if: matrix.os == 'windows-2025'
         run: |
-          [Environment]::SetEnvironmentVariable('DOCKER_API_VERSION','1.44','Machine')
           iex "& { $(irm https://raw.githubusercontent.com/microsoft/Windows-Containers/refs/heads/Main/helpful_tools/Install-DockerCE/uninstall-docker-ce.ps1) } -Force"
           irm https://raw.githubusercontent.com/jazzdelightsme/WingetPathUpdater/v1.2/WingetPathUpdaterInstall.ps1 | iex
           winget install --id SUSE.RancherDesktop --source winget --skip-dependencies
@@ -91,13 +91,13 @@ jobs:
       matrix:
         java: [ '25-ea' ]
         os: [ 'ubuntu-latest', 'windows-2025' ]
+      fail-fast: false
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
       - name: Setup Rancher Desktop without GUI on Windows Server
         if: matrix.os == 'windows-2025'
         run: |
-          [Environment]::SetEnvironmentVariable('DOCKER_API_VERSION','1.44','Machine')
           iex "& { $(irm https://raw.githubusercontent.com/microsoft/Windows-Containers/refs/heads/Main/helpful_tools/Install-DockerCE/uninstall-docker-ce.ps1) } -Force"
           irm https://raw.githubusercontent.com/jazzdelightsme/WingetPathUpdater/v1.2/WingetPathUpdaterInstall.ps1 | iex
           winget install --id SUSE.RancherDesktop --source winget --skip-dependencies

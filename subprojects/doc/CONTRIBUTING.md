@@ -19,7 +19,6 @@ Take Windows 11 as an example.
 It is assumed that `Git.Git` is configured, and `version-fox.vfox` and `Rancher Desktop` are installed.
 
 ```
-[Environment]::SetEnvironmentVariable('DOCKER_API_VERSION','1.44','Machine')
 vfox install java@22.0.2-graalce
 vfox use --global java@22.0.2-graalce
 winget install --id Microsoft.VisualStudio.2022.Community
