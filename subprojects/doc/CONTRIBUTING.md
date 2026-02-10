@@ -8,9 +8,9 @@ Take Ubuntu WSL 24.04 as an example.
 It is assumed that `Git` is configured, and `SDKMAN!` and `Docker Engine` are installed.
 
 ```shell
-sdk install java 22.0.2-graalce
+sdk install java 24.0.2-graalce
 sudo apt-get install build-essential zlib1g-dev -y
-sdk use java 22.0.2-graalce
+sdk use java 24.0.2-graalce
 ```
 
 ### For Windows 11
@@ -19,8 +19,8 @@ Take Windows 11 as an example.
 It is assumed that `Git.Git` is configured, and `version-fox.vfox` and `Rancher Desktop` are installed.
 
 ```
-vfox install java@22.0.2-graalce
-vfox use --global java@22.0.2-graalce
+vfox install java@24.0.2-graalce
+vfox use --global java@24.0.2-graalce
 winget install --id Microsoft.VisualStudio.2022.Community
 ```
 

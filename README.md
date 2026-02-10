@@ -1,13 +1,7 @@
 # Third-party builds of the HiveServer2 JDBC Driver
 
-<p>
-    <a>
-        <img src="https://img.shields.io/badge/HotSpot VM-OpenJDK 17+-green.svg"  alt="">
-    </a>
-    <a>
-        <img src="https://img.shields.io/badge/GraalVM Native Image-GraalVM CE For JDK 22.0.2+-blue.svg"  alt="">
-    </a>
-</p>
+![Static Badge](https://img.shields.io/badge/HotSpot%20VM-OpenJDK%2017%2B-green)
+![Static Badge](https://img.shields.io/badge/GraalVM%20Native%20Image-GraalVM%20CE%20For%20JDK%2024.0.2%2B-blue)
 
 The purpose of the current project is to create a `Thin JAR` of HiveServer2 JDBC Driver.
 

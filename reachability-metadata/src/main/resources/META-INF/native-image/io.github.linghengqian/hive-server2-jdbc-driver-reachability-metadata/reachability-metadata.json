@@ -1,0 +1,216 @@
+{
+  "reflection": [
+    {
+      "condition": {
+        "typeReached": "org.apache.commons.logging.LogFactory"
+      },
+      "type": "java.lang.Thread",
+      "allPublicMethods": true
+    },
+    {
+      "condition": {
+        "typeReached": "org.testcontainers.shaded.com.fasterxml.jackson.databind.introspect.POJOPropertiesCollector"
+      },
+      "type": "java.io.Serializable",
+      "allDeclaredMethods": true
+    },
+    {
+      "condition": {
+        "typeReached": "org.testcontainers.shaded.com.fasterxml.jackson.databind.introspect.POJOPropertiesCollector"
+      },
+      "type": "java.lang.Enum",
+      "allDeclaredMethods": true
+    },
+    {
+      "condition": {
+        "typeReached": "org.testcontainers.shaded.com.fasterxml.jackson.databind.introspect.POJOPropertiesCollector"
+      },
+      "type": "java.io.Closeable",
+      "allDeclaredMethods": true
+    },
+    {
+      "condition": {
+        "typeReached": "org.testcontainers.shaded.com.fasterxml.jackson.databind.introspect.POJOPropertiesCollector"
+      },
+      "type": "java.lang.AutoCloseable",
+      "allDeclaredMethods": true
+    },
+    {
+      "condition": {
+        "typeReached": "org.testcontainers.shaded.com.fasterxml.jackson.databind.introspect.POJOPropertiesCollector"
+      },
+      "type": "java.lang.Boolean",
+      "allDeclaredFields": true,
+      "allDeclaredConstructors": true,
+      "allDeclaredMethods": true
+    },
+    {
+      "condition": {
+        "typeReached": "org.testcontainers.shaded.com.fasterxml.jackson.databind.introspect.POJOPropertiesCollector"
+      },
+      "type": "java.lang.Comparable",
+      "allDeclaredMethods": true
+    },
+    {
+      "condition": {
+        "typeReached": "org.testcontainers.shaded.com.fasterxml.jackson.databind.introspect.POJOPropertiesCollector"
+      },
+      "type": "java.lang.constant.Constable",
+      "allDeclaredMethods": true
+    },
+    {
+      "condition": {
+        "typeReached": "org.testcontainers.shaded.com.fasterxml.jackson.databind.introspect.POJOPropertiesCollector"
+      },
+      "type": "java.lang.Number",
+      "allDeclaredFields": true,
+      "allDeclaredMethods": true
+    },
+    {
+      "condition": {
+        "typeReached": "org.testcontainers.shaded.com.fasterxml.jackson.databind.introspect.POJOPropertiesCollector"
+      },
+      "type": "java.lang.Integer",
+      "allDeclaredFields": true,
+      "allDeclaredMethods": true,
+      "allDeclaredConstructors": true
+    },
+    {
+      "condition": {
+        "typeReached": "org.testcontainers.shaded.com.fasterxml.jackson.databind.introspect.POJOPropertiesCollector"
+      },
+      "type": "java.lang.constant.ConstantDesc",
+      "allDeclaredMethods": true
+    },
+    {
+      "condition": {
+        "typeReached": "java.util.RandomAccess"
+      },
+      "type": "java.util.RandomAccess",
+      "allDeclaredMethods": true
+    },
+    {
+      "condition": {
+        "typeReached": "java.util.AbstractList"
+      },
+      "type": "java.util.AbstractList",
+      "allDeclaredMethods": true
+    },
+    {
+      "condition": {
+        "typeReached": "org.testcontainers.shaded.com.fasterxml.jackson.databind.introspect.POJOPropertiesCollector"
+      },
+      "type": "java.util.Collection",
+      "allDeclaredMethods": true
+    },
+    {
+      "condition": {
+        "typeReached": "org.testcontainers.shaded.com.fasterxml.jackson.databind.introspect.POJOPropertiesCollector"
+      },
+      "type": "java.util.Map",
+      "allDeclaredMethods": true
+    },
+    {
+      "condition": {
+        "typeReached": "java.util.List"
+      },
+      "type": "java.util.List",
+      "allPublicMethods": true
+    },
+    {
+      "condition": {
+        "typeReached": "java.util.AbstractCollection"
+      },
+      "type": "java.util.AbstractCollection",
+      "allDeclaredMethods": true,
+      "allDeclaredFields": true
+    },
+    {
+      "condition": {
+        "typeReached": "java.lang.Iterable"
+      },
+      "type": "java.lang.Iterable",
+      "allPublicMethods": true
+    },
+    {
+      "condition": {
+        "typeReached": "java.util.Arrays"
+      },
+      "type": "java.util.Arrays$ArrayList",
+      "allPublicMethods": true,
+      "allDeclaredConstructors": true
+    },
+    {
+      "condition": {
+        "typeReached": "org.testcontainers.shaded.com.fasterxml.jackson.databind.introspect.POJOPropertiesCollector"
+      },
+      "type": "java.util.AbstractMap",
+      "allDeclaredFields": true,
+      "allDeclaredMethods": true
+    },
+    {
+      "condition": {
+        "typeReached": "org.testcontainers.shaded.com.fasterxml.jackson.databind.introspect.POJOPropertiesCollector"
+      },
+      "type": "java.util.Collections$SingletonMap",
+      "allDeclaredFields": true,
+      "allDeclaredMethods": true,
+      "allDeclaredConstructors": true
+    },
+    {
+      "condition": {
+        "typeReached": "org.testcontainers.shaded.com.fasterxml.jackson.databind.introspect.POJOPropertiesCollector"
+      },
+      "type": "java.lang.Long",
+      "allDeclaredFields": true,
+      "allDeclaredMethods": true,
+      "allDeclaredConstructors": true
+    },
+    {
+      "condition": {
+        "typeReached": "org.apache.hive.io.netty.util.internal.PlatformDependent0"
+      },
+      "type": "java.nio.DirectByteBuffer",
+      "allDeclaredConstructors": true
+    },
+    {
+      "condition": {
+        "typeReached": "org.apache.hive.io.netty.util.internal.PlatformDependent0"
+      },
+      "type": "jdk.internal.misc.Unsafe",
+      "allPublicMethods": true
+    },
+    {
+      "condition": {
+        "typeReached": "org.apache.zookeeper.client.ZooKeeperSaslClient"
+      },
+      "type": "sun.security.provider.ConfigFile",
+      "methods": [
+        {
+          "name": "<init>",
+          "parameterTypes": []
+        }
+      ]
+    },
+    {
+      "condition": {
+        "typeReached": "org.apache.hive.org.apache.zookeeper.client.ZooKeeperSaslClient"
+      },
+      "type": "sun.security.provider.ConfigFile",
+      "methods": [
+        {
+          "name": "<init>",
+          "parameterTypes": []
+        }
+      ]
+    }
+  ],
+  "resources": [
+    {
+      "condition": {
+        "typeReached": "org.testcontainers.dockerclient.DockerClientProviderStrategy"
+      },
+      "glob": "META-INF/services/java.net.spi.InetAddressResolverProvider"
+    }
+  ]
+}

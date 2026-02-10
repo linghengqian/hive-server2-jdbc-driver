@@ -4,9 +4,12 @@
 
 ### 2.1.0-SNAPSHOT
 
+1. Bump the minimum requirements for compiling GraalVM Native Images to `GraalVM CE for JDK 24.0.2`.
+
 Build from `apache/hive:rel/release-4.1.0`.
 
 ```
+io.github.linghengqian:hive-server2-jdbc-driver-reachability-metadata:2.1.0-SNAPSHOT
 io.github.linghengqian:hive-server2-jdbc-driver-thin:2.1.0-SNAPSHOT
 io.github.linghengqian:hive-server2-jdbc-driver-uber:2.1.0-SNAPSHOT
 ```
@@ -26,6 +29,7 @@ io.github.linghengqian:hive-server2-jdbc-driver-uber:2.1.0-SNAPSHOT
 Build from `apache/hive:rel/release-4.1.0`.
 
 ```
+io.github.linghengqian:hive-server2-jdbc-driver-reachability-metadata:2.0.0
 io.github.linghengqian:hive-server2-jdbc-driver-thin:2.0.0
 io.github.linghengqian:hive-server2-jdbc-driver-uber:2.0.0
 ```
