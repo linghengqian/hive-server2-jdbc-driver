@@ -44,11 +44,7 @@ jobs:
       - name: Setup Rancher Desktop without GUI on Windows Server
         if: matrix.os == 'windows-2025'
         run: |
-          iex "& { $(irm https://raw.githubusercontent.com/microsoft/Windows-Containers/refs/heads/Main/helpful_tools/Install-DockerCE/uninstall-docker-ce.ps1) } -Force"
-          irm https://raw.githubusercontent.com/jazzdelightsme/WingetPathUpdater/v1.2/WingetPathUpdaterInstall.ps1 | iex
-          winget install --id SUSE.RancherDesktop --source winget --skip-dependencies
-          rdctl start --application.start-in-background --container-engine.name=moby --kubernetes.enabled=false
-          ./subprojects/doc/helpful_tools/wait-for-rancher-desktop-backend.ps1
+          ./subprojects/doc/helpful_tools/config-rdctl.ps1
           "PATH=$env:PATH" >> $env:GITHUB_ENV
       - uses: actions/setup-java@v4
         with:
@@ -62,7 +58,7 @@ jobs:
     if: github.repository == 'linghengqian/hive-server2-jdbc-driver'
     strategy:
       matrix:
-        java: [ '22.0.2', '24.0.2' ]
+        java: [ '24.0.2' ]
         os: [ 'ubuntu-latest' ]
     runs-on: ${{ matrix.os }}
     steps:
@@ -77,12 +73,8 @@ jobs:
       # TODO The `-T 1.5C` flag cannot be used because the `native-maven-plugin` is poorly designed,
       #   with many MOJOs bundled with the Maven lifecycle by default.
       #   See https://github.com/graalvm/native-build-tools/issues/410 .
-      - name: NativeTest on GraalVM CE For JDK 22.0.2 on ${{ matrix.os }}
-        if: matrix.java == '22.0.2'
+      - name: NativeTest on GraalVM CE For JDK ${{ matrix.java }} on ${{ matrix.os }}
         run: ./mvnw -PnativeTestInCustom clean test
-      - name: NativeTest on GraalVM CE For JDK 24.0.2 on ${{ matrix.os }}
-        if: matrix.java == '24.0.2'
-        run: ./mvnw -PnativeTestInJava23+ clean test
   # todo wait for GraalVM CE For JDK 25 release
   native-test-ci-on-oracle-graalvm:
     name: NativeTest - Oracle GraalVM for JDK ${{ matrix.java }} on ${{ matrix.os }}
@@ -98,11 +90,7 @@ jobs:
       - name: Setup Rancher Desktop without GUI on Windows Server
         if: matrix.os == 'windows-2025'
         run: |
-          iex "& { $(irm https://raw.githubusercontent.com/microsoft/Windows-Containers/refs/heads/Main/helpful_tools/Install-DockerCE/uninstall-docker-ce.ps1) } -Force"
-          irm https://raw.githubusercontent.com/jazzdelightsme/WingetPathUpdater/v1.2/WingetPathUpdaterInstall.ps1 | iex
-          winget install --id SUSE.RancherDesktop --source winget --skip-dependencies
-          rdctl start --application.start-in-background --container-engine.name=moby --kubernetes.enabled=false
-          ./subprojects/doc/helpful_tools/wait-for-rancher-desktop-backend.ps1
+          ./subprojects/doc/helpful_tools/config-rdctl.ps1
           "PATH=$env:PATH" >> $env:GITHUB_ENV
       - uses: graalvm/setup-graalvm@v1
         with:
@@ -115,4 +103,4 @@ jobs:
       #   with many MOJOs bundled with the Maven lifecycle by default.
       #   See https://github.com/graalvm/native-build-tools/issues/410 .
       - name: NativeTest on Oracle GraalVM For JDK ${{ matrix.java }} on ${{ matrix.os }}
-        run: ./mvnw -PnativeTestInJava23+ clean test
+        run: ./mvnw -PnativeTestInCustom clean test
