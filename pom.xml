@@ -75,7 +75,7 @@
         <stax2-api.version>4.2.1</stax2-api.version>
 
         <junit-bom.version>5.13.4</junit-bom.version>
-        <testcontainers-bom.version>1.21.3</testcontainers-bom.version>
+        <testcontainers-bom.version>2.0.3</testcontainers-bom.version>
         <hikaricp.version>4.0.3</hikaricp.version>
         <awaitility.version>4.3.0</awaitility.version>
 
@@ -181,7 +181,7 @@
 
         <dependency>
             <groupId>org.testcontainers</groupId>
-            <artifactId>junit-jupiter</artifactId>
+            <artifactId>testcontainers-junit-jupiter</artifactId>
             <scope>test</scope>
             <optional>true</optional>
         </dependency>
