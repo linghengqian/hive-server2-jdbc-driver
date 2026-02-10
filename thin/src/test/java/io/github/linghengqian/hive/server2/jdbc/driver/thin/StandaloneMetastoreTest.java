@@ -60,8 +60,7 @@ public class StandaloneMetastoreTest {
             .withEnv("SERVICE_OPTS", "-Dhive.metastore.uris=thrift://metastore:9083")
             .withNetwork(NETWORK)
             .withExposedPorts(10000)
-            .dependsOn(HMS_CONTAINER)
-            .withStartupTimeout(Duration.ofMinutes(2L));
+            .dependsOn(HMS_CONTAINER);
 
     @Test
     void test() throws SQLException {
