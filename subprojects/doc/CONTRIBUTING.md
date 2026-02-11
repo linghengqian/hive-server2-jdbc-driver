@@ -5,9 +5,40 @@
 ### For Ubuntu 24.04
 
 Take Ubuntu WSL 24.04 as an example.
-It is assumed that `Git` is configured, and `SDKMAN!` and `Docker Engine` are installed.
+It is assumed that `Git` is configured.
 
 ```shell
+sudo apt update && sudo apt upgrade --assume-yes
+sudo apt-get remove docker.io docker-compose docker-compose-v2 docker-doc podman-docker containerd runc
+sudo apt install ca-certificates curl --assume-yes
+sudo install -m 0755 -d /etc/apt/keyrings
+sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+sudo chmod a+r /etc/apt/keyrings/docker.asc
+
+sudo tee /etc/apt/sources.list.d/docker.sources <<EOF
+Types: deb
+URIs: https://download.docker.com/linux/ubuntu
+Suites: $(. /etc/os-release && echo "${UBUNTU_CODENAME:-$VERSION_CODENAME}")
+Components: stable
+Signed-By: /etc/apt/keyrings/docker.asc
+EOF
+
+sudo apt-get update
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin --assume-yes
+sudo groupadd docker
+sudo usermod -aG docker $USER
+newgrp docker
+
+sudo tee /etc/docker/daemon.json <<EOF
+{
+  "log-driver": "local"
+}
+EOF
+
+sudo systemctl restart docker.service
+sudo apt install --assume-yes unzip zip 
+curl -s "https://get.sdkman.io" | bash
+source "$HOME/.sdkman/bin/sdkman-init.sh"
 sdk install java 24.0.2-graalce
 sudo apt-get install build-essential zlib1g-dev -y
 sdk use java 24.0.2-graalce
@@ -15,18 +46,33 @@ sdk use java 24.0.2-graalce
 
 ### For Windows 11
 
-Take Windows 11 as an example.
-It is assumed that `Git.Git` is configured, and `version-fox.vfox` and `Rancher Desktop` are installed.
+Take Windows 11 as an example. **Please note that `Microsoft.VisualStudio.2022.Community` is commercial software that requires a license to use.**
+It is assumed that `Git.Git`, `Microsoft.PowerShell` and `microsoft/WSL` are configured.
 
-```
+```powershell
+winget install --source winget --exact --id Microsoft.VisualStudio.2022.Community --override "--passive --add Microsoft.VisualStudio.Workload.NativeDesktop --add Microsoft.VisualStudio.Component.VC.Tools.x86.x64 --add Microsoft.VisualStudio.Component.VC.ATL --add Microsoft.VisualStudio.Component.CppBuildInsights --add Microsoft.VisualStudio.Component.Debugger.JustInTime --add Microsoft.VisualStudio.Component.VC.DiagnosticTools --add Microsoft.VisualStudio.Component.VC.CMake.Project --add Microsoft.VisualStudio.Component.VC.TestAdapterForBoostTest --add Microsoft.VisualStudio.Component.VC.TestAdapterForGoogleTest --add Microsoft.VisualStudio.Component.IntelliCode --add Microsoft.VisualStudio.Component.VC.ASAN --add Microsoft.VisualStudio.Component.Windows11SDK.26100 --add Microsoft.VisualStudio.Component.Vcpkg --add Component.VisualStudio.GitHub.Copilot"
+winget install --id SUSE.RancherDesktop --source winget --skip-dependencies
+winget install --id version-fox.vfox --source winget --exact
+if (-not (Test-Path -Path $PROFILE)) { New-Item -Type File -Path $PROFILE -Force }; Add-Content -Path $PROFILE -Value 'Invoke-Expression "$(vfox activate pwsh)"'
+# Open a new PowerShell 7 terminal
+rdctl start --container-engine.name=moby --kubernetes.enabled=false
+
+@'
+{
+  "min-api-version": "1.41",
+  "features": {
+    "containerd-snapshotter": true
+  },
+  "log-driver": "local"
+}
+'@ | rdctl shell sudo tee /etc/docker/daemon.json
+
+rdctl shutdown
+rdctl start --container-engine.name=moby --kubernetes.enabled=false
+vfox add java
 vfox install java@24.0.2-graalce
 vfox use --global java@24.0.2-graalce
-winget install --id Microsoft.VisualStudio.2022.Community
 ```
-
-Modify `Visual Studio Community 2022` in `Visual Studio Installer` to install `使用 C++ 的桌面开发` according 
-to the requirements of https://www.graalvm.org/latest/getting-started/windows/#prerequisites-for-native-image-on-windows .
-**Please note that Visual Studio is commercial software that requires a license to use.**
 
 ## How to test
 

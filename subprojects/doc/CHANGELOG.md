@@ -5,6 +5,7 @@
 ### 2.1.0-SNAPSHOT
 
 1. Bump the minimum requirements for compiling GraalVM Native Images to `GraalVM CE for JDK 24.0.2`.
+2. Fixes an incompatibility issue with the `maven.compiler.release` property with OpenJDK 17.
 
 Build from `apache/hive:rel/release-4.1.0`.
 
