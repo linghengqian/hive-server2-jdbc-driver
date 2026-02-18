@@ -16,7 +16,7 @@
 
 # This file is only used in the PowerShell 7 in GitHub Actions environment and should not be executed manually in a development environment.
 iex "& { $(irm https://raw.githubusercontent.com/microsoft/Windows-Containers/refs/heads/Main/helpful_tools/Install-DockerCE/uninstall-docker-ce.ps1) } -Force"
-irm https://raw.githubusercontent.com/jazzdelightsme/WingetPathUpdater/v1.2/WingetPathUpdaterInstall.ps1 | iex
+winget install --id jazzdelightsme.WingetPathUpdater --source winget
 winget install --id SUSE.RancherDesktop --source winget --skip-dependencies
 rdctl start --application.start-in-background --container-engine.name=moby --kubernetes.enabled=false
 ./subprojects/doc/helpful_tools/wait-for-rancher-desktop-backend.ps1
