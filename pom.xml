@@ -56,14 +56,14 @@
         <httpcomponents.client.version>4.5.13</httpcomponents.client.version>
         <httpcomponents.core.version>4.4.13</httpcomponents.core.version>
         <libthrift.version>0.16.0</libthrift.version>
-        <zookeeper.version>3.8.4</zookeeper.version>
+        <zookeeper.version>3.8.6</zookeeper.version>
         <curator.version>5.7.1</curator.version>
         <commons-codec.version>1.15</commons-codec.version>
         <guava.version>22.0</guava.version>
         <commons-text.version>1.10.0</commons-text.version>
         <slf4j.version>1.7.30</slf4j.version>
         <netty.version>4.1.116.Final</netty.version>
-        <commons-lang3.version>3.12.0</commons-lang3.version>
+        <commons-lang3.version>3.18.0</commons-lang3.version>
 
         <!-- Dependencies come from `hive-storage-api` under `apache/hive` -->
         <commons-logging.version>1.1.3</commons-logging.version>
